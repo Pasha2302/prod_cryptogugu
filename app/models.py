@@ -251,30 +251,24 @@ class AbstractCoin(models.Model):
         save_slug(self, super(), additionally=None, *args, **kwargs)
 
     def __get_price_change(self):
-        # Если объект уже существует (то есть не создаётся новый)
         if self.pk is not None:
-            # Получаем старую версию объекта из базы данных
             old = self.__class__.objects.filter(pk=self.pk).first()
-            # Если старый объект найден и у него есть цена, а также новая цена установлена
             if old is not None and old.price is not None and self.price is not None:
                 try:
-                    # Если старая цена равна нулю, вычисление не имеет смысла
-                    if old.price == 0:
+                    old_price = Decimal(old.price)  # Приводим к Decimal
+                    new_price = Decimal(self.price)  # Приводим к Decimal
+
+                    if old_price == 0:
                         self.price_change_percentage = None
                     else:
-                        # Вычисляем процентное изменение: ((новая - старая) / старая) * 100
-                        change = (self.price - old.price) / old.price * 100
-                        # Определяем направление изменения
+                        change = (new_price - old_price) / old_price * 100
                         direction = "asc" if change >= 0 else "desc"
-                        # Форматируем строку с абсолютным значением изменения, округлённым до двух знаков
                         self.price_change_percentage = f"{direction}, {abs(change):.2f}%"
-                except (InvalidOperation, ZeroDivisionError):
+                except (InvalidOperation, ZeroDivisionError, ValueError):
                     self.price_change_percentage = None
             else:
-                # Если старой цены нет – оставляем поле пустым
                 self.price_change_percentage = None
         else:
-            # Для нового объекта предыдущего значения цены нет
             self.price_change_percentage = None
 
     @staticmethod
