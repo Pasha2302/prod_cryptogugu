@@ -102,7 +102,12 @@ class FilterCoin:
         #     price_change_percentage__isnull=False
         # ).exclude(price_change_percentage="")[:5]
 
-        top_gainers = Coin.objects.annotate(
+        # Исключаем нулевые, пустые и нежелательные значения перед выполнением операций
+        top_gainers = Coin.objects.filter(
+            price_change_percentage__isnull=False,  # Исключаем NULL
+        ).exclude(
+            price_change_percentage__in=["", "0", "0%", "0.0%", "0.00%"]  # Исключаем пустые и нулевые значения
+        ).annotate(
             price_change_numeric=Case(
                 When(
                     price_change_percentage__startswith='asc,',  # Если начинается с 'asc,'
@@ -129,11 +134,7 @@ class FilterCoin:
                 default=Value(0.0),  # Если формат не подходит, используем 0.0
                 output_field=FloatField()
             )
-        ).filter(
-            price_change_percentage__isnull=False
-        ).exclude(
-            price_change_percentage=""
-        ).order_by('-price_change_numeric')[:5]  # Сортируем по убыванию
+        ).order_by('-price_change_numeric')[:5]  # Сортируем по убыванию и берем топ-5
 
         for data_c in top_gainers:
             print('---------------------------------')
@@ -142,8 +143,7 @@ class FilterCoin:
             print(data_c.price)
             print(data_c.price_change_percentage)
             print('---------------------------------')
-            # for k, v in dict(data_c):
-            #     print(f"{k}: {v}")
+
         return {
             'trending': Coin.objects.order_by('-volume_usd')[:5],
             'most_viewed': Coin.objects.order_by('-views')[:5],
