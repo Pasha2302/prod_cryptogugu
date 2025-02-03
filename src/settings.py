@@ -194,7 +194,7 @@ CELERY_BEAT_SCHEDULE = {
             'task': 'app.tasks.start_update_coins',
             # 'schedule': crontab(hour=0, minute=0),  # Запуск в полночь каждый день
             # 'schedule': crontab(minute=0),  # Чтобы выполнить задачу каждый час:
-            'schedule': crontab(minute='*/10'),
+            'schedule': crontab(minute='*/10'),  # Для выполнения задачи каждые 10 минут
         },
 }
 

@@ -251,24 +251,35 @@ class AbstractCoin(models.Model):
         save_slug(self, super(), additionally=None, *args, **kwargs)
 
     def __get_price_change(self):
-        if self.pk is not None:
-            old = self.__class__.objects.filter(pk=self.pk).first()
-            if old is not None and old.price is not None and self.price is not None:
-                try:
-                    old_price = Decimal(old.price)  # Приводим к Decimal
-                    new_price = Decimal(self.price)  # Приводим к Decimal
+        # Если объект новый, изменение цены не вычисляем
+        if self.pk is None:
+            self.price_change_percentage = None
+            return
 
-                    if old_price == 0:
-                        self.price_change_percentage = None
-                    else:
-                        change = (new_price - old_price) / old_price * 100
-                        direction = "asc" if change >= 0 else "desc"
-                        self.price_change_percentage = f"{direction}, {abs(change):.2f}%"
-                except (InvalidOperation, ZeroDivisionError, ValueError):
-                    self.price_change_percentage = None
-            else:
+        # Получаем старую цену из базы данных
+        old = self.__class__.objects.filter(pk=self.pk).first()
+        if old is None or old.price is None or self.price is None:
+            self.price_change_percentage = None
+            return
+
+        try:
+            # Приводим цены к Decimal
+            old_price = Decimal(str(old.price))  # Используем str для безопасности
+            new_price = Decimal(str(self.price))  # Используем str для безопасности
+
+            # Проверяем, что старая цена не равна нулю
+            if old_price == 0:
                 self.price_change_percentage = None
-        else:
+                return
+
+            # Вычисляем изменение цены в процентах
+            change = (new_price - old_price) / old_price * 100
+            direction = "asc" if change >= 0 else "desc"
+            self.price_change_percentage = f"{direction}, {abs(change):.2f}%"
+
+        except (InvalidOperation, ZeroDivisionError, ValueError) as e:
+            # Логируем ошибку, если необходимо
+            print(f"Error calculating price change: {e}")
             self.price_change_percentage = None
 
     @staticmethod
