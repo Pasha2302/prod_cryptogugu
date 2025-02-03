@@ -11,6 +11,10 @@ from app.models import Coin, ReclamBanner
 from datetime import timedelta
 from django.utils import timezone
 
+from django.db.models import F, Value, Case, When
+from django.db.models.functions import Replace, Substr, Cast
+from django.db.models import FloatField
+
 now = timezone.now()
 
 
@@ -94,9 +98,52 @@ class FilterCoin:
 
     @staticmethod
     def get_coins_tops_section():
-        top_gainers = Coin.objects.filter(
+        # top_gainers = Coin.objects.filter(
+        #     price_change_percentage__isnull=False
+        # ).exclude(price_change_percentage="")[:5]
+
+        top_gainers = Coin.objects.annotate(
+            price_change_numeric=Case(
+                When(
+                    price_change_percentage__startswith='asc,',  # Если начинается с 'asc,'
+                    then=Cast(
+                        Replace(
+                            Substr(F('price_change_percentage'), 6, 10),  # Извлекаем часть строки после "asc, "
+                            Value('%'),  # Убираем символ процента
+                            Value('')
+                        ),
+                        FloatField()  # Приводим к числовому типу
+                    )
+                ),
+                When(
+                    price_change_percentage__startswith='desc,',  # Если начинается с 'desc,'
+                    then=-Cast(  # Делаем значение отрицательным
+                        Replace(
+                            Substr(F('price_change_percentage'), 7, 10),  # Извлекаем часть строки после "desc, "
+                            Value('%'),  # Убираем символ процента
+                            Value('')
+                        ),
+                        FloatField()  # Приводим к числовому типу
+                    )
+                ),
+                default=Value(0.0),  # Если формат не подходит, используем 0.0
+                output_field=FloatField()
+            )
+        ).filter(
             price_change_percentage__isnull=False
-        ).exclude(price_change_percentage="")[:5]
+        ).exclude(
+            price_change_percentage=""
+        ).order_by('-price_change_numeric')[:5]  # Сортируем по убыванию
+
+        for data_c in top_gainers:
+            print('---------------------------------')
+            data_c: Coin
+            print(data_c.name)
+            print(data_c.price)
+            print(data_c.price_change_percentage)
+            print('---------------------------------')
+            # for k, v in dict(data_c):
+            #     print(f"{k}: {v}")
         return {
             'trending': Coin.objects.order_by('-volume_usd')[:5],
             'most_viewed': Coin.objects.order_by('-views')[:5],
