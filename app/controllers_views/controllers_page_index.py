@@ -106,7 +106,7 @@ class FilterCoin:
         top_gainers = Coin.objects.filter(
             price_change_percentage__isnull=False,  # Исключаем NULL
         ).exclude(
-            price_change_percentage__in=["", "0", "0%", "0.0%", "0.00%"]  # Исключаем пустые и нулевые значения
+            price_change_percentage__in=["", "0", "0.0%", "0.00%", "0%", ]  # Исключаем пустые и нулевые значения
         ).annotate(
             price_change_numeric=Case(
                 When(
