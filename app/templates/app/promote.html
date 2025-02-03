@@ -1,0 +1,958 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+
+{% block header %}
+
+{{ block.super }} {# Включает содержимое блока header из base.html #}
+
+<nav class="header-nav">
+  <div class="header-nav__wrap container">
+    <div class="header__list">
+      <div class="header__list-item"><a href="{% url 'index' %}" class="header__list-link">Coin Ranking</a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Promotion</a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Audit <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg></a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">KYC</a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Jobs</a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Memes</a></div>
+      <div class="header__list-item">
+        <a href="#" class="header__list-link">Crypto Casino
+          <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg>
+          <svg class="polygon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
+          </svg>
+        </a>
+        <div class="header__sub-menu">
+          <div class="header__sub-menu-left">
+            <a href="#" class="header__sub-menu-left-link" data-menu="by-country"><span>By country</span> <svg
+                class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="by-currency"><span>By currency</span> <svg
+                class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="by-games"><span>By games</span> <svg
+                class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="reviews"><span>Reviews</span> <svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="bonuses"><span>Bonuses</span> <svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="guides"><span>Guides</span> <svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+          </div>
+
+          <div class="header__sub-menu-right">
+            <div data-sub-menu="by-country" class="header__sub-menu-right-content" id="by-country">
+              <ul class="header__sub-menu-right-list">
+                <li><a href="#">Australia</a></li>
+                <li><a href="#">China</a></li>
+                <li><a href="#">Canada</a></li>
+                <li><a href="#">Great Britain</a></li>
+                <li><a href="#">New Zealand</a></li>
+                <li><a href="#">USA</a></li>
+                <li><a href="#">Casino</a></li>
+                <li><a href="#">Cambodia</a></li>
+                <li><a href="#">India</a></li>
+                <li><a href="#">Georgia</a></li>
+                <li><a href="#">US</a></li>
+                <li><a href="#">Great Britain</a></li>
+                <li><a href="#">Zambia</a></li>
+                <li><a href="#">Japan</a></li>
+                <li><a href="#">Germany</a></li>
+                <li class="all"><a href="#">All Countries (120)</a></li>
+              </ul>
+            </div>
+
+
+            <div data-sub-menu="by-currency" class="header__sub-menu-right-content" id="by-currency">
+              <ul class="header__sub-menu-right-list">
+                <li><a href="#">Bitcoin</a></li>
+                <li><a href="#">Ethereum</a></li>
+                <li><a href="#">BSC casino</a></li>
+                <li><a href="#">Tether casino</a></li>
+                <li><a href="#">Cardano casino</a></li>
+                <li><a href="#">Ripple casino</a></li>
+                <li><a href="#">Dogecoin casino</a></li>
+                <li><a href="#">Litecoin casino</a></li>
+                <li><a href="#">Bitcoin cash casino</a></li>
+                <li><a href="#">Tron casino</a></li>
+                <li><a href="#">Monero casino</a></li>
+                <li><a href="#">Eos casino</a></li>
+                <li><a href="#">Zcash casino</a></li>
+                <li><a href="#">Dash casino</a></li>
+                <li><a href="#">Altcoin casino</a></li>
+                <li><a href="#">Solana casino</a></li>
+                <li><a href="#">USD Coin casino</a></li>
+                <li><a href="#">Shiba inu casino </a></li>
+                <li><a href="#">Avalanche casino</a></li>
+                <li><a href="#">Polkadot casino</a></li>
+                <li><a href="#">Binance USD casino</a></li>
+                <li><a href="#">Polygon casino</a></li>
+              </ul>
+            </div>
+
+            <div data-sub-menu="by-games" class="header__sub-menu-right-content" id="by-games">
+              <div class="header__sub-menu-right-content-by-games">
+                <div class="header__sub-menu-by-games">
+                  <a href="#" data-menu="Crash" class="header__sub-menu-by-games-link"><span>Crash</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Plinko" class="header__sub-menu-by-games-link"><span>Plinko</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Jackpots" class="header__sub-menu-by-games-link"><span>Jackpots</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Keno" class="header__sub-menu-by-games-link"><span>Keno</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Poker" class="header__sub-menu-by-games-link"><span>Poker</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Slots" class="header__sub-menu-by-games-link"><span>Slots</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Blackjack" class="header__sub-menu-by-games-link"><span>Blackjack</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Lottery" class="header__sub-menu-by-games-link"><span>Lottery</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Dice" class="header__sub-menu-by-games-link"><span>Dice</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Roulette" class="header__sub-menu-by-games-link"><span>Roulette</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Bingo" class="header__sub-menu-by-games-link"><span>Bingo</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Baccarat" class="header__sub-menu-by-games-link"><span>Baccarat</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Live-Dealer" class="header__sub-menu-by-games-link"><span>Live Dealer</span>
+                    <svg class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Teen-Patti" class="header__sub-menu-by-games-link"><span>Teen Patti</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                </div>
+
+
+                <div class="header__sub-menu-by-games-right" id="Crash">
+                  <ul class="header__sub-menu-right-list">
+                    <li><a href="#">Bitcoin poker</a></li>
+                    <li><a href="#">Ethereum poker</a></li>
+                  </ul>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div data-sub-menu="reviews" class="header__sub-menu-right-content" id="reviews">
+              <ul class="header__sub-menu-right-list">
+                <li><a href="#">BC.Game Casino</a></li>
+                <li><a href="#">Stake Casino</a></li>
+                <li><a href="#">Cloudbet</a></li>
+                <li><a href="#">Rocketpot</a></li>
+                <li><a href="#">Bets.io</a></li>
+                <li><a href="#">Bitsler</a></li>
+                <li><a href="#">Crashino</a></li>
+                <li><a href="#">JustBit</a></li>
+                <li><a href="#">Metaspins</a></li>
+                <li><a href="#">True Flip</a></li>
+                <li><a href="#">Bitcoin.com games</a></li>
+                <li><a href="#">BitStarz</a></li>
+                <li><a href="#">King Billy</a></li>
+                <li><a href="#">mBit</a></li>
+                <li><a href="#">Rollbit</a></li>
+                <li><a href="#">EarnBet</a></li>
+                <li><a href="#">Thunderpick</a></li>
+                <li><a href="#">Bodog</a></li>
+                <li><a href="#">Bao Casino</a></li>
+                <li><a href="#">Fortune Jack</a></li>
+                <li><a href="#">Primedice</a></li>
+                <li><a href="#">Betfury</a></li>
+                <li><a href="#">DuckDice</a></li>
+                <li><a href="#">Roobet</a></li>
+                <li><a href="#">Bitcasino</a></li>
+                <li><a href="#">BitcoinCasino.io</a></li>
+                <li><a href="#">1xSlots</a></li>
+                <li><a href="#">7Bit Casino</a></li>
+                <li><a href="#">Wink</a></li>
+                <li><a href="#">CryptoWild</a></li>
+                <li><a href="#">ZetCasino</a></li>
+                <li><a href="#">Crypto Games</a></li>
+                <li><a href="#">Betcoin</a></li>
+                <li><a href="#">1xBit</a></li>
+                <li><a href="#">Bspin Casino</a></li>
+                <li><a href="#">Nitrogen Sports</a></li>
+                <li><a href="#">Crypto Thrills</a></li>
+                <li><a href="#">Edgeless Casino</a></li>
+                <li class="all"><a href="#">All reviews (80)</a></li>
+              </ul>
+            </div>
+
+            <div data-sub-menu="bonuses" class="header__sub-menu-right-content" id="bonuses">
+              <ul class="header__sub-menu-right-list">
+                <li><a href="#">No deposit bonus</a></li>
+                <li><a href="#">Welcome bonus</a></li>
+                <li><a href="#">Faucet bonus</a></li>
+                <li><a href="#">Free spins</a></li>
+                <li><a href="#">Deposit bonus</a></li>
+                <li><a href="#">Wager free bonuses</a></li>
+                <li><a href="#">Promo codes</a></li>
+              </ul>
+            </div>
+
+
+            <div data-sub-menu="guides" class="header__sub-menu-right-content" id="guides">
+              <div class="header__sub-menu-right-list-guides">
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Coinmooner Token</a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Tools <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg></a></div>
+      <div class="header__list-item header__list-item_sub-small">
+        <a href="#" class="header__list-link">ICO
+          <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg>
+          <svg class="polygon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
+          </svg>
+        </a>
+
+        <div class="header__sub-menu header__sub-menu_little">
+          <ul class="header__sub-menu-right-list">
+            <li><a href="#">Upcoming ICO</a></li>
+            <li><a href="#">Ended ICO</a></li>
+            <li><a href="#">Active ICO</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Airdrops</a></div>
+      <div class="header__list-item">
+        <a href="#" class="header__list-link">Blog
+          <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg>
+          <svg class="polygon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
+          </svg>
+        </a>
+        <div class="header__sub-menu header__sub-menu_small">
+          <div class="header__sub-menu-left">
+            <a href="#" class="header__sub-menu-left-link" data-menu="Fees"><span>Fees</span> <svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu=""><span>Exchange Reviews</span></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="Guides"><span>Guides</span> <svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu=""><span>Trending Robots</span></a>
+          </div>
+
+          <div class="header__sub-menu-right">
+            <div data-sub-menu="Guides" class="header__sub-menu-right-content" id="Guides">
+              <ul class="header__sub-menu-right-list">
+                <li><a href="#">Wallets</a></li>
+                <li><a href="#">Mining</a></li>
+                <li><a href="#">Coins</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Crypto Brokers <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg></a></div>
+    </div>
+  </div>
+</nav>
+
+{% endblock %}
+
+
+{% block content %}
+
+<title>
+  {% block title %}
+
+  {% if page_title %} {{ page_title }} {% else %} Promoted Page {% endif %}
+
+  {% endblock %}
+</title>
+
+<main class="main">
+
+  <section class="promote">
+    <div class="promote__menu">
+      <div class="promote__menu-list container">
+        <div class="promote__menu-item">
+          <a href="#" class="active">Statistics</a>
+        </div>
+        <div class="promote__menu-item">
+          <a href="#">Promoted coin</a>
+        </div>
+        <div class="promote__menu-item">
+          <a href="#">Banners</a>
+        </div>
+        <div class="promote__menu-item">
+          <a href="#">Popups</a>
+        </div>
+        <div class="promote__menu-item">
+          <a href="#">KYC & Audit</a>
+        </div>
+        <div class="promote__menu-item">
+          <a href="#">Pricing</a>
+        </div>
+        <div class="promote__menu-item">
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="promote-hero">
+      <div class="promote-hero__wrap container">
+        <span class="h1">Reach your crypto audience with CoinMooner Ads </span>
+        <p>Expose your project to millions of cryptocurrency enthusiasts and investors. We have the best price
+          performance ratio.</p>
+        <div class="promote-hero__grid">
+          <div class="promote-hero__item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-today"></use>
+            </svg>
+            <p>Daily / 30k visitors</p>
+          </div>
+          <div class="promote-hero__item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-humans"></use>
+            </svg>
+            <p>Monthly / 200k+ visitors </p>
+          </div>
+          <div class="promote-hero__item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-mails"></use>
+            </svg>
+            <p>Subscribers Email <br>
+              base 100k</p>
+          </div>
+          <div class="promote-hero__item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-treidUp"></use>
+            </svg>
+            <p>Best price / ROI ratio</p>
+          </div>
+          <div class="promote-hero__item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-contatcSupport"></use>
+            </svg>
+            <p>24/7 Support assistance </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="promote-stats">
+      <div class="promote-stats__wrap container">
+        <div class="promote-stats__nav">
+          <span class="h2">Statistic Data</span>
+
+          <div class="promote-stats__buttons">
+            <button class="promote-stats__swiper-button promote-stats__swiper-button_prev"><svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowLeft"></use>
+              </svg></button>
+            <button class="promote-stats__swiper-button promote-stats__swiper-button_next"><svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+              </svg></button>
+          </div>
+        </div>
+
+        <div class="promote-stats__swiper swiper">
+          <div class="swiper-wrapper">
+            <div class="promote-stats__item swiper-slide">
+              <div class="num">1</div>
+              <div class="title">Daily Statistics</div>
+              <p>A brief description of this statistic to emphasize its value to advertisers.</p>
+              <img src="{% static 'app/img/stats1.png' %}" alt="">
+            </div>
+            <div class="promote-stats__item swiper-slide">
+              <div class="num">2</div>
+              <div class="title">Weekly Statistics</div>
+              <p>A brief description of this statistic to emphasize its value to advertisers.</p>
+              <img src="{% static 'app/img/stats2.png' %}" alt="">
+            </div>
+            <div class="promote-stats__item swiper-slide">
+              <div class="num">3</div>
+              <div class="title">Monthly Statistics</div>
+              <p>A brief description of this statistic to emphasize its value to advertisers.</p>
+              <img src="{% static 'app/img/stats3.png' %}" alt="">
+            </div>
+            <div class="promote-stats__item swiper-slide">
+              <div class="num">4</div>
+              <div class="title">Weekly Statistics</div>
+              <p>A brief description of this statistic to emphasize its value to advertisers.</p>
+              <img src="{% static 'app/img/stats1.png' %}" alt="">
+            </div>
+            <div class="promote-stats__item swiper-slide">
+              <div class="num">5</div>
+              <div class="title">Monthly Statistics</div>
+              <p>A brief description of this statistic to emphasize its value to advertisers.</p>
+              <img src="{% static 'app/img/stats2.png' %}" alt="">
+            </div>
+          </div>
+
+          <div class="promote-stats__swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="promore-top">
+      <div class="promore-top__wrap container">
+        <span class="h2">Be on Top of the competition</span>
+        <div class="promore-top__top">
+          <div class="title">
+            <span>Promoted Coin Section</span>
+          </div>
+          <a href="#" class="link">View pricing <svg class="arrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+            </svg></a>
+        </div>
+
+        <div class="promore-top__grid">
+          <div class="promore-top__item">
+            <div class="title">Desktop version</div>
+            <div class="image center">
+              <img src="{% static 'app/img/section1-dark.png' %}" alt="" class="dark">
+              <img src="{% static 'app/img/section1-light.png' %}" alt="" class="light">
+            </div>
+          </div>
+          <div class="promore-top__item">
+            <div class="title">Mobile & tablet versions</div>
+            <div class="image">
+              <img src="{% static 'app/img/section2-dark.png' %}" alt="" class="dark">
+              <img src="{% static 'app/img/section2-light.png' %}" alt="" class="light">
+            </div>
+          </div>
+          <div class="promore-top__item">
+            <div class="title">Promoted coin section is also visible at the bottom of every coin page</div>
+            <div class="image">
+              <img src="{% static 'app/img/section3-dark.png' %}" alt="" class="dark">
+              <img src="{% static 'app/img/section3-light.png' %}" alt="" class="light">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="promore-top__top promore-top__top2">
+          <div class="title">
+            <span>Display Banners</span>
+            <p>Boost your marketing with striking animated banners:</p>
+          </div>
+          <a href="#" class="link">View pricing <svg class="arrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+            </svg></a>
+        </div>
+
+
+
+        <div class="promore-top__item-block">
+          <div class="promore-top__title">
+            <div class="title">Big header banners</div>
+            <div class="descr"><svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-image"></use>
+              </svg> Size: 200x500. Format: GIF, JPG, PNG, SVG</div>
+          </div>
+
+          <div class="promore-top__grid">
+            <div class="promore-top__item">
+              <div class="title">Static big banner on top of the website</div>
+              <div class="image top">
+                <img src="{% static 'app/img/big1-dark.png' %}" alt="" class="dark">
+                <img src="{% static 'app/img/big1-light.png' %}" alt="" class="light">
+              </div>
+            </div>
+            <div class="promore-top__item">
+              <div class="title">Including mobile & tablet</div>
+              <div class="image">
+                <img src="{% static 'app/img/big2-dark.png' %}" alt="" class="dark">
+                <img src="{% static 'app/img/big2-light.png' %}" alt="" class="light">
+              </div>
+            </div>
+            <div class="promore-top__item">
+              <div class="title">Visible on top of every coin inner page</div>
+              <div class="image">
+                <img src="{% static 'app/img/big3-dark.png' %}" alt="" class="dark">
+                <img src="{% static 'app/img/big3-light.png' %}" alt="" class="light">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="promore-top__item-block">
+          <div class="promore-top__title">
+            <div class="title">Rotating banner</div>
+            <div class="descr"><svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-image"></use>
+              </svg> Size: 200x500. Format: GIF, JPG, PNG, SVG</div>
+          </div>
+
+          <div class="promore-top__grid">
+            <div class="promore-top__item">
+              <div class="title">Static big banner on top of the website</div>
+              <div class="image center">
+                <img src="{% static 'app/img/rotating1-dark.png' %}" alt="" class="dark">
+                <img src="{% static 'app/img/rotating1-light.png' %}" alt="" class="light">
+              </div>
+            </div>
+            <div class="promore-top__item">
+              <div class="title">Including mobile & tablet</div>
+              <div class="image">
+                <img src="{% static 'app/img/rotating2-dark.png' %}" alt="" class="dark">
+                <img src="{% static 'app/img/rotating2-light.png' %}" alt="" class="light">
+              </div>
+            </div>
+            <div class="promore-top__item">
+              <div class="title">Visible on top of every coin inner page</div>
+              <div class="image">
+                <img src="{% static 'app/img/rotating3-dark.png' %}" alt="" class="dark">
+                <img src="{% static 'app/img/rotating3-light.png' %}" alt="" class="light">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="promore-top__item-block">
+          <div class="promore-top__title">
+            <div class="title">Popup banner</div>
+            <div class="descr"><svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-image"></use>
+              </svg> Size: 200x500. Format: GIF, JPG, PNG, SVG</div>
+          </div>
+
+          <div class="promore-top__grid">
+            <div class="promore-top__item">
+              <div class="title">Left popup</div>
+              <div class="image">
+                <img src="{% static 'app/img/popup1-dark.png' %}" alt="" class="dark">
+                <img src="{% static 'app/img/popup1-light.png' %}" alt="" class="light">
+              </div>
+            </div>
+            <div class="promore-top__item">
+              <div class="title">Right popup</div>
+              <div class="image right">
+                <img src="{% static 'app/img/popup2-dark.png' %}" alt="" class="dark">
+                <img src="{% static 'app/img/popup2-light.png' %}" alt="" class="light">
+              </div>
+            </div>
+            <div class="promore-top__item">
+              <div class="title">Centered popup</div>
+              <div class="image center centered">
+                <img src="{% static 'app/img/popup3-dark.png' %}" alt="" class="dark">
+                <img src="{% static 'app/img/popup3-light.png' %}" alt="" class="light">
+              </div>
+            </div>
+            <div class="promore-top__item">
+              <div class="title">All popups will be displayed on mobile & tablet</div>
+              <div class="image">
+                <img src="{% static 'app/img/popup4-dark.png' %}" alt="" class="dark">
+                <img src="{% static 'app/img/popup4-light.png' %}" alt="" class="light">
+              </div>
+            </div>
+            <div class="promore-top__item">
+              <div class="title">Visible on every coin page</div>
+              <div class="image">
+                <img src="{% static 'app/img/popup5-dark.png' %}" alt="" class="dark">
+                <img src="{% static 'app/img/popup5-light.png' %}" alt="" class="light">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="promote-mail">
+      <div class="promote-mail__wrap container">
+        <div class="promote-mail__wrap-container">
+          <div class="promote-mail__left">
+            <span class="h2">Email mass send</span>
+            <p>Extend your reach across various crypto members. We have collected 30k+ email base of real and active
+              crypto members.</p>
+            <a href="#">Send request</a>
+          </div>
+          <div class="promote-mail__right">
+            <div class="promote-mail__item">
+              <span class="icon-wrap">
+                <svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-email"></use>
+                </svg>
+              </span>
+              <div>
+                <div class="num">51,150</div>
+                <p>triggered</p>
+              </div>
+            </div>
+            <div class="promote-mail__item">
+              <span class="icon-wrap">
+                <svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-inbox"></use>
+                </svg>
+              </span>
+              <div>
+                <div class="num">44,553</div>
+                <p>delivered</p>
+              </div>
+            </div>
+            <div class="promote-mail__item">
+              <span class="icon-wrap">
+                <svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-notification"></use>
+                </svg>
+              </span>
+              <div>
+                <div class="num">21,068</div>
+                <p>opened</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section class="promote-other">
+      <div class="promote-other__wrap container">
+        <span class="h2">Other Services</span>
+        <div class="promote-other__grid">
+          <div class="promote-other__item">
+            <div class="title">KYC/Doxxing</div>
+            <p>Sometimes your community is seeking for additional trust. Coinmooner is 3rd party to help. Your project
+              will get special KYC badge.</p>
+            <div class="image">
+              <img src="{% static 'app/img/other1-dark.png' %}" alt="" class="dark">
+              <img src="{% static 'app/img/other1-light.png' %}" alt="" class="light">
+            </div>
+          </div>
+          <div class="promote-other__item">
+            <div class="title">Smart-contract Audit</div>
+            <p>Get your smart contracts verified by our trusted partner - a team of analysts specialized in blockchain
+              technology.</p>
+            <div class="image">
+              <img src="{% static 'app/img/other2-dark.png' %}" alt="" class="dark">
+              <img src="{% static 'app/img/other2-light.png' %}" alt="" class="light">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="promote-pricing">
+      <div class="promote-pricing__wrap container">
+        <div class="promote-pricing__left">
+          <span class="h2">Pricing</span>
+          <p>For more information or specific requirements, contact us at Telegram</p>
+          <a href="#"><svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-telegram"></use>
+            </svg> @CoinMoonerPromo</a>
+        </div>
+        <div class="promote-pricing__right">
+          <div class="promote-pricing__row">
+            <span class="promote-pricing__label">Service Type</span>
+            <div class="promote-pricing__row-sub">
+              <div class="promote-pricing__row-sub-row">
+                <span class="promote-pricing__label">Duration</span>
+                <span class="promote-pricing__label">Prices</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="promote-pricing__row">
+            <span class="promote-pricing__title">Promoted Coin Section</span>
+            <div class="promote-pricing__row-sub">
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">1 day</div>
+                <div class="cost">0.5 BNB/day</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">5+ days</div>
+                <div class="cost">0.3 BNB/day</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">10+ days</div>
+                <div class="cost">0.2 BNB/day</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="promote-pricing__row">
+            <span class="promote-pricing__title">Big banner</span>
+            <div class="promote-pricing__row-sub">
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">1 day</div>
+                <div class="cost">2 BNB</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">5 days</div>
+                <div class="cost">1 BNB</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">7 days</div>
+                <div class="cost">0.5 BNB</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="promote-pricing__row">
+            <span class="promote-pricing__title">Rotating banner</span>
+            <div class="promote-pricing__row-sub">
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">1 day</div>
+                <div class="cost">2 BNB</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">5 days</div>
+                <div class="cost">1 BNB</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">7 days</div>
+                <div class="cost">0.5 BNB</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="promote-pricing__row">
+            <span class="promote-pricing__title">Popup Left</span>
+            <div class="promote-pricing__row-sub">
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">1 day</div>
+                <div class="cost">2 BNB</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">5 days</div>
+                <div class="cost">1 BNB</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">7 days</div>
+                <div class="cost">0.5 BNB</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="promote-pricing__row">
+            <span class="promote-pricing__title">Popup Right</span>
+            <div class="promote-pricing__row-sub">
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">1 day</div>
+                <div class="cost">2 BNB</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">5 days</div>
+                <div class="cost">1 BNB</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="promote-pricing__row">
+            <span class="promote-pricing__title">Popup Center</span>
+            <div class="promote-pricing__row-sub">
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">1 day</div>
+                <div class="cost">2 BNB</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">5 days</div>
+                <div class="cost">1 BNB</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">7 days</div>
+                <div class="cost">0.5 BNB</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="promote-pricing__row">
+            <span class="promote-pricing__title">Email Mass Send</span>
+            <div class="promote-pricing__row-sub">
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">20k emails sent</div>
+                <div class="cost">2 BNB</div>
+              </div>
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">3x email blast sendys</div>
+                <div class="cost">1 BNB</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="promote-pricing__row">
+            <span class="promote-pricing__title">KYC</span>
+            <div class="promote-pricing__row-sub">
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">1 person</div>
+                <div class="cost">2 BNB</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="promote-pricing__row">
+            <span class="promote-pricing__title">Audit</span>
+            <div class="promote-pricing__row-sub">
+              <div class="promote-pricing__row-sub-row">
+                <div class="time">1 smart contract</div>
+                <div class="cost">2 BNB</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="hidden-text">For more information or specific requirements, contact us at Telegram</p>
+        <a class="hidden-link" href="#"><svg class="icon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-telegram"></use>
+          </svg> @CoinMoonerPromo</a>
+      </div>
+    </section>
+
+    <section class="promote-contacts">
+      <div class="promote-contacts__wrap container">
+        <span class="h2">Contact Us</span>
+        <p>We value you as a customer and truly appreciate that you choose CoinMooner. In order to provide you the best
+          assistance, please contact us trough any of the choices below. we are available 24 hours a day, 7 days a week.
+        </p>
+
+        <div class="promote-contacts__block">
+          <div class="promote-contacts__item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-telegram"></use>
+            </svg>
+            <div class="title">Contact Telegram support</div>
+            <p>For immediate online assistance visit our customer support in Telegram</p>
+            <a href="#" class="teleg"><svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-telegram"></use>
+              </svg> Enter Telegram Support</a>
+          </div>
+          <div class="promote-contacts__item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-mail"></use>
+            </svg>
+            <div class="title">Email assistance</div>
+            <p>Please write to us if you prefer an email response</p>
+            <a href="#" class="mail"><svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-mail"></use>
+              </svg> Send Us a Message</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="subscribe">
+    <div class="subscribe__wrap container">
+      <div class="subscribe__form-wrap">
+        <div class="subscribe__form-wrap-container">
+          <div class="subscribe__text">
+            <span class="h2">Subscribe to our newsletter</span>
+            <p>Get the best high potential coins right into your inbox</p>
+          </div>
+
+          <div class="subscribe__form">
+            <div class="subscribe__form-top">
+              <svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-mail"></use>
+              </svg>
+              <input type="text" placeholder="Your e-mail...">
+              <button type="submit">Subscribe</button>
+            </div>
+
+            <div class="subscribe__form-check">
+              <label for="" class="checkbox">
+                <input type="checkbox">
+                <span class="check"><svg class="icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
+                  </svg></span>
+              </label>
+              <p>Feel free to unsubscribe anytime. Check our <a href="#">Terms of use</a> and <a href="#">Privacy
+                  Policy</a> here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% endblock %}

@@ -1,0 +1,6 @@
+{% load static %}
+
+<!-- id="chat_room" -->
+<div class="test-class" hx-swap-oob="beforeend:#chat_room">
+    <p>User ID [ {{ cookies.userId }} ]: {{ message }}</p>
+</div>

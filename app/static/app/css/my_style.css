@@ -1,0 +1,14 @@
+
+/* Подсветка кнопки при нажатии */
+.coin-table thead button.active {
+    color: var(--yellow);
+}
+
+
+/* .banner-image {
+    width: 100%;     
+    height: auto;  
+    object-fit: cover;
+    max-width: 300px;
+    max-height: 200px;
+} */

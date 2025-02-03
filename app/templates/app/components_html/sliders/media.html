@@ -1,0 +1,39 @@
+{% load static %}
+
+
+<section class="media-slider">
+  <div class="media-slider__wrap container">
+    <span class="h2">Media Presence</span>
+    <div class="media-slider__swiper swiper">
+      <div class="swiper-wrapper">
+        <div class="media-slider__item swiper-slide">
+          <img src="{% static 'app/img/article.jpg' %}" alt="" class="media-slider__item-image">
+          <div class="media-slider__item-date">Published April 27, 2022 <span>|</span> 7 min read</div>
+          <a href="#" class="media-slider__item-title">Guide on Crypto Liquidity Provider 2022</a>
+          <a href="#" class="media-slider__item-link">Read More</a>
+        </div>
+        <div class="media-slider__item swiper-slide">
+          <img src="{% static 'app/img/article.jpg' %}" alt="" class="media-slider__item-image">
+          <div class="media-slider__item-date">Published April 27, 2022 <span>|</span> 7 min read</div>
+          <a href="#" class="media-slider__item-title">BlockFi vs. Defi vs. TradFi: Differences and Similarities</a>
+          <a href="#" class="media-slider__item-link">Read More</a>
+        </div>
+        <div class="media-slider__item swiper-slide">
+          <img src="{% static 'app/img/article.jpg' %}" alt="" class="media-slider__item-image">
+          <div class="media-slider__item-date">Published April 27, 2022 <span>|</span> 7 min read</div>
+          <a href="#" class="media-slider__item-title">BlockFi vs. Defi vs. TradFi: Differences and Similarities</a>
+          <a href="#" class="media-slider__item-link">Read More</a>
+        </div>
+      </div>
+
+      <button class="media-slider__button media-slider__button_prev"><svg class="arrow">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowLeft"></use>
+        </svg></button>
+      <button class="media-slider__button media-slider__button_next"><svg class="arrow">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+        </svg></button>
+
+      <div class="media-slider__pagination"></div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,826 @@
+{% extends "app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+
+<title>
+  {% block title %}
+
+    {% if page_title %} {{ page_title }} {% else %} Coin Page {% endif %}
+
+  {% endblock %}
+</title>
+
+<main class="main">
+
+
+  <section class="breadcrumbs">
+    <div class="breadcrumbs__wrap container fullcontainer">
+      <a href="/" class="breadcrumbs__item">Home</a>
+      <a href="#" class="breadcrumbs__item">Token Card</a>
+    </div>
+  </section>
+
+  <section class="token-card">
+    <div class="token-card__wrap container">
+      <div class="token-card__content">
+        <div class="token-card__top">
+          <div class="token-card__top-image">
+            <img src="{% if coin.path_coin_img %}{{ coin.path_coin_img.url }}{% endif %}" alt="">
+          </div>
+          <div class="token-card__top-right">
+            <div class="token-card__top-name">
+              <span class="name">{{ coin.name }}</span>
+              <span class="refer">Reefer</span>
+              <span class="scam"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-scam"></use>
+                </svg>Scam</span>
+            </div>
+
+            <div class="token-card__top-info">
+              <div class="token-card__top-1h">
+                <span class="up">
+                  <svg class="arrow">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-up"></use>
+                  </svg>
+                  5.93%
+                </span>
+                1H
+              </div>
+              <div class="token-card__top-24h">
+                <span class="down">
+                  <svg class="arrow">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-up"></use>
+                  </svg>
+                  2.61%
+                </span>
+                24H
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="token-card__links">
+          <button class="token-card__links-toggle">
+            <div class="left">
+              <svg width="72" height="32" viewBox="0 0 72 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.5" y="0.5" width="31" height="31" rx="15.5" fill="#262626"
+                  style="fill:#262626;fill:color(display-p3 0.1500 0.1481 0.1481);fill-opacity:1;" />
+                <g clip-path="url(#clip0_2768_2757)">
+                  <path
+                    d="M14.2781 18.1206L14.0135 21.8433C14.3921 21.8433 14.5561 21.6806 14.7528 21.4853L16.5281 19.7886L20.2068 22.4826C20.8815 22.8586 21.3568 22.6606 21.5388 21.8619L23.9535 10.5473L23.9541 10.5466C24.1681 9.54928 23.5935 9.15928 22.9361 9.40394L8.74279 14.8379C7.77412 15.2139 7.78879 15.7539 8.57812 15.9986L12.2068 17.1273L20.6355 11.8533C21.0321 11.5906 21.3928 11.7359 21.0961 11.9986L14.2781 18.1206Z"
+                    fill="#25A7F0" style="fill:#25A7F0;fill:color(display-p3 0.1452 0.6549 0.9417);fill-opacity:1;" />
+                </g>
+                <rect x="0.5" y="0.5" width="31" height="31" rx="15.5" stroke="#1A1A1A"
+                  style="stroke:#1A1A1A;stroke:color(display-p3 0.1000 0.1000 0.1000);stroke-opacity:1;" />
+                <rect x="20.5" y="0.5" width="31" height="31" rx="15.5" fill="#262626"
+                  style="fill:#262626;fill:color(display-p3 0.1500 0.1481 0.1481);fill-opacity:1;" />
+                <path
+                  d="M44 11.5391C43.3981 11.8016 42.7616 11.9761 42.11 12.0571C42.7967 11.6497 43.3101 11.0047 43.553 10.2441C42.91 10.6254 42.2065 10.894 41.473 11.0381C41.0232 10.5579 40.4395 10.224 39.7975 10.0799C39.1555 9.93578 38.485 9.98806 37.8732 10.2299C37.2613 10.4718 36.7363 10.8921 36.3664 11.4362C35.9965 11.9804 35.7988 12.6232 35.799 13.2811C35.799 13.5411 35.821 13.7911 35.875 14.0291C34.5701 13.9651 33.2934 13.6265 32.1283 13.0352C30.9632 12.444 29.9361 11.6135 29.114 10.5981C28.6928 11.32 28.5626 12.1752 28.7499 12.9897C28.9372 13.8042 29.4278 14.5167 30.122 14.9821C29.6028 14.9682 29.0945 14.8296 28.64 14.5781V14.6141C28.6409 15.3715 28.9027 16.1055 29.3813 16.6926C29.86 17.2796 30.5262 17.6838 31.268 17.8371C30.9874 17.9111 30.6982 17.9474 30.408 17.9451C30.1996 17.9488 29.9914 17.93 29.787 17.8891C29.9989 18.5401 30.4075 19.1095 30.9564 19.5187C31.5053 19.9279 32.1676 20.1569 32.852 20.1741C31.6909 21.0822 30.259 21.5747 28.785 21.5731C28.516 21.5731 28.258 21.5611 28 21.5281C29.4999 22.4947 31.2477 23.0059 33.032 23.0001C39.068 23.0001 42.368 18.0001 42.368 13.6661C42.368 13.5211 42.363 13.3811 42.356 13.2421C43.003 12.7791 43.5601 12.202 44 11.5391Z"
+                  fill="#48C8FF" style="fill:#48C8FF;fill:color(display-p3 0.2833 0.7850 1.0000);fill-opacity:1;" />
+                <rect x="20.5" y="0.5" width="31" height="31" rx="15.5" stroke="#1A1A1A"
+                  style="stroke:#1A1A1A;stroke:color(display-p3 0.1000 0.1000 0.1000);stroke-opacity:1;" />
+                <rect x="40.5" y="0.5" width="31" height="31" rx="15.5" fill="#262626"
+                  style="fill:#262626;fill:color(display-p3 0.1500 0.1481 0.1481);fill-opacity:1;" />
+                <path
+                  d="M57.237 24V16.7022H59.6856L60.053 13.8573H57.237V12.0412C57.237 11.2178 57.4647 10.6566 58.6468 10.6566L60.1521 10.656V8.11138C59.8918 8.07756 58.9982 8 57.9582 8C55.7865 8 54.2998 9.32557 54.2998 11.7594V13.8573H51.8438V16.7022H54.2998V24H57.237Z"
+                  fill="#255EF0" style="fill:#255EF0;fill:color(display-p3 0.1452 0.3682 0.9417);fill-opacity:1;" />
+                <rect x="40.5" y="0.5" width="31" height="31" rx="15.5" stroke="#1A1A1A"
+                  style="stroke:#1A1A1A;stroke:color(display-p3 0.1000 0.1000 0.1000);stroke-opacity:1;" />
+                <defs>
+                  <clipPath id="clip0_2768_2757">
+                    <rect width="16" height="16" fill="white" style="fill:white;fill:white;fill-opacity:1;"
+                      transform="translate(8 8)" />
+                  </clipPath>
+                </defs>
+              </svg>
+              Social
+            </div>
+
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+            </svg>
+          </button>
+          <a href="#" class="token-card__links-item token-card__links-item_metamask"><svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-metamask"></use>
+            </svg><span>Add to MetaMask</span></a>
+          <div class="token-card__links-socials">
+            <a href="#" target="_blank" class="token-card__links-item"><svg class="icon" style="color: #48C8FF;">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-twitter"></use>
+              </svg> <span>5, 543 users</span></a>
+            <a href="#" target="_blank" class="token-card__links-item"><svg class="icon" style="color: #25A7F0;">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-telegram"></use>
+              </svg> <span>14k+ users</span></a>
+            <a href="#" target="_blank" class="token-card__links-item"><svg class="icon" style="color: #255EF0;">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-facebook"></use>
+              </svg> <span>345 users</span></a>
+            <a href="#" target="_blank" class="token-card__links-item"><svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-discord"></use>
+              </svg> <span>841 users</span></a>
+            <a href="#" target="_blank" class="token-card__links-item"><svg class="icon" style="color: #DD2525;">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youtube2"></use>
+              </svg> <span>10k+ users</span></a>
+            <a href="#" target="_blank" class="token-card__links-item"><svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tiktok"></use>
+              </svg> <span>40k+ users</span></a>
+            <a href="#" class="token-card__links-item"><svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-web"></use>
+              </svg> <span>Go to site</span></a>
+            <a href="#" class="token-card__links-item token-card__links-item_metamask"><svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-metamask"></use>
+              </svg><span>Add to MetaMask</span></a>
+          </div>
+        </div>
+
+        <div class="token-card__info-list">
+          <div class="token-card__info-list-item">
+            <div class="label">Launch Date:</div>
+            <div class="right">
+              <div class="value">20 June 2023</div>
+            </div>
+          </div>
+          <div class="token-card__info-list-item token-card__info-list-item_link">
+            <div class="label">Binance Smart Chain:</div>
+            <div class="right">
+              <div class="value">1N4Qbzg6LSXUXyXu2MDuGfzxwMA7do8AyL</div>
+              <button class="token-card__info-list-button"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-copy"></use>
+                </svg> <span>Copy Link</span></button>
+              <button class="token-card__info-list-button"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-explorers"></use>
+                </svg> <span>Explorers</span></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="token-card__info-grid">
+          <div class="token-card__info-grid-item">
+            <span class="label">Price</span>
+            <span class="value">2.92000002872572522</span>
+          </div>
+          <div class="token-card__info-grid-item">
+            <span class="label">MarketCap</span>
+            <span class="value">$ 123 285, 92</span>
+          </div>
+          <div class="token-card__info-grid-item">
+            <span class="label">Volume</span>
+            <span class="value">0.820582523343</span>
+          </div>
+          <div class="token-card__info-grid-item">
+            <span class="label">Liquidity</span>
+            <span class="value">$825, 982, 011</span>
+          </div>
+        </div>
+
+
+        <div class="token-card__chart">
+          <img src="{% static 'app/img/chart.png' %}" alt="">
+          <button class="token-card__chart-button">Hide</button>
+        </div>
+
+        <div class="token-card__text">
+          <div class="token-card__text-title">Ethereum (ETH) price has increased today.</div>
+          <p>The price of Ethereum (ETH) is $1,909.32 today with a 24-hour trading volume of $9,005,029,831.82. This
+            represents a 0.40% <a href="#">price increase in the last 24 hours</a> and a 1.11% price increase in the
+            past 7 days. With a circulating supply of 120 Million ETH, Ethereum is valued at a market cap of
+            $229,455,675,535.</p>
+
+          <div class="token-card__text-title">What is Ethereum</div>
+          <p>Ethereum is a Proof-of-Stake blockchain that powers decentralized applications (dApps) through smart
+            contracts, without being controlled by a centralized entity. As the first blockchain to feature smart
+            contracts, it has the largest ecosystem of decentralized applications, ranging from decentralized exchanges
+            to crypto lending and borrowing platforms and more.</p>
+          <p>Ethereum is also home to numerous Layer 2 solutions that offer users a cheaper and faster way to process
+            transactions on the blockchain. Some of these solutions include Arbitrum, which rolls up multiple
+            transactions into a single transaction on Ethereum, and Polygon’s Proof-of-Stake chain, which is a sidechain
+            that runs parallel to the Ethereum blockchain.</p>
+
+          <div class="token-card__text-title">What Makes Ethereum Unique?</div>
+          <p>Ethereum allows for the creation of ERC-20 tokens, which can be used as native tokens for the applications
+            that live on the Ethereum blockchain. These tokens can be used for governance on their respective
+            applications, for utility purposes such as paying trading fees, or as stores of value, as in the case of
+            stablecoins like USDT and USDC. However, gas fees for transactions are still paid in ETH, as transactions
+            are still recorded on the Ethereum blockchain.</p>
+
+
+          <div class="token-card__text-title">History of Ethereum</div>
+          <p>The Ethereum project was initially conceived when Vitalik Buterin published the whitepaper in 2013. The
+            yellowpaper, which consists of more technical details on how Ethereum would work, was later published by
+            Gavin Wood in 2014. A fundraising sale was conducted in September 2014 and the network went live in July
+            2015. On 15 September 2022, Ethereum transitioned from Proof-of-Work to Proof-of-Stake consensus with the
+            Merge.</p>
+
+          <button class="read-more">Read More</button>
+        </div>
+
+
+        <div class="token-card__hide-sidebar">
+          <div class="token-card__sidebar-item token-card__sidebar-item_rank">
+            <div class="title">Coin rank</div>
+            <div class="row-list row-list_big">
+              <div class="row-list__item">
+                <span class="label">Global rank:</span>
+                <span class="value">#4</span>
+              </div>
+              <div class="row-list__item">
+                <span class="label">Daily rank:</span>
+                <span class="value">#21</span>
+              </div>
+            </div>
+
+            <div class="token-card__sidebar-item_rank__info">
+              <div class="item">
+                <div class="num">39,924</div>
+                <p>All Votes</p>
+              </div>
+              <div class="hr"></div>
+              <div class="item">
+                <div class="num">445</div>
+                <p>Votes Today</p>
+              </div>
+            </div>
+
+            <button class="vote">Vote</button>
+            <div class="token-card__sidebar-item__bottom-info">You can vote once every 24 hours</div>
+          </div>
+
+          <div class="token-card__sidebar-item token-card__sidebar-item_safety">
+            <div class="title">Safety</div>
+            <div class="row-list">
+              <div class="row-list__item">
+                <span class="label">Audit:</span>
+                <span class="value">Audit by cERTIK <img src="{% static 'app/img/certic.png' %}" alt=""></span>
+              </div>
+              <div class="row-list__item">
+                <span class="label">KYC:</span>
+                <span class="value">Audit by cERTIK <img src="{% static 'app/img/certic.png' %}" alt=""></span>
+              </div>
+              <div class="row-list__item">
+                <span class="label">Liquidity Locked:</span>
+                <span class="value">No <img src="{% static 'app/img/error.svg' %}" alt=""></span>
+              </div>
+            </div>
+
+            <div class="token-card__sidebar-item_safety__banner">
+              <div class="text">
+                <div class="info"><svg class="icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
+                  </svg> No Honeypot</div>
+                <p>Powered By StaySafu</p>
+              </div>
+              <img src="{% static 'app/img/safety.png' %}" alt="">
+            </div>
+          </div>
+
+          <div class="token-card__sidebar-item token-card__sidebar-item_ad">
+            <div class="title"><img src="{% static 'app/img/gecko.png' %}" alt="">CoinGecko</div>
+            <button class="close"><svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+              </svg></button>
+            <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled</p>
+            <a href="#">Ad</a>
+          </div>
+
+          <div class="token-card__sidebar-item token-card__sidebar-item_presale">
+            <div class="title">Presale information</div>
+            <div class="row-list">
+              <div class="row-list__item">
+                <span class="label">Presale information</span>
+                <span class="value">Yes</span>
+              </div>
+              <div class="row-list__item">
+                <span class="label">Yes</span>
+                <span class="value">Yes</span>
+              </div>
+              <div class="row-list__item">
+                <span class="label">Presale date:</span>
+                <span class="value">05 May 2023</span>
+              </div>
+              <div class="row-list__item">
+                <span class="label">Softcap:</span>
+                <span class="value">100 BNB</span>
+              </div>
+              <div class="row-list__item">
+                <span class="label">Hardcap:</span>
+                <span class="value">500 BNB</span>
+              </div>
+            </div>
+            <a href="#" class="token-card__sidebar-item_presale__visit"><img src="{% static 'app/img/rocket.png' %}"
+                alt="">Visit Presale Page</a>
+          </div>
+
+          <div class="token-card__sidebar-item token-card__sidebar-item_tax">
+            <div class="title">Tax information</div>
+            <div class="row-list">
+              <div class="row-list__item">
+                <span class="label">Sell tax:</span>
+                <span class="value">60%</span>
+              </div>
+              <div class="row-list__item">
+                <span class="label">Buy tax:</span>
+                <span class="value">30%</span>
+              </div>
+              <div class="row-list__item">
+                <span class="label">Recommended slippage:</span>
+                <span class="value">10%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="token-card__sidebar-item token-card__sidebar-item_charts">
+            <div class="title">Charts</div>
+            <div class="charts-list">
+              <a href="#" class="charts-list__item"><img src="{% static 'app/img/terra.png' %}" alt="">TerraSwap</a>
+              <a href="#" class="charts-list__item"><img src="{% static 'app/img/anoma.png' %}" alt="">Anoma</a>
+              <a href="#" class="charts-list__item"><img src="{% static 'app/img/metatime.png' %}" alt="">Metatime</a>
+              <a href="#" class="charts-list__item"><img src="{% static 'app/img/chancer.png' %}" alt="">Chancer</a>
+              <a href="#" class="charts-list__item"><img src="{% static 'app/img/wall.png' %}" alt="">Wall street
+                memes</a>
+            </div>
+          </div>
+
+          <div class="token-card__sidebar-item token-card__sidebar-item_markets">
+            <div class="title">Markets</div>
+            <div class="charts-list">
+              <a href="#" class="charts-list__item"><img src="{% static 'app/img/terra.png' %}" alt="">TerraSwap</a>
+              <a href="#" class="charts-list__item"><img src="{% static 'app/img/anoma.png' %}" alt="">Anoma</a>
+              <a href="#" class="charts-list__item"><img src="{% static 'app/img/metatime.png' %}" alt="">Metatime</a>
+              <a href="#" class="charts-list__item"><img src="{% static 'app/img/chancer.png' %}" alt="">Chancer</a>
+              <a href="#" class="charts-list__item"><img src="{% static 'app/img/wall.png' %}" alt="">Wall street
+                memes</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="token-card__more">
+          <span class="h2">More Coins</span>
+          <div class="token-card__more-list">
+            <div class="token-card__more-item">
+              <a href="#" class="token-card__more-item-top">
+                <img src="{% static 'app/img/Image1.png' %}" alt="">
+                <span class="name">Wall Street Memes</span>
+              </a>
+
+              <div class="tags">
+                <a href="#" class="tag green">KYC</a>
+                <a href="#" class="tag blue">Audited</a>
+              </div>
+            </div>
+
+            <div class="token-card__more-item">
+              <a href="#" class="token-card__more-item-top">
+                <img src="{% static 'app/img/Image2.png' %}" alt="">
+                <span class="name">Ecoterra</span>
+              </a>
+
+              <div class="tags">
+                <a href="#" class="tag green">KYC</a>
+                <a href="#" class="tag blue">Audited</a>
+              </div>
+            </div>
+
+            <div class="token-card__more-item">
+              <a href="#" class="token-card__more-item-top">
+                <img src="{% static 'app/img/Image3.png' %}" alt="">
+                <span class="name">Chancer</span>
+              </a>
+
+              <div class="tags">
+                <a href="#" class="tag green">KYC</a>
+                <a href="#" class="tag blue">Audited</a>
+              </div>
+            </div>
+
+            <div class="token-card__more-item">
+              <a href="#" class="token-card__more-item-top">
+                <img src="{% static 'app/img/Image4.png' %}" alt="">
+                <span class="name">Wall Street Memes</span>
+              </a>
+
+              <div class="tags">
+                <a href="#" class="tag green">BSC</a>
+                <a href="#" class="tag blue">Audited</a>
+              </div>
+            </div>
+
+            <div class="token-card__more-item">
+              <a href="#" class="token-card__more-item-top">
+                <img src="{% static 'app/img/Image1.png' %}" alt="">
+                <span class="name">Ecoterra</span>
+              </a>
+
+              <div class="tags">
+                <a href="#" class="tag blue">Audited</a>
+              </div>
+            </div>
+
+            <div class="token-card__more-item">
+              <a href="#" class="token-card__more-item-top">
+                <img src="{% static 'app/img/Image3.png' %}" alt="">
+                <span class="name">Chancer</span>
+              </a>
+
+              <div class="tags">
+                <a href="#" class="tag green">KYC</a>
+                <a href="#" class="tag blue">Audited</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="token-card__sidebar">
+        <div class="token-card__sidebar-item token-card__sidebar-item_rank">
+          <div class="title">Coin rank</div>
+          <div class="row-list row-list_big">
+
+            <div class="row-list__item">
+              <span class="label">Number of views:</span>
+              <span class="value">#{{ coin.views }}</span>
+            </div>
+
+            <div class="row-list__item">
+              <span class="label">Global rank:</span>
+              <span class="value">#4</span>
+            </div>
+            <div class="row-list__item">
+              <span class="label">Daily rank:</span>
+              <span class="value">#21</span>
+            </div>
+          </div>
+
+          <div class="token-card__sidebar-item_rank__info">
+            <div class="item">
+              <div class="num">39,924</div>
+              <p>All Votes</p>
+            </div>
+            <div class="hr"></div>
+            <div class="item">
+              <div class="num">445</div>
+              <p>Votes Today</p>
+            </div>
+          </div>
+
+          <button class="vote">Vote</button>
+          <div class="token-card__sidebar-item__bottom-info">You can vote once every 24 hours</div>
+        </div>
+
+        <div class="token-card__sidebar-item token-card__sidebar-item_safety">
+          <div class="title">Safety</div>
+          <div class="row-list">
+            <div class="row-list__item">
+              <span class="label">Audit:</span>
+              <span class="value">Audit by cERTIK <img src="{% static 'app/img/certic.png' %}" alt=""></span>
+            </div>
+            <div class="row-list__item">
+              <span class="label">KYC:</span>
+              <span class="value">Audit by cERTIK <img src="{% static 'app/img/certic.png' %}" alt=""></span>
+            </div>
+            <div class="row-list__item">
+              <span class="label">Liquidity Locked:</span>
+              <span class="value">No <img src="{% static 'app/img/error.svg' %}" alt=""></span>
+            </div>
+          </div>
+
+          <div class="token-card__sidebar-item_safety__banner">
+            <div class="text">
+              <div class="info"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
+                </svg> No Honeypot</div>
+              <p>Powered By StaySafu</p>
+            </div>
+            <img src="{% static 'app/img/safety.png' %}" alt="">
+          </div>
+        </div>
+
+        <div class="token-card__sidebar-item token-card__sidebar-item_ad">
+          <div class="title"><img src="{% static 'app/img/gecko.png' %}" alt="">CoinGecko</div>
+          <button class="close"><svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+            </svg></button>
+          <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled</p>
+          <a href="#">Ad</a>
+        </div>
+
+        <div class="token-card__sidebar-item token-card__sidebar-item_presale">
+          <div class="title">Presale information</div>
+          <div class="row-list">
+            <div class="row-list__item">
+              <span class="label">Presale information</span>
+              <span class="value">Yes</span>
+            </div>
+            <div class="row-list__item">
+              <span class="label">Yes</span>
+              <span class="value">Yes</span>
+            </div>
+            <div class="row-list__item">
+              <span class="label">Presale date:</span>
+              <span class="value">05 May 2023</span>
+            </div>
+            <div class="row-list__item">
+              <span class="label">Softcap:</span>
+              <span class="value">100 BNB</span>
+            </div>
+            <div class="row-list__item">
+              <span class="label">Hardcap:</span>
+              <span class="value">500 BNB</span>
+            </div>
+          </div>
+          <a href="#" class="token-card__sidebar-item_presale__visit"><img src="{% static 'app/img/rocket.png' %}"
+              alt="">Visit Presale Page</a>
+        </div>
+
+        <div class="token-card__sidebar-item token-card__sidebar-item_tax">
+          <div class="title">Tax information</div>
+          <div class="row-list">
+            <div class="row-list__item">
+              <span class="label">Sell tax:</span>
+              <span class="value">60%</span>
+            </div>
+            <div class="row-list__item">
+              <span class="label">Buy tax:</span>
+              <span class="value">30%</span>
+            </div>
+            <div class="row-list__item">
+              <span class="label">Recommended slippage:</span>
+              <span class="value">10%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="token-card__sidebar-item token-card__sidebar-item_charts">
+          <div class="title">Charts</div>
+          <div class="charts-list">
+            <a href="#" class="charts-list__item"><img src="{% static 'app/img/terra.png' %}" alt="">TerraSwap</a>
+            <a href="#" class="charts-list__item"><img src="{% static 'app/img/anoma.png' %}" alt="">Anoma</a>
+            <a href="#" class="charts-list__item"><img src="{% static 'app/img/metatime.png' %}" alt="">Metatime</a>
+            <a href="#" class="charts-list__item"><img src="{% static 'app/img/chancer.png' %}" alt="">Chancer</a>
+            <a href="#" class="charts-list__item"><img src="{% static 'app/img/wall.png' %}" alt="">Wall street
+              memes</a>
+          </div>
+        </div>
+
+        <div class="token-card__sidebar-item token-card__sidebar-item_markets">
+          <div class="title">Markets</div>
+          <div class="charts-list">
+            <a href="#" class="charts-list__item"><img src="{% static 'app/img/terra.png' %}" alt="">TerraSwap</a>
+            <a href="#" class="charts-list__item"><img src="{% static 'app/img/anoma.png' %}" alt="">Anoma</a>
+            <a href="#" class="charts-list__item"><img src="{% static 'app/img/metatime.png' %}" alt="">Metatime</a>
+            <a href="#" class="charts-list__item"><img src="{% static 'app/img/chancer.png' %}" alt="">Chancer</a>
+            <a href="#" class="charts-list__item"><img src="{% static 'app/img/wall.png' %}" alt="">Wall street
+              memes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="promoted-coins">
+      <div class="promoted-coins__wrap container">
+        <span class="h2">Promoted Coins</span>
+
+        <div class="coin-table">
+          <table class="">
+            <colgroup>
+              <col style="width:auto;min-width:auto;max-width:auto">
+              <col style="width:auto;min-width:auto;max-width:auto">
+              <col style="width:auto;min-width:auto;max-width:auto">
+              <col style="width:auto;min-width:auto;max-width:auto">
+              <col style="width:auto;min-width:auto;max-width:auto">
+              <col style="width:auto;min-width:auto;max-width:auto">
+              <col style="width:auto;min-width:auto;max-width:auto">
+              <col style="width:auto;min-width:auto;max-width:auto">
+            </colgroup>
+
+            <thead>
+              <tr>
+                <th>
+                  <div class="">
+                    <span>#</span>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="">
+                    <span>Name</span>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="">
+                    <span>Symbol</span>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="">
+                    <button>
+                      24h
+                      <svg class="arrow">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bott"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="">
+                    <button>
+                      Market Cap
+                      <svg class="arrow">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bott"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="">
+                    <button>
+                      Launch Date
+                      <svg class="arrow">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bott"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="">
+                    <span>Upvotes</span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>
+                  <span class="coin-table__num">1</span>
+                </td>
+
+                <td>
+                  <div class="coin-table__name">
+                    <span class="coin-table__num">1</span>
+                    <a href="#" class="coin-table__name-left">
+                      <img src="{% static 'app/img/Image1.png' %}" alt="">
+                      <div class="coin-table__name-info">
+                        <span class="name">Meta Masters Guild</span>
+                        <span class="label">Cheap Master Prod.</span>
+                      </div>
+                    </a>
+
+                    <div class="coin-table__name-tags">
+                      <a href="#" class="coin-table__name-tag green">KYC</a>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="coin-table__chain">
+                    <span>MTM</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="coin-table__cap">
+                    $1,584.53
+                  </div>
+                </td>
+
+                <td>
+                  <div class="coin-table__24h">
+                    <span class="cost down">
+                      <svg class="arrow">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-up"></use>
+                      </svg>
+                      5.93%</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="coin-table__date">
+                    <span>In 2 months</span>
+                  </div>
+                </td>
+
+
+                <td>
+                  <div class="coin-table__vote">
+                    <button class="btn btn_light btn_light-check"><svg class="icon">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
+                      </svg> 82422</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <span class="coin-table__num">2</span>
+                </td>
+
+                <td>
+                  <div class="coin-table__name">
+                    <span class="coin-table__num">2</span>
+                    <a href="#" class="coin-table__name-left">
+                      <img src="{% static 'app/img/Image2.png' %}" alt="">
+                      <div class="coin-table__name-info">
+                        <span class="name">FIght Out</span>
+                        <span class="label">Cheap Master Prod.</span>
+                      </div>
+                    </a>
+
+                    <div class="coin-table__name-tags">
+                      <a href="#" class="coin-table__name-tag green">KYC</a>
+                      <a href="#" class="coin-table__name-tag violet">Audited</a>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="coin-table__chain">
+                    <span>SMBL</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="coin-table__cap">
+                    <div class="cap-presale"><svg class="arrow">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-loading"></use>
+                      </svg>Presale</div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="coin-table__24h">
+                    <span class="none">—</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="coin-table__date">
+                    <span>In 2 months</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="coin-table__vote">
+                    <button class="btn btn_light btn_light-check"><svg class="icon">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
+                      </svg>2323</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- <section class="subscribe"> -->
+    <div class="subscribe__wrap container">
+      <div class="subscribe__form-wrap">
+        <div class="subscribe__form-wrap-container">
+          <div class="subscribe__text">
+            <span class="h2">Subscribe to our newsletter</span>
+            <p>Get the best high potential coins right into your inbox</p>
+          </div>
+
+          <div class="subscribe__form">
+            <div class="subscribe__form-top">
+              <svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-mail"></use>
+              </svg>
+              <input type="text" placeholder="Your e-mail...">
+              <button type="submit">Subscribe</button>
+            </div>
+
+            <div class="subscribe__form-check">
+              <label for="" class="checkbox">
+                <input type="checkbox">
+                <span class="check"><svg class="icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
+                  </svg></span>
+              </label>
+              <p>Feel free to unsubscribe anytime. Check our <a href="#">Terms of use</a> and <a href="#">Privacy
+                  Policy</a> here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<script>
+  document.querySelector('.token-card__links-toggle').addEventListener('click', () => {
+    document.querySelector('.token-card__links').classList.toggle('open');
+  })
+</script>
+
+{% endblock %}

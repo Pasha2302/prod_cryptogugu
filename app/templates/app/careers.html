@@ -1,0 +1,748 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+
+{% block header %}
+
+{{ block.super }} {# Включает содержимое блока header из base.html #}
+
+<nav class="header-nav">
+  <div class="header-nav__wrap container">
+    <div class="header__list">
+      <div class="header__list-item"><a href="{% url 'index' %}" class="header__list-link">Coin Ranking</a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Promotion</a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Audit <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg></a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">KYC</a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Jobs</a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Memes</a></div>
+      <div class="header__list-item">
+        <a href="#" class="header__list-link">Crypto Casino
+          <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg>
+          <svg class="polygon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
+          </svg>
+        </a>
+        <div class="header__sub-menu">
+          <div class="header__sub-menu-left">
+            <a href="#" class="header__sub-menu-left-link" data-menu="by-country"><span>By country</span> <svg
+                class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="by-currency"><span>By currency</span> <svg
+                class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="by-games"><span>By games</span> <svg
+                class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="reviews"><span>Reviews</span> <svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="bonuses"><span>Bonuses</span> <svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="guides"><span>Guides</span> <svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+          </div>
+
+          <div class="header__sub-menu-right">
+            <div data-sub-menu="by-country" class="header__sub-menu-right-content" id="by-country">
+              <ul class="header__sub-menu-right-list">
+                <li><a href="#">Australia</a></li>
+                <li><a href="#">China</a></li>
+                <li><a href="#">Canada</a></li>
+                <li><a href="#">Great Britain</a></li>
+                <li><a href="#">New Zealand</a></li>
+                <li><a href="#">USA</a></li>
+                <li><a href="#">Casino</a></li>
+                <li><a href="#">Cambodia</a></li>
+                <li><a href="#">India</a></li>
+                <li><a href="#">Georgia</a></li>
+                <li><a href="#">US</a></li>
+                <li><a href="#">Great Britain</a></li>
+                <li><a href="#">Zambia</a></li>
+                <li><a href="#">Japan</a></li>
+                <li><a href="#">Germany</a></li>
+                <li class="all"><a href="#">All Countries (120)</a></li>
+              </ul>
+            </div>
+
+
+            <div data-sub-menu="by-currency" class="header__sub-menu-right-content" id="by-currency">
+              <ul class="header__sub-menu-right-list">
+                <li><a href="#">Bitcoin</a></li>
+                <li><a href="#">Ethereum</a></li>
+                <li><a href="#">BSC casino</a></li>
+                <li><a href="#">Tether casino</a></li>
+                <li><a href="#">Cardano casino</a></li>
+                <li><a href="#">Ripple casino</a></li>
+                <li><a href="#">Dogecoin casino</a></li>
+                <li><a href="#">Litecoin casino</a></li>
+                <li><a href="#">Bitcoin cash casino</a></li>
+                <li><a href="#">Tron casino</a></li>
+                <li><a href="#">Monero casino</a></li>
+                <li><a href="#">Eos casino</a></li>
+                <li><a href="#">Zcash casino</a></li>
+                <li><a href="#">Dash casino</a></li>
+                <li><a href="#">Altcoin casino</a></li>
+                <li><a href="#">Solana casino</a></li>
+                <li><a href="#">USD Coin casino</a></li>
+                <li><a href="#">Shiba inu casino </a></li>
+                <li><a href="#">Avalanche casino</a></li>
+                <li><a href="#">Polkadot casino</a></li>
+                <li><a href="#">Binance USD casino</a></li>
+                <li><a href="#">Polygon casino</a></li>
+              </ul>
+            </div>
+
+            <div data-sub-menu="by-games" class="header__sub-menu-right-content" id="by-games">
+              <div class="header__sub-menu-right-content-by-games">
+                <div class="header__sub-menu-by-games">
+                  <a href="#" data-menu="Crash" class="header__sub-menu-by-games-link"><span>Crash</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Plinko" class="header__sub-menu-by-games-link"><span>Plinko</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Jackpots" class="header__sub-menu-by-games-link"><span>Jackpots</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Keno" class="header__sub-menu-by-games-link"><span>Keno</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Poker" class="header__sub-menu-by-games-link"><span>Poker</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Slots" class="header__sub-menu-by-games-link"><span>Slots</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Blackjack" class="header__sub-menu-by-games-link"><span>Blackjack</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Lottery" class="header__sub-menu-by-games-link"><span>Lottery</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Dice" class="header__sub-menu-by-games-link"><span>Dice</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Roulette" class="header__sub-menu-by-games-link"><span>Roulette</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Bingo" class="header__sub-menu-by-games-link"><span>Bingo</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Baccarat" class="header__sub-menu-by-games-link"><span>Baccarat</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Live-Dealer" class="header__sub-menu-by-games-link"><span>Live Dealer</span>
+                    <svg class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                  <a href="#" data-menu="Teen-Patti" class="header__sub-menu-by-games-link"><span>Teen Patti</span> <svg
+                      class="arrow">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+                    </svg></a>
+                </div>
+
+
+                <div class="header__sub-menu-by-games-right" id="Crash">
+                  <ul class="header__sub-menu-right-list">
+                    <li><a href="#">Bitcoin poker</a></li>
+                    <li><a href="#">Ethereum poker</a></li>
+                  </ul>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div data-sub-menu="reviews" class="header__sub-menu-right-content" id="reviews">
+              <ul class="header__sub-menu-right-list">
+                <li><a href="#">BC.Game Casino</a></li>
+                <li><a href="#">Stake Casino</a></li>
+                <li><a href="#">Cloudbet</a></li>
+                <li><a href="#">Rocketpot</a></li>
+                <li><a href="#">Bets.io</a></li>
+                <li><a href="#">Bitsler</a></li>
+                <li><a href="#">Crashino</a></li>
+                <li><a href="#">JustBit</a></li>
+                <li><a href="#">Metaspins</a></li>
+                <li><a href="#">True Flip</a></li>
+                <li><a href="#">Bitcoin.com games</a></li>
+                <li><a href="#">BitStarz</a></li>
+                <li><a href="#">King Billy</a></li>
+                <li><a href="#">mBit</a></li>
+                <li><a href="#">Rollbit</a></li>
+                <li><a href="#">EarnBet</a></li>
+                <li><a href="#">Thunderpick</a></li>
+                <li><a href="#">Bodog</a></li>
+                <li><a href="#">Bao Casino</a></li>
+                <li><a href="#">Fortune Jack</a></li>
+                <li><a href="#">Primedice</a></li>
+                <li><a href="#">Betfury</a></li>
+                <li><a href="#">DuckDice</a></li>
+                <li><a href="#">Roobet</a></li>
+                <li><a href="#">Bitcasino</a></li>
+                <li><a href="#">BitcoinCasino.io</a></li>
+                <li><a href="#">1xSlots</a></li>
+                <li><a href="#">7Bit Casino</a></li>
+                <li><a href="#">Wink</a></li>
+                <li><a href="#">CryptoWild</a></li>
+                <li><a href="#">ZetCasino</a></li>
+                <li><a href="#">Crypto Games</a></li>
+                <li><a href="#">Betcoin</a></li>
+                <li><a href="#">1xBit</a></li>
+                <li><a href="#">Bspin Casino</a></li>
+                <li><a href="#">Nitrogen Sports</a></li>
+                <li><a href="#">Crypto Thrills</a></li>
+                <li><a href="#">Edgeless Casino</a></li>
+                <li class="all"><a href="#">All reviews (80)</a></li>
+              </ul>
+            </div>
+
+            <div data-sub-menu="bonuses" class="header__sub-menu-right-content" id="bonuses">
+              <ul class="header__sub-menu-right-list">
+                <li><a href="#">No deposit bonus</a></li>
+                <li><a href="#">Welcome bonus</a></li>
+                <li><a href="#">Faucet bonus</a></li>
+                <li><a href="#">Free spins</a></li>
+                <li><a href="#">Deposit bonus</a></li>
+                <li><a href="#">Wager free bonuses</a></li>
+                <li><a href="#">Promo codes</a></li>
+              </ul>
+            </div>
+
+
+            <div data-sub-menu="guides" class="header__sub-menu-right-content" id="guides">
+              <div class="header__sub-menu-right-list-guides">
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+                <a href="#" class="header__guides-item">
+                  <img src="{% static 'app/img/article.jpg' %}" alt="" class="header__guides-item-image">
+                  <span>Formula 1 Betting with Bitcoin: Ultimate Guide</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Coinmooner Token</a></div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Tools <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg></a></div>
+      <div class="header__list-item header__list-item_sub-small">
+        <a href="#" class="header__list-link">ICO
+          <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg>
+          <svg class="polygon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
+          </svg>
+        </a>
+
+        <div class="header__sub-menu header__sub-menu_little">
+          <ul class="header__sub-menu-right-list">
+            <li><a href="#">Upcoming ICO</a></li>
+            <li><a href="#">Ended ICO</a></li>
+            <li><a href="#">Active ICO</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Airdrops</a></div>
+      <div class="header__list-item">
+        <a href="#" class="header__list-link">Blog
+          <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg>
+          <svg class="polygon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
+          </svg>
+        </a>
+        <div class="header__sub-menu header__sub-menu_small">
+          <div class="header__sub-menu-left">
+            <a href="#" class="header__sub-menu-left-link" data-menu="Fees"><span>Fees</span> <svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu=""><span>Exchange Reviews</span></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu="Guides"><span>Guides</span> <svg class="arrow">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-right"></use>
+              </svg></a>
+            <a href="#" class="header__sub-menu-left-link" data-menu=""><span>Trending Robots</span></a>
+          </div>
+
+          <div class="header__sub-menu-right">
+            <div data-sub-menu="Guides" class="header__sub-menu-right-content" id="Guides">
+              <ul class="header__sub-menu-right-list">
+                <li><a href="#">Wallets</a></li>
+                <li><a href="#">Mining</a></li>
+                <li><a href="#">Coins</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header__list-item"><a href="#" class="header__list-link">Crypto Brokers <svg class="arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+          </svg></a></div>
+    </div>
+  </div>
+</nav>
+
+{% endblock %}
+
+
+{% block content %}
+
+<title>
+  {% block title %}
+
+  {% if page_title %} {{ page_title }} {% else %} Careers Page {% endif %}
+
+  {% endblock %}
+</title>
+
+<main class="main">
+
+  <div class="careers">
+    <div class="careers__hero">
+      <div class="careers__hero-wrap container">
+        <div class="careers__hero-text">
+          <div class="label">10+ open positions</div>
+          <span class="h1">Build Your career together with CoinMooner</span>
+          <p>Join our quest to increase the Freedom of Money</p>
+          <div class="careers__hero-text-actions">
+            <a href="#" class="accent-link">Open Positions</a>
+            <a href="#" class="stroke-link">How We Hire</a>
+          </div>
+        </div>
+
+        <div class="careers__hero-image">
+          <img src="{% static 'app/img/careers.svg' %}" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="careers__values">
+      <div class="careers__values-wrap container">
+        <span class="h2">CoinMooner Values</span>
+        <p>CoinMooner Core Values guide our behavior, decisions, and action, enabling unified collaboration across our
+          diverse, international teams.</p>
+
+        <div class="careers__values-grid">
+          <div class="careers__values-item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-user-focused"></use>
+            </svg>
+            <div class="title">User-Focused</div>
+            <p>We protect our users by putting our users' needs first and delivering quality service.</p>
+          </div>
+          <div class="careers__values-item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-collaboration"></use>
+            </svg>
+            <div class="title">Collaboration</div>
+            <p>We communicate openly. We work as a team towards shared goals to build the ecosystem together.</p>
+          </div>
+          <div class="careers__values-item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-hardcore"></use>
+            </svg>
+            <div class="title">Hardcore</div>
+            <p>We are results driven. We get things done. We are passionate and work hard. When we fail, we learn fast,
+              and pick ourselves up.</p>
+          </div>
+          <div class="careers__values-item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-freedom"></use>
+            </svg>
+            <div class="title">Freedom</div>
+            <p>We execute responsibly and autonomously. We empower those around us. Our team is diverse and we challenge
+              the status quo.</p>
+          </div>
+          <div class="careers__values-item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-humility"></use>
+            </svg>
+            <div class="title">Humility</div>
+            <p>We accept critical feedback.We treat everyone as equals.We are modest about our success.</p>
+          </div>
+          <div class="careers__values-item promo">
+            <div class="title">Do you want to be part of our team? It's simple!</div>
+            <a href="#">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="careers__jobs">
+      <div class="careers__jobs-wrap container">
+        <span class="h2">Choose Your Jobs</span>
+        <p>Select a job most relevant to your interests and experience to view.</p>
+
+        <div class="careers__jobs-list">
+          <div class="careers__jobs-item">
+            <div class="careers__jobs-item-top">
+              <div class="title">Senior Java Engineer / 3+ years exp.</div>
+              <div class="tags">
+                <div class="tag green">Full Remote</div>
+                <div class="tag yellow">Part-time</div>
+              </div>
+
+              <div class="plus">
+                <svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
+                </svg>
+              </div>
+            </div>
+
+            <div class="careers__jobs-item-content">
+              <div class="careers__jobs-item-content-wrap">
+                <div class="careers__jobs-item-grid">
+                  <div class="careers__jobs-item-block">
+                    <div class="label">Experience:</div>
+                    <div class="value">2 years +</div>
+                  </div>
+                  <div class="careers__jobs-item-block">
+                    <div class="label">Language:</div>
+                    <div class="value">English (fluent)</div>
+                  </div>
+                  <div class="careers__jobs-item-block">
+                    <div class="label">Department:</div>
+                    <div class="value">Engineering</div>
+                  </div>
+                </div>
+
+                <div class="careers__jobs-item-text">
+                  <div class="label mb24">Company Description</div>
+
+                  <div class="title">Powering crypto with data</div>
+                  <p>CoinMarketCap is the world’s most trusted and accurate source of data for cryptocurrencies. Used by
+                    millions of individuals, organizations, and exchanges, CoinMarketCap brings the most up-to-date
+                    market capitalizations, pricing, and cryptocurrency information to our users.</p>
+                  <p>Pulling data from multiple exchanges and combining our robust research allows us to provide the
+                    most realistic representation of each cryptocurrency. As we grow, we will continue to provide access
+                    to our data wherever, whenever, and however is most helpful to our users.</p>
+
+                  <div class="title">Creating an open world</div>
+
+                  <p>Our mission is to be the world’s authority on cryptocurrency data. We believe in an open and
+                    decentralized world, where we play a pivotal role in powering decisions and insights to drive
+                    greater understanding and adoption of cryptocurrencies. We want to achieve this mission with people
+                    who truly believe in the value and potential of empowering individuals.</p>
+
+                  <div class="label mt40">Job Description</div>
+
+                  <ul>
+                    <li>Implement new user-facing features in products that have a huge amount of PV every day</li>
+                    <li>Write client-side code to create super-fast, easy-to-use, web-based applications which include
+                      websites for both desktop and mobile browsers, and hybrid in-app pages</li>
+                    <li>Optimize web applications to maximize speed and scale</li>
+                    <li>Build libraries and frameworks that support complex web applications, speed up development
+                      efficiency and improve code quality</li>
+                    <li>Contribute creativity and insight to solve both technical and business challenges</li>
+                    <li>Research and promote new technologies and best practices within the team</li>
+                  </ul>
+
+                  <div class="label mt40">Qualifications</div>
+
+                  <ul>
+                    <li>8+ years experience developing production software</li>
+                    <li>Advanced hands on knowledge of TypeScript + React</li>
+                    <li>Experience with modern web technologies such as Webpack, Next.js, Redux, styled components, or
+                      similar</li>
+                    <li>Proven track record of delivering well-tested, high-quality, maintainable projects.</li>
+                    <li>Great cross-team communication skills</li>
+                    <li>Self-managed, proactive work style. Ability to perform at a high level in a fast paced
+                      environment</li>
+                    <li>Blockchain-related industry experience as a plus</li>
+                    <li>Basic or Fluent English level</li>
+                  </ul>
+
+                  <a href="#" class="apply">Apply for this role</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="careers__jobs-item open">
+            <div class="careers__jobs-item-top">
+              <div class="title">Digital Content Editor</div>
+              <div class="tags">
+                <div class="tag green">Full Remote</div>
+                <div class="tag yellow">Part-time</div>
+              </div>
+
+              <div class="plus">
+                <svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
+                </svg>
+              </div>
+            </div>
+
+            <div class="careers__jobs-item-content">
+              <div class="careers__jobs-item-content-wrap">
+                <div class="careers__jobs-item-grid">
+                  <div class="careers__jobs-item-block">
+                    <div class="label">Experience:</div>
+                    <div class="value">2 years +</div>
+                  </div>
+                  <div class="careers__jobs-item-block">
+                    <div class="label">Language:</div>
+                    <div class="value">English (fluent)</div>
+                  </div>
+                  <div class="careers__jobs-item-block">
+                    <div class="label">Department:</div>
+                    <div class="value">Engineering</div>
+                  </div>
+                </div>
+
+                <div class="careers__jobs-item-text">
+                  <div class="label mb24">Company Description</div>
+
+                  <div class="title">Powering crypto with data</div>
+                  <p>CoinMarketCap is the world’s most trusted and accurate source of data for cryptocurrencies. Used by
+                    millions of individuals, organizations, and exchanges, CoinMarketCap brings the most up-to-date
+                    market capitalizations, pricing, and cryptocurrency information to our users.</p>
+                  <p>Pulling data from multiple exchanges and combining our robust research allows us to provide the
+                    most realistic representation of each cryptocurrency. As we grow, we will continue to provide access
+                    to our data wherever, whenever, and however is most helpful to our users.</p>
+
+                  <div class="title">Creating an open world</div>
+
+                  <p>Our mission is to be the world’s authority on cryptocurrency data. We believe in an open and
+                    decentralized world, where we play a pivotal role in powering decisions and insights to drive
+                    greater understanding and adoption of cryptocurrencies. We want to achieve this mission with people
+                    who truly believe in the value and potential of empowering individuals.</p>
+
+                  <div class="label mt40">Job Description</div>
+
+                  <ul>
+                    <li>Implement new user-facing features in products that have a huge amount of PV every day</li>
+                    <li>Write client-side code to create super-fast, easy-to-use, web-based applications which include
+                      websites for both desktop and mobile browsers, and hybrid in-app pages</li>
+                    <li>Optimize web applications to maximize speed and scale</li>
+                    <li>Build libraries and frameworks that support complex web applications, speed up development
+                      efficiency and improve code quality</li>
+                    <li>Contribute creativity and insight to solve both technical and business challenges</li>
+                    <li>Research and promote new technologies and best practices within the team</li>
+                  </ul>
+
+                  <div class="label mt40">Qualifications</div>
+
+                  <ul>
+                    <li>8+ years experience developing production software</li>
+                    <li>Advanced hands on knowledge of TypeScript + React</li>
+                    <li>Experience with modern web technologies such as Webpack, Next.js, Redux, styled components, or
+                      similar</li>
+                    <li>Proven track record of delivering well-tested, high-quality, maintainable projects.</li>
+                    <li>Great cross-team communication skills</li>
+                    <li>Self-managed, proactive work style. Ability to perform at a high level in a fast paced
+                      environment</li>
+                    <li>Blockchain-related industry experience as a plus</li>
+                    <li>Basic or Fluent English level</li>
+                  </ul>
+
+                  <a href="#" class="apply">Apply for this role</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="careers__why">
+      <div class="careers__why-wrap container">
+        <div class="careers__why-left">
+          <div>
+            <span class="h2">Why it's worth
+              working with us</span>
+            <p>We are proud to offer competitive benefits that enable healthy and fulfilling careers at CoinMooner</p>
+          </div>
+
+
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="careers__why-list">
+          <div class="careers__why-item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-star2"></use>
+            </svg>
+            <p>Learning and development programs & Free language classes</p>
+          </div>
+          <div class="careers__why-item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-star2"></use>
+            </svg>
+            <p>Relocation support & International transfers mid-career</p>
+          </div>
+          <div class="careers__why-item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-star2"></use>
+            </svg>
+            <p>Competitive salary and Option to be paid in crypto</p>
+          </div>
+          <div class="careers__why-item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-star2"></use>
+            </svg>
+            <p>Health insurance & Flexible working hours</p>
+          </div>
+          <div class="careers__why-item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-star2"></use>
+            </svg>
+            <p>Team building activities & other various perks and benefits</p>
+          </div>
+          <div class="careers__why-item">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-star2"></use>
+            </svg>
+            <p>Remote work for many roles & Company sponsored holidays</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="careers__how">
+      <div class="careers__how-wrap container">
+        <div class="careers__how-top">
+          <span class="h2">How We Hire</span>
+          <div class="info">
+            <div class="num">2~4</div>
+            <p>week on average interview process with 4 interviews.</p>
+          </div>
+        </div>
+
+        <div class="careers__how-road">
+          <div class="careers__how-road-item">
+            <div class="num">1</div>
+            <div class="title">Application <br>
+              Review</div>
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-road"></use>
+            </svg>
+          </div>
+          <div class="careers__how-road-item">
+            <div class="num">2</div>
+            <div class="title">Interviews</div>
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-road"></use>
+            </svg>
+          </div>
+          <div class="careers__how-road-item">
+            <div class="num">3</div>
+            <div class="title">We make an <br>
+              offer</div>
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-road"></use>
+            </svg>
+          </div>
+          <div class="careers__how-road-item">
+            <div class="num">4</div>
+            <div class="title">Onboarding</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="subscribe">
+    <div class="subscribe__wrap container">
+      <div class="subscribe__form-wrap">
+        <div class="subscribe__form-wrap-container">
+          <div class="subscribe__text">
+            <span class="h2">Subscribe to our newsletter</span>
+            <p>Get the best high potential coins right into your inbox</p>
+          </div>
+
+          <div class="subscribe__form">
+            <div class="subscribe__form-top">
+              <svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-mail"></use>
+              </svg>
+              <input type="text" placeholder="Your e-mail...">
+              <button type="submit">Subscribe</button>
+            </div>
+
+            <div class="subscribe__form-check">
+              <label for="" class="checkbox">
+                <input type="checkbox">
+                <span class="check"><svg class="icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
+                  </svg></span>
+              </label>
+              <p>Feel free to unsubscribe anytime. Check our <a href="#">Terms of use</a> and <a href="#">Privacy
+                  Policy</a> here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<script>
+  document.querySelectorAll('.careers__jobs-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      if (event.target.closest('.careers__jobs-item-top')) {
+        item.classList.toggle('open');
+      }
+    })
+  })
+</script>
+
+{% endblock %}

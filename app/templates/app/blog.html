@@ -1,0 +1,3755 @@
+{% extends "app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+
+<title>
+  {% block title %}
+  
+  {% if page_title %} {{ page_title }} {% else %} Blog Page {% endif %}
+
+  {% endblock %}
+</title>
+
+
+<main class="main">
+
+  <nav class="blog-navigation">
+    <div class="blog-navigation__wrap container">
+      <ul class="blog-navigation__list">
+        <li class="blog-navigation__list-item active">
+          <a href="#" class="blog-navigation__list-link">All</a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">NFT <svg class="arrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+            </svg></a>
+
+          <ul class="blog-navigation__sublist">
+            <svg class="polygon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
+            </svg>
+            <li><a href="#">DeFi News</a></li>
+            <li><a href="#">DeFi Finance</a></li>
+            <li><a href="#">Meme Coins</a></li>
+          </ul>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">DeFi <svg class="arrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+            </svg></a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">DApps <svg class="arrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+            </svg></a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">Altcoins <svg class="arrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+            </svg></a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">GameFi</a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">Price Prediction</a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">Exchange</a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">Launchpad</a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">Announcements</a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">Crypto Casino</a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">Sponsored & Interview</a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">Finance</a>
+        </li>
+        <li class="blog-navigation__list-item">
+          <a href="#" class="blog-navigation__list-link">Press Release</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <nav class="blog-navigation-mobile">
+    <div class="blog-navigation-mobile__wrap container">
+      <ul class="blog-navigation-mobile__list">
+        <li class="blog-navigation-mobile__list-item-current">
+          <a href="#" class="blog-navigation-mobile__list-link">All Categories <svg class="arrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+            </svg></a>
+        </li>
+
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">All Categories</a>
+        </li>
+
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">NFT <svg class="arrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+            </svg></a>
+
+          <ul class="blog-navigation-mobile__sublist">
+            <li><a href="#">DeFi News</a></li>
+            <li><a href="#">DeFi Finance</a></li>
+            <li><a href="#">Meme Coins</a></li>
+          </ul>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">DeFi <svg class="arrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+            </svg></a>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">DApps <svg class="arrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+            </svg></a>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">Altcoins <svg class="arrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+            </svg></a>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">GameFi</a>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">Price Prediction</a>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">Exchange</a>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">Launchpad</a>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">Announcements</a>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">Crypto Casino</a>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">Sponsored & Interview</a>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">Finance</a>
+        </li>
+        <li class="blog-navigation-mobile__list-item">
+          <a href="#" class="blog-navigation-mobile__list-link">Press Release</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="blog-section">
+    <div class="blog-section__wrap container">
+      <span class="h1">Latest Articles</span>
+      <div class="blog-section__latest">
+        <div class="blog-section__latest-article">
+          <a href="#" class="blog-section__latest-article-link">
+            <img src="{% static 'app/img/article1.png' %}" alt="">
+          </a>
+
+          <div class="blog-section__latest-article-text">
+            <div class="blog-section__latest-article-information">
+              <span><span>Published</span> April 27, 2023</span>
+              <div class="dot"></div>
+              <span>4 min read</span>
+            </div>
+
+            <a href="#" class="blog-section__latest-article-title">What Are Non-Fungible Tokens and Why to Invest In
+              Them?</a>
+            <p class="blog-section__latest-article-description">While non-fungible tokens appeared way back in 2014,
+              they are gaining popularity today because of a few reasons. One of the prime causes is that artists are
+              now using this technology to sell their works, although an NFT can come not only in the form of a digital
+              painting but also as a music track, an in-game item, and more.</p>
+
+            <div class="blog-section__latest-article-bottom">
+              <div class="author">
+                <img src="{% static 'app/img/author4.png' %}" alt="">
+                <div class="text">
+                  <div class="label">Author</div>
+                  <a href="#" class="name">Emilie Watson</a>
+                </div>
+              </div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+                <a href="#" class="tag">DeFi</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="blog-section__latest-list">
+          <div class="blog-small-article">
+            <a href="#" class="link"><img src="{% static 'app/img/article4.png' %}" alt=""></a>
+
+            <div class="text">
+              <div class="information">
+                <span><span>Published</span> April 27, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <a href="#" class="title">What Is NFT Marketplace:
+                A Beginner’s Guide</a>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-small-article">
+            <a href="#" class="link"><img src="{% static 'app/img/article3.png' %}" alt=""></a>
+
+            <div class="text">
+              <div class="information">
+                <span><span>Published</span> April 27, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for Crypto</a>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-small-article">
+            <a href="#" class="link"><img src="{% static 'app/img/article2.png' %}" alt=""></a>
+
+            <div class="text">
+              <div class="information">
+                <span><span>Published</span> April 27, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <a href="#" class="title">BlockFi vs. Defi vs. TradFi: Differences and Similarities</a>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="blog-small-article">
+            <a href="#" class="link"><img src="{% static 'app/img/article5.png' %}" alt=""></a>
+
+            <div class="text">
+              <div class="information">
+                <span><span>Published</span> April 27, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <a href="#" class="title">Guide on Crypto Liquidity Provider 2022</a>
+
+              <div class="tags">
+                <a href="#" class="tag">NFT</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="blog-section__categories">
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">NFT</span>
+              <div class="label">+3 from last week</div>
+            </div>
+
+            <a href="#" class="more">More NFT <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_nft">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> April 27, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">What Is a Crypto Scam and How to Identify It?</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog1.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article6.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article7.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article8.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article9.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article10.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article11.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article12.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article10.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article11.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article12.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">DeFi</span>
+              <div class="label">+4 from last week</div>
+            </div>
+
+            <a href="#" class="more">More DeFi <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_defi">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">What Is a Flash Loan and How Does It Work? Guide 2022</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog2.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article16.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article13.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article14.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article15.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article17.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article18.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article19.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article17.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article18.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article19.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">DApps</span>
+              <div class="label">+3 from last week</div>
+            </div>
+
+            <a href="#" class="more">More DApps <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_dapps">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">How to Enable DApp Browser on Trust Wallet: Guide 2022</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog3.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article20.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article21.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article22.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article23.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article24.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article25.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article26.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article24.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article25.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article26.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">Altcoins</span>
+              <div class="label">+4 from last week</div>
+            </div>
+
+            <a href="#" class="more">More Altcoins <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_altcoins">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">Cult DAO Is Building Its Own Chain</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog4.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article27.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article28.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article29.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article30.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article31.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article32.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article33.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article31.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article32.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article33.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">GameFi</span>
+              <div class="label">+3 from last week</div>
+            </div>
+
+            <a href="#" class="more">More GameFi <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_gamefi">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">Blockchain play-to-earn gaming is emerging as a phenomenon</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog5.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article20.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article21.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article22.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article23.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article24.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article25.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article26.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article24.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article25.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article26.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">Exchange</span>
+              <div class="label">+4 from last week</div>
+            </div>
+
+            <a href="#" class="more">More Exchange <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_exchange">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">Best Anonymous Cryptocurrency Exchanges 2022</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog6.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article34.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article35.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article36.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article37.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article38.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article39.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article40.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article38.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article39.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article40.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">Lanchpad</span>
+              <div class="label">+3 from last week</div>
+            </div>
+
+            <a href="#" class="more">More Lanchpad <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_lanchpad">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">What Is TrustSwap | How Does TrustSwap Launchpad Work</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog7.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article41.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article42.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article43.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article44.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article45.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article46.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article47.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article45.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article46.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article47.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">Latest News</span>
+              <div class="label">+4 from last week</div>
+            </div>
+
+            <a href="#" class="more">More Latest News <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_latest">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">Important Announcement: MOONER Buybacks</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog8.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article48.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article49.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article50.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article51.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article26.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article32.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article14.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article26.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article32.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article14.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">Announcements</span>
+              <div class="label">+4 from last week</div>
+            </div>
+
+            <a href="#" class="more">More Announcements <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_announcements">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">An Important Announcement From CoinMooner</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog9.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article52.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article53.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article54.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article55.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article14.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article56.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article57.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article14.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article56.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article57.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">Sponsored & Interview</span>
+              <div class="label">+4 from last week</div>
+            </div>
+
+            <a href="#" class="more">More Sponsored <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_sponsored">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">An Interview With The BEETroot Team</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog10.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article48.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article49.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article50.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article51.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article26.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article32.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article14.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article26.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article32.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article14.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">Finance</span>
+              <div class="label">+3 from last week</div>
+            </div>
+
+            <a href="#" class="more">More Finance <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_finance">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">How Bitcoin Works and Different Ways to Use it</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog11.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article60.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article59.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article58.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article51.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article9.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article22.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article11.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article9.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article22.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article11.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">Press Release</span>
+              <div class="label">+4 from last week</div>
+            </div>
+
+            <a href="#" class="more">More Press Release <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_press">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">Next Block Expo 2022 - The Blockchain Festival of Europe</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog12.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article61.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article62.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article63.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article64.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article65.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article66.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article67.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article65.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article66.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article67.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">Crypto Casino</span>
+              <div class="label">+3 from last week</div>
+            </div>
+
+            <a href="#" class="more">More Crypto Casino <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_casino">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">How do crypto casinos let small businesses survive?</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog13.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article60.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article59.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article58.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article51.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article9.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article22.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article11.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article9.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article22.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article11.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-category">
+          <div class="blog-category__top">
+            <div class="blog-category__top-name">
+              <span class="h2">Price Prediction</span>
+              <div class="label">+3 from last week</div>
+            </div>
+
+            <a href="#" class="more">More Price Prediction <span><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span></a>
+          </div>
+
+          <div class="blog-category__grid">
+            <div class="blog-gradient-article blog-gradient-article_price">
+              <a href="#" class="link"></a>
+              <div class="information">
+                <span><span>Published</span> may 11, 2023</span>
+                <div class="dot"></div>
+                <span>4 min read</span>
+              </div>
+
+              <div class="title">Next Block Expo 2022 - The Blockchain Festival of Europe</div>
+
+              <div class="tags">
+                <a href="#" class="tag">Price predictions</a>
+                <a href="#" class="tag">NFT</a>
+              </div>
+
+              <span class="arrows"><svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrowRight"></use>
+                </svg></span>
+              <img src="{% static 'app/img/blog14.png' %}" alt="" class="image">
+            </div>
+            <div class="blog-category__four">
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article70.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article68.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article6.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-middle-article">
+                <a href="#" class="image">
+                  <img src="{% static 'app/img/article69.png' %}" alt="">
+                </a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="" class="title">What Is a Crypto Scam and How to Identify It?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-category__three">
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article72.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article23.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article71.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article72.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Are Non-Fungible Tokens and Why to Invest In Them?</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article23.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">Best Crypto Exchanges & Platforms | Choosing the Best Exchange for
+                    Crypto</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="blog-small-article">
+                <a href="#" class="link"><img src="{% static 'app/img/article71.png' %}" alt=""></a>
+
+                <div class="text">
+                  <div class="information">
+                    <span><span>Published</span> April 27, 2023</span>
+                    <div class="dot"></div>
+                    <span>4 min read</span>
+                  </div>
+
+                  <a href="#" class="title">What Is NFT Marketplace:
+                    A Beginner’s Guide</a>
+
+                  <div class="tags">
+                    <a href="#" class="tag">Price predictions</a>
+                    <a href="#" class="tag">NFT</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="subscribe">
+    <div class="subscribe__wrap container">
+      <div class="subscribe__form-wrap">
+        <div class="subscribe__form-wrap-container">
+          <div class="subscribe__text">
+            <span class="h2">Subscribe to our newsletter</span>
+            <p>Get the best high potential coins right into your inbox</p>
+          </div>
+
+          <div class="subscribe__form">
+            <div class="subscribe__form-top">
+              <svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-mail"></use>
+              </svg>
+              <input type="text" placeholder="Your e-mail...">
+              <button type="submit">Subscribe</button>
+            </div>
+
+            <div class="subscribe__form-check">
+              <label for="" class="checkbox">
+                <input type="checkbox">
+                <span class="check"><svg class="icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
+                  </svg></span>
+              </label>
+              <p>Feel free to unsubscribe anytime. Check our <a href="#">Terms of use</a> and <a href="#">Privacy
+                  Policy</a> here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<script>
+  document.querySelectorAll('.article-contents__list a').forEach(item => {
+
+  });
+
+
+  document.querySelectorAll('a[href^="#"].article-contents__list-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      let href = this.getAttribute('href');
+      const scrollTarget = document.querySelector(href);
+      // const topOffset = scrollTarget.offsetHeight;
+      const topOffset = 0;
+      const elementPosition = scrollTarget.getBoundingClientRect().top;
+      const offsetPosition = elementPosition - topOffset;
+
+      window.scrollBy({
+        top: offsetPosition - 40,
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  items = document.querySelectorAll('.article-content [data-id]');
+
+  window.addEventListener('scroll', () => {
+    let scrollDistance = window.scrollY;
+    items.forEach((el, i) => {
+      if (el.offsetTop - 50 <= scrollDistance) {
+        document.querySelectorAll('.article-contents__list-link').forEach((el) => {
+          if (el.parentElement.classList.contains('active')) {
+            el.parentElement.classList.remove('active');
+          }
+        });
+        try {
+          document.querySelectorAll('.article-contents__list-link').forEach(item => {
+            if (el.getAttribute('id') == item.getAttribute('href').substring(1)) {
+              item.parentElement.classList.add('active')
+            }
+          });
+        } catch (error) {
+        };
+      }
+    });
+  });
+</script>
+
+<script>
+  document.querySelector('.blog-navigation-mobile__list-item-current').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('.blog-navigation-mobile').classList.toggle('open');
+  });
+
+  document.querySelectorAll('.blog-navigation-mobile__list-link .arrow').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      item.parentElement.parentElement.classList.toggle('open');
+    })
+  });
+</script>
+
+{% endblock %}
