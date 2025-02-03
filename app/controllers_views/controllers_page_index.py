@@ -94,10 +94,13 @@ class FilterCoin:
 
     @staticmethod
     def get_coins_tops_section():
+        top_gainers = Coin.objects.filter(
+            price_change_percentage__isnull=False
+        ).exclude(price_change_percentage="")[:5]
         return {
             'trending': Coin.objects.order_by('-volume_usd')[:5],
             'most_viewed': Coin.objects.order_by('-views')[:5],
-            'top_gainers': Coin.objects.filter(price_change_percentage=True)[:5],
+            'top_gainers': top_gainers,
         }
 
     def print_time_since_creation(self):
