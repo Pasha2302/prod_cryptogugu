@@ -97,7 +97,7 @@ class FilterCoin:
         return {
             'trending': Coin.objects.order_by('-volume_usd')[:5],
             'most_viewed': Coin.objects.order_by('-views')[:5],
-            'top_gainers': Coin.objects.order_by('-price')[:5],
+            'top_gainers': Coin.objects.filter(price_change_percentage=True)[:5],
         }
 
     def print_time_since_creation(self):

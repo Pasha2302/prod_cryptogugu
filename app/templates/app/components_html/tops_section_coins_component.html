@@ -113,20 +113,30 @@
                   <div class="name">{{ coin.name }}</div>
                   <div class="chain">{{ coin.chain }}</div>
                 </div>
+                
+                
+                  <div class="cost {% if 'asc' in coin.price_change_percentage %} up {% else %} down {% endif %}">
+                    <svg class="arrow">
+                      <use
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xlink:href="#icon-arrow-up">
+                      </use>
+                    </svg>
+                    {% with coin.price_change_percentage|split:"," as split_price_change %}
+                      {{ split_price_change|get_index:1 }}
+                    {% endwith %}
+                  </div>
 
                 <div class="cost">
                   {% if coin.normalized_price %}
-                    {% with coin.normalized_price|split:"|" as split_list %}
 
+                    {% with coin.normalized_price|split:"|" as split_list %}
                       {% if split_list|length > 2 %}
                         ${{ split_list|get_index:0 }}(0<sub>{{ split_list|get_index:1 }}</sub>){{ split_list|get_index:2 }}
-
                       {% else %}
                         ${{ coin.normalized_price }}
                       {% endif %}
-
                     {% endwith %}
-
                   {% elif coin.normalized_price is None %}
                     <span class="none">—</span>
 
