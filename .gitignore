@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 src/settings.py
+api_mobula_data_coins.json
+api_mobula_no_data_coins.json
 
 # C extensions
 *.so
