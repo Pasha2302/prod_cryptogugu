@@ -2,7 +2,7 @@ from django.urls import path
 
 from app.views import index_view
 from app.views import coin_view
-
+from app.views.email_subscribe import subscribe
 
 urlpatterns = [
     # ----------------------------------- Path Index Page ---------------------------------------------------- #
@@ -26,7 +26,7 @@ urlpatterns = [
 
     path('coin/<str:chain>/<slug:slug>/', coin_view.coin, name="coin"),
 
-    # ----------------------------------- Paths Blog Page --------------------------------------- #
+    # ----------------------------------- Paths Blog Page --------------------------------------------------- #
 
     path("blog/", index_view.blog, name="blog"),
 
@@ -36,5 +36,9 @@ urlpatterns = [
 
     path("clear-settings/", index_view.clear_settings, name="clear_settings"),
     path("reset-all-votes/", index_view.reset_all_votes, name="reset_all_votes"),
+
+    # --------------------------------------- Mail Subscribe ------------------------------------------------- #
+
+    path('subscribe/', subscribe, name='subscribe'),
 
 ]

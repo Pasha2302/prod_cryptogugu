@@ -1,6 +1,50 @@
 {% load static %}
 
+<style>
+  .messages {
+    margin: 20px 0;
+  }
+
+  .alert {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+
+  .alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+
+  .subscribe__form-top.error input {
+    border-color: #ff000080;
+    background-color: #ff00001c;
+  }
+
+  .subscribe__form-check.error {
+    color: red;
+  }
+</style>
+
+
 <section class="subscribe">
+  {% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
   <div class="subscribe__wrap container">
     <div class="subscribe__form-wrap">
       <div class="subscribe__form-wrap-container">
@@ -9,27 +53,73 @@
           <p>Get the best high potential coins right into your inbox</p>
         </div>
 
-        <div class="subscribe__form">
+        <form method="post" action="{% url 'subscribe' %}" class="subscribe__form" novalidate>
+          {% csrf_token %}
           <div class="subscribe__form-top">
             <svg class="icon">
               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-mail"></use>
             </svg>
-            <input type="text" placeholder="Your e-mail...">
+            <input type="email" name="email" placeholder="Your e-mail..." required>
             <button type="submit">Subscribe</button>
           </div>
 
           <div class="subscribe__form-check">
-            <label for="" class="checkbox">
-              <input type="checkbox">
-              <span class="check"><svg class="icon">
+            <label for="agree" class="checkbox">
+              <input type="checkbox" name="agree" id="agree" required>
+              <span class="check">
+                <svg class="icon">
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
-                </svg></span>
+                </svg>
+              </span>
             </label>
             <p>Feel free to unsubscribe anytime. Check our <a href="#">Terms of use</a> and <a href="#">Privacy
                 Policy</a> here.</p>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
 </section>
+
+
+<script>
+  document.querySelector('.subscribe__form').addEventListener('submit', function (e) {
+    const emailInput = document.querySelector('input[name="email"]');
+    const agreeCheckbox = document.querySelector('input[name="agree"]');
+
+    const errorText = document.querySelector('.subscribe__form-check');
+    const formTop = document.querySelector('.subscribe__form-top');
+
+    // Сброс стилей
+    // errorText.style.color = '';
+    errorText.classList.remove('error');
+    formTop.classList.remove('error');
+
+    // Проверка валидности email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Простое регулярное выражение для email
+    const isEmailValid = emailRegex.test(emailInput.value);
+
+    // Проверка галочки
+    const isAgreeChecked = agreeCheckbox.checked;
+
+    // Если email невалиден
+    if (!isEmailValid) {
+      e.preventDefault(); // Отменяем отправку формы
+      formTop.classList.add('error'); // Добавляем класс error
+      // errorText.style.color = 'red'; // Меняем цвет текста на красный
+      // alert('Please enter a valid email address.'); // Показываем сообщение об ошибке
+      return;
+    }
+
+    // Если галочка не отмечена
+    if (!isAgreeChecked) {
+      e.preventDefault(); // Отменяем отправку формы
+      // errorText.style.color = 'red'; // Меняем цвет текста на красный
+      errorText.classList.add('error');
+      // alert('Please agree to the Terms of Use and Privacy Policy.'); // Показываем сообщение об ошибке
+      return;
+    }
+
+    // Если всё в порядке, форма отправится
+  });
+</script>

@@ -627,6 +627,9 @@
 
   {% block content %}{% endblock %}
 
+  
+  <!-- Mail Subscribe -->
+  {% include 'app/components_html/mail_subscribe/subscribe.html' %}
 
   <footer class="footer">
     <div class="footer__top">
@@ -849,44 +852,6 @@
     </div>
   </footer>
 
-  <!--  <div class="banner-block js-pop-ups-banner-r rb open" data-type="rb">-->
-  <!--    <div class="banner-block__overlay"></div>-->
-  <!--    <div class="banner-block__item">-->
-  <!--      <button class="banner-block__item-close">-->
-  <!--        <span>-->
-  <!--          <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg>-->
-  <!--        </span>-->
-  <!--      </button>-->
-  <!--      <a id="right_element" target="_blank" rel="nofollow noopener" href="https://spoki.lv/" class="banner-block__item-link" data-wpel-link="external"></a>-->
-  <!--      <img src="{% static 'app/img/banner_r1.jpg' %}" alt="" width="350">-->
-  <!--    </div>-->
-  <!--  </div>-->
-
-  <!--  <div class="banner-block js-pop-ups-banner-c bn open" data-type="cb">-->
-  <!--    <div class="banner-block__overlay"></div>-->
-  <!--    <div class="banner-block__item">-->
-  <!--      <button class="banner-block__item-close">-->
-  <!--        <span>-->
-  <!--          <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg>-->
-  <!--        </span>-->
-  <!--      </button>-->
-  <!--      <a id="center_element" target="_blank" rel="nofollow noopener" href="https://spoki.lv/" class="banner-block__item-link" data-wpel-link="external"></a>-->
-  <!--      <img src="{% static 'app/img/banner_r1.jpg' %}" alt="" width="350">-->
-  <!--    </div>-->
-  <!--  </div>-->
-
-  <!--  <div class="banner-block js-pop-ups-banner-l lb open" data-type="lb">-->
-  <!--    <div class="banner-block__overlay"></div>-->
-  <!--    <div class="banner-block__item">-->
-  <!--      <button class="banner-block__item-close">-->
-  <!--        <span>-->
-  <!--          <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use></svg>-->
-  <!--        </span>-->
-  <!--      </button>-->
-  <!--      <a id="left_element" target="_blank" rel="nofollow noopener" href="https://spoki.lv/" class="banner-block__item-link" data-wpel-link="external"></a>-->
-  <!--      <img src="{% static 'app/img/banner_r1.jpg' %}" alt="" width="350">-->
-  <!--    </div>-->
-  <!--  </div>-->
 
   {% for banner in banners_pop_ups %}
   <div class="banner-block js-pop-ups-banner {{ banner.position }} open" data-type="{{ banner.position }}">

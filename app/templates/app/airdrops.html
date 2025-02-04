@@ -271,7 +271,9 @@
   {% endblock %}
 </title>
 
+<!-- -------------------------------------- -->
 <main class="main">
+
   <section class="airdrop">
     <div class="airdrop__wrap container">
       <span class="h1">Ongoing Airdrops</span>
@@ -431,8 +433,6 @@
       </div>
     </div>
   </section>
-
-  <section class="subscribe">
     <div class="subscribe__wrap container">
       <div class="subscribe__form-wrap">
         <div class="subscribe__form-wrap-container">
@@ -459,11 +459,13 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
+
 </main>
+<!-- -------------------------------------- -->
+
 
 <script>
-
   document.querySelectorAll('a[href^="#"].article-contents__list-link').forEach(link => {
   link.addEventListener('click', function(e) {
       e.preventDefault();
@@ -521,4 +523,6 @@
     })
   });
 </script>
+
+
 {% endblock %}
