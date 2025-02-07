@@ -52,6 +52,7 @@ class BaseContextManager:
                 {'name': _('Free Signals'), 'url': '#'},
                 {'name': _('About Us'), 'url': '#'},
                 {'name': _('Blog'), 'url': 'blog'},
+
             ],
 
         }

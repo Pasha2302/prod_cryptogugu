@@ -31,28 +31,6 @@
 
   <!-- Main Trending Coins -->
   <section class="trending-coins">
-    <!-- ws://127.0.0.1:8005/ws/chat/ -->
-    <div class="container">
-      <h2>Чат</h2>
-
-      <!-- Подключение WebSocket -->
-      <div hx-ext="ws" ws-connect="ws://127.0.0.1:8005/ws/chat/">
-
-        <!-- Блок для сообщений -->
-        <div id="chat_room" class="content"></div>
-
-        <!-- Форма для отправки сообщений -->
-        <form ws-send>
-          <input name="message" type="text" placeholder="Введите сообщение..." required>
-          <button type="submit">Отправить</button>
-        </form>
-
-      </div>
-    </div>
-
-
-
-
     <div class="trending-coins__wrap container">
       <span class="h2">Trending</span>
 
@@ -182,25 +160,19 @@
   </section>
 
   <!--  Blog Sliders-->
-  {% include 'app/components_html/sliders/blog.html' %}
+  <!-- {% include 'app/components_html/sliders/blog.html' %} -->
 
   <!--  Partners Sliders-->
   {% include 'app/components_html/sliders/partners.html' %}
 
   <!--  Media Sliders-->
-  {% include 'app/components_html/sliders/media.html' %}
+  <!-- {% include 'app/components_html/sliders/media.html' %} -->
 
   <!-- Info Most Popular -->
   {% include 'app/components_html/info/most_popular.html' %}
 
 
 </main>
-
-
-<script src="https://unpkg.com/htmx.org@2.0.4"
-  integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous">
-  </script>
-<script src="https://unpkg.com/htmx-ext-ws@2.0.1/ws.js"></script>
 
 
 <script type="module" src="{% static 'app/js/index_control.js' %}"></script>

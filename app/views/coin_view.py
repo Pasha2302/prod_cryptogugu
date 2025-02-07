@@ -1,6 +1,7 @@
 from django.db import transaction
-from django.db.models import F
 from django.http import HttpRequest
+
+from django.db.models import F
 from django.shortcuts import render, get_object_or_404
 
 from app.controllers_views.controllers_base import BaseContextManager

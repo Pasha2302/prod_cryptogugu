@@ -1,0 +1,21 @@
+
+<!-- ws://127.0.0.1:8005/ws/chat/ -->
+
+
+<div class="container">
+  <h2>Чат</h2>
+
+  <!-- Подключение WebSocket -->
+  <div hx-ext="ws" ws-connect="ws://127.0.0.1:8005/ws/chat/">
+
+    <!-- Блок для сообщений -->
+    <div id="chat_room" class="content"></div>
+
+    <!-- Форма для отправки сообщений -->
+    <form ws-send>
+      <input name="message" type="text" placeholder="Введите сообщение..." required>
+      <button type="submit">Отправить</button>
+    </form>
+
+  </div>
+</div>

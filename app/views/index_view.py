@@ -3,6 +3,9 @@ import json
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.http import HttpRequest, JsonResponse, HttpResponse
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.decorators.cache import cache_page
 
 from app.controllers_views.controllers_base import BaseContextManager
 from app.controllers_views.controllers_header_search import HeaderSearchManager
@@ -11,8 +14,8 @@ from app.controllers_views.controllers_settings_user import clear_data, save_use
 from app.models import Coin
 
 
-def index(request: HttpRequest):
-    if request.method == 'POST':
+class IndexView(View):
+    def post(self, request: HttpRequest):
         print("\nLog >> def set_options_trending_coins(request: HttpRequest):")
 
         context = IndexContextManager(request).get_context()
@@ -22,8 +25,13 @@ def index(request: HttpRequest):
         data = {'html': html_data, 'pagination': pagination_html}
         return JsonResponse(data, status=200)
 
-    context = IndexContextManager(request).get_context() | BaseContextManager(request).get_context()
-    return render(request, 'app/index.html', context=context, status=200)
+    # @method_decorator(cache_page(60 * 60 * 12))  # Кэшировать GET-запросы на 12 часов
+    def get(self, request: HttpRequest):
+        context = IndexContextManager(request).get_context() | BaseContextManager(request).get_context()
+        response = render(request, 'app/index.html', context=context, status=200)
+        # кэширован в промежуточных кэшах на 1 час, но после этого должен быть проверен на актуальность с сервером:
+        # response['Cache-Control'] = 'public, max-age=6600'
+        return response
 
 
 def show_more(request: HttpRequest):
@@ -107,6 +115,7 @@ def contact(request: HttpRequest):
 def blog(request: HttpRequest):
     base_context = BaseContextManager(request).get_context()
     return render(request=request, template_name='app/blog.html', context=base_context, status=200)
+
 
 # =====================================================================================================================
 

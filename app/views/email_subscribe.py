@@ -1,40 +1,68 @@
-# views.py
-from django.http import HttpRequest
-from django.shortcuts import render, redirect
-from django.contrib import messages
+import re
 import sendgrid
-# from sendgrid.helpers.mail import Mail
 from django.conf import settings
+from django.shortcuts import render
+from django.http import HttpRequest
+
+
+def validate_subscription_data(email, agree) -> dict:
+    errors = {}
+
+    # Валидация email
+    if not re.match(r'^[^\s@]+@[^\s@]+\.[^\s@]+$', email):
+        errors['email'] = 'Invalid email address'
+
+    # Валидация согласия
+    if not agree:
+        errors['agree'] = 'You must agree to the terms'
+
+    return errors
+
+
+def handle_subscription(email):
+    """Обработка подписки через SendGrid."""
+    try:
+        sg = sendgrid.SendGridAPIClient(api_key=settings.SENDGRID_API_KEY)
+        list_id = settings.SENDGRID_LIST_ID
+        data = {
+            "list_ids": [list_id],
+            "contacts": [{"email": email}]
+        }
+        response = sg.client.marketing.contacts.put(request_body=data)
+
+        if response.status_code == 202:
+            return 'You have successfully subscribed!', None
+        else:
+            return None, 'Subscription failed, please try again later.'
+
+    except Exception as e:
+        return None, f'Error: {str(e)}'
 
 
 def subscribe(request: HttpRequest):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        agree = request.POST.get('agree')
+    template_name = 'app/components_html/mail_subscribe/subscribe.html'
 
-        if not email or not agree:
-            messages.error(request, "Please provide a valid email and agree to the terms.")
-            return redirect('index')  # Замените 'home' на имя вашей главной страницы
+    email = request.POST.get('email', '')
+    agree = request.POST.get('agree', False)
 
-        try:
-            # Отправка данных в SendGrid
-            sg = sendgrid.SendGridAPIClient(api_key=settings.SENDGRID_API_KEY)
-            list_id = settings.SENDGRID_LIST_ID
+    # Создание начального контекста
+    context = {
+        'email': email,
+        'agree': agree
+    }
 
-            data = {
-                "list_ids": [list_id],
-                "contacts": [{"email": email}]
-            }
+    # Валидация данных
+    errors = validate_subscription_data(email, agree)
+    if errors:
+        context['errors'] = errors
+        return render(request, template_name, context)
 
-            response = sg.client.marketing.contacts.put(request_body=data)
-            if response.status_code == 202:
-                messages.success(request, "You have successfully subscribed!")
-            else:
-                messages.error(request, "Failed to subscribe. Please try again later.")
-        except Exception as e:
-            messages.error(request, f"An error occurred: {str(e)}")
+    # Обработка подписки
+    success, error_message = handle_subscription(email)
+    if error_message:
+        context['errors'] = {'general': error_message}
+        return render(request, template_name, context)
 
-        return redirect('index')  # Замените 'home' на имя вашей главной страницы
-
-    # return render(request, 'your_template.html')  # Замените 'your_template.html' на имя вашего шаблона
-
+    # Успешная подписка
+    context['success'] = success
+    return render(request, template_name, context)
