@@ -1,0 +1,93 @@
+from django.contrib import admin
+
+from app.admin_forms.promoted_coins_form import PromotedCoinsForm
+from app.models_db.airdrops import Airdrops
+from app.models_db.banners import ReclamBannerPopUp, BannerImagePopUp, ReclamBanner
+from app.models_db.coin import PromotedCoins, Coin, ContractAddress, Chain, BaseCoin, Label
+from app.models_db.settings import SiteSettings
+
+
+@admin.register(PromotedCoins)
+class PromotedCoinsAdmin(admin.ModelAdmin):
+    """
+    Атрибуты:
+        form (PromotedCoinsForm): настраиваемая форма, используемая для ввода данных в админке.
+        list_display (кортеж): поля, отображаемые в представлении списка в интерфейсе администратора.
+        list_filter (кортеж): фильтруемые поля в представлении списка администратора для целевого поиска.
+        search_fields (кортеж): поля для поиска в интерфейсе администратора.
+
+    Методы:
+        get_queryset(request):
+        возвращает оптимизированный набор запросов с предварительно загруженной связанной информацией о монетах.
+    """
+    form = PromotedCoinsForm
+    list_display = ('coin', 'start_date', 'end_date')
+    list_filter = ('start_date', 'end_date')
+    search_fields = ('coin__name', 'coin__symbol')
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.select_related('coin')
+
+
+# ================================================================================================================== #
+
+@admin.register(ReclamBannerPopUp)
+class ReclamBannerPopUpsAdmin(admin.ModelAdmin):
+    list_display = ['position', 'is_active', 'start_time', 'end_time']
+    list_filter = ['position', 'is_active']
+    search_fields = ['position', 'link']
+    filter_horizontal = ['images']
+
+
+@admin.register(BannerImagePopUp)
+class BannerImageAdmin(admin.ModelAdmin):
+    list_display = ['id', 'uploaded_at']
+    search_fields = ['id']
+
+
+# ==================================================================================================================
+
+
+@admin.register(SiteSettings)
+class SiteSettingsAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        # Разрешить добавление записи только если её еще нет
+        if SiteSettings.objects.exists():
+            return False
+        return super(SiteSettingsAdmin, self).has_add_permission(request)
+
+
+@admin.register(ReclamBanner)
+class BannerAdmin(admin.ModelAdmin):
+    list_display = ('position', 'start_time', 'end_time', 'is_active', 'is_currently_active')
+    list_filter = ('position', 'is_active', 'start_time', 'end_time')
+    search_fields = ('position',)
+
+# ================================================================================================================== #
+
+
+@admin.register(ContractAddress)
+class ContractAddressAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Chain)
+class ChainAdmin(admin.ModelAdmin):
+    readonly_fields = ('slug', )
+    search_fields = ('name', )
+
+
+@admin.register(Airdrops)
+class AirdropsAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(BaseCoin)
+class BaseCoinAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Label)
+class LabelAdmin(admin.ModelAdmin):
+    pass

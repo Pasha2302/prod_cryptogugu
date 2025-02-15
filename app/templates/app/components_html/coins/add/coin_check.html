@@ -1,0 +1,8 @@
+{% load static %}
+
+<span
+    id="check_coin_name"
+    hx-swap-oob="outerHTML: #check_coin_name"
+    class="{% if check_coin %}error{% else %}row-valide{% endif %}">
+  {% if check_coin %}Name already exists{% else %}Coin name available{% endif %}
+</span>

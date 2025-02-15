@@ -1,180 +1,180 @@
-{% extends "app/base.html" %}
+{% extends 'app/base.html' %}
 
 {% load i18n %}
 {% load static %}
 
-
 {% block link %}
-<link rel="stylesheet" href="{% static 'app/css/my_style.css' %}">
+  <link rel="stylesheet" href="{% static 'app/css/my_style.css' %}" />
 
-<link rel="next" href="{{ nex_page }}" />
-<link rel="prev" href="{{ prev_page }}" />
-<link rel="canonical" href="{{ current_uri }}" />
+  <link rel="next" href="{{ nex_page }}" />
+  <link rel="prev" href="{{ prev_page }}" />
+  <link rel="canonical" href="{{ current_uri }}" />
 {% endblock %}
 
-
 {% block content %}
+  <title>
+    {% block title %}
+      {{ page_title }}
+    {% endblock %}
+  </title>
 
-<title>{% block title %}{{ page_title }}{% endblock %}</title>
+  <main class="main">
+    <!-- Reclams Banners -->
+    {% include 'app/components_html/banners/reclams.html' %}
 
-<main class="main">
+    <!-- Coins Tops Section Component (3 Tables) -->
+    {% include 'app/components_html/tops_section_coins_component.html' %}
 
-  <!--  Reclams Banners -->
-  {% include 'app/components_html/banners/reclams.html' %}
+    <!-- Coins Tables Promoted -->
+    {% include 'app/components_html/coins/tables/promoted_head.html' %}
 
-  <!-- Coins Tops Section Component (3 Tables) -->
-  {% include 'app/components_html/tops_section_coins_component.html' %}
+    <!-- Main Trending Coins -->
+    <section class="trending-coins">
+      <div class="trending-coins__wrap container">
+        <span class="h2">Trending</span>
 
-  <!-- Coins Tables Promoted -->
-  {% include 'app/components_html/coins_tables/promoted.html' %}
-
-
-  <!-- Main Trending Coins -->
-  <section class="trending-coins">
-    <div class="trending-coins__wrap container">
-      <span class="h2">Trending</span>
-
-      <div class="trending-coins__filters">
-        <div class="trending-coins__filters-top">
-          <button class="open-filters">
-            <svg class="icon">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-filter"></use>
-            </svg>
-            Filter
-            <svg class="arrow">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
-            </svg>
-          </button>
-
-          <div class="show-rows-filter show-rows-filter1">
-            <button class="show-rows-filter__current">Show rows <span>{{ rows_number }}<svg class="arrow">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
-                </svg></span></button>
-            <div class="trending-coins__filter-sublist">
-              <svg class="polygon">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
+        <div class="trending-coins__filters">
+          <div class="trending-coins__filters-top">
+            <button class="open-filters">
+              <svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-filter"></use>
               </svg>
-              {% for select_number in select_number_lines %}
-              <button
-                class="trending-coins__filter-sublist-item {% if select_number == rows_number %}active{% endif %}">
-                {{ select_number }} <svg class="icon">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
-                </svg>
-              </button>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-
-        <div class="trending-coins__filters-items">
-
-          {% for item in filter_item.item %}
-          {% if item.data_info == 'today_hot' %}
-          <button class="trending-coins__filter-item {% if item.active %}active{% endif %}" data-info="today_hot">
-            <svg class="icon">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-fire"></use>
-            </svg>
-            Today`s Hot
-          </button>
-          {% else %}
-          <button class="trending-coins__filter-item {% if item.active %}active{% endif %}"
-            data-info="{{ item.data_info }}">
-            {{ item.title }}
-          </button>
-          {% endif %}
-          {% endfor %}
-
-          <div class="trending-coins__filter-item-sub">
-            <button class="trending-coins__filter-item trending-coins__filter-item_sub">
-              {{ filter_item.chain_button_title }} <svg class="arrow">
+              Filter
+              <svg class="arrow">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
               </svg>
             </button>
-            <svg class="polygon">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
-            </svg>
 
-            <div class="trending-coins__filter-sublist">
-              {% for item_sub in filter_item.item_sub %}
-              <button class="trending-coins__filter-sublist-item {% if item_sub.active %}active{% endif %}"
-                data-info="{{ item_sub.symbol }}">
-                {{ item_sub.title }}
-                <svg class="icon">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
-                </svg>
+            <div class="show-rows-filter show-rows-filter1">
+              <button class="show-rows-filter__current">
+                Show rows
+                <span>
+                  {{ rows_number }}
+                  <svg class="arrow">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+                  </svg>
+                </span>
               </button>
-              {% endfor %}
+              <div class="trending-coins__filter-sublist">
+                <svg class="polygon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
+                </svg>
+                {% for select_number in select_number_lines %}
+                  <button class="trending-coins__filter-sublist-item {% if select_number == rows_number %}active{% endif %}">
+                    {{ select_number }}
+                    <svg class="icon">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
+                    </svg>
+                  </button>
+                {% endfor %}
+              </div>
             </div>
           </div>
 
-          <button class="trending-coins__filter-item-reset"><svg class="icon">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-            </svg> Reset Filters</button>
-        </div>
-      </div>
+          <div class="trending-coins__filters-items">
+            {% for item in filter_item.item %}
+              {% if item.data_info == 'today_hot' %}
+                <button class="trending-coins__filter-item {% if item.active %}active{% endif %}" data-info="today_hot">
+                  <svg class="icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-fire"></use>
+                  </svg>Today`s Hot
+                </button>
+              {% else %}
+                <button class="trending-coins__filter-item {% if item.active %}active{% endif %}" data-info="{{ item.data_info }}">{{ item.title }}</button>
+              {% endif %}
+            {% endfor %}
 
-      <div class="coin-table js-trending-coins">
-        {% include 'app/components_html/table_coins_component.html' %}
-      </div>
-
-      <div class="coin-table__nav">
-        <div class="coin-table__nav-top">
-          <div class="coin-table__nav-info">
-            Showing 1 - 10 out 545
-            <p>Page: {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</p>
-            <p>Page Range: {{ page_obj.paginator.page_range }} .</p>
-            <p>Current Page: {{ page_obj.number }} .</p>
-            <p>Current Page + 3: {{ page_obj.number|add:'3' }} .</p>
-            <p>Page obj coins: {{ page_obj }} .</p>
-            <p>page_number: {{ page_number }} .</p>
-          </div>
-
-          <button class="coin-table__nav-more">Show More</button>
-
-          <div class="show-rows-filter show-rows-filter2">
-            <button class="show-rows-filter__current">Show rows <span>{{ rows_number }} <svg class="arrow">
+            <div class="trending-coins__filter-item-sub">
+              <button class="trending-coins__filter-item trending-coins__filter-item_sub">
+                {{ filter_item.chain_button_title }} <svg class="arrow">
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
-                </svg></span></button>
-            <div class="trending-coins__filter-sublist">
+                </svg>
+              </button>
               <svg class="polygon">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
               </svg>
-              {% for select_number in select_number_lines %}
-              <button
-                class="trending-coins__filter-sublist-item {% if select_number == rows_number %}active{% endif %}">
-                {{ select_number }} <svg class="icon">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
-                </svg>
-              </button>
-              {% endfor %}
+
+              <div class="trending-coins__filter-sublist">
+                {% for item_sub in filter_item.item_sub %}
+                  <button
+                      class="trending-coins__filter-sublist-item {% if item_sub.active %}active{% endif %}"
+                      data-info="{{ item_sub.slug }}">
+                    {{ item_sub.title }}
+                    <svg class="icon">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
+                    </svg>
+                  </button>
+                {% endfor %}
+              </div>
             </div>
+
+            <button class="trending-coins__filter-item-reset">
+              <svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+              </svg>Reset Filters
+            </button>
           </div>
         </div>
 
-        <div class="coin-table__nav-pagination">
-          {% include 'app/components_html/pagination_component.html' %}
+        <div class="coin-table js-trending-coins">
+          {% include 'app/components_html/table_coins_component.html' %}
         </div>
 
+        <div class="coin-table__nav">
+          <div class="coin-table__nav-top">
+            <div class="coin-table__nav-info">
+              Showing 1 - 10 out 545<p>Page: {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</p>
+              <p>Page Range: {{ page_obj.paginator.page_range }} .</p>
+              <p>Current Page: {{ page_obj.number }} .</p>
+              <p>Current Page + 3: {{ page_obj.number|add:'3' }} .</p>
+              <p>Page obj coins: {{ page_obj }} .</p>
+              <p>page_number: {{ page_number }} .</p>
+            </div>
+
+            <button class="coin-table__nav-more">Show More</button>
+
+            <div class="show-rows-filter show-rows-filter2">
+              <button class="show-rows-filter__current">
+                Show rows <span>
+                  {{ rows_number }} <svg class="arrow">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-bottom"></use>
+                  </svg>
+                </span>
+              </button>
+              <div class="trending-coins__filter-sublist">
+                <svg class="polygon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sublist-polygon"></use>
+                </svg>
+                {% for select_number in select_number_lines %}
+                  <button class="trending-coins__filter-sublist-item {% if select_number == rows_number %}active{% endif %}">
+                    {{ select_number }} <svg class="icon">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
+                    </svg>
+                  </button>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <div class="coin-table__nav-pagination">
+            {% include 'app/components_html/pagination_component.html' %}
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!--  Blog Sliders-->
-  <!-- {% include 'app/components_html/sliders/blog.html' %} -->
+    <!-- Blog Sliders -->
+    <!-- {% include 'app/components_html/sliders/blog.html' %} -->
 
-  <!--  Partners Sliders-->
-  {% include 'app/components_html/sliders/partners.html' %}
+    <!-- Partners Sliders -->
+    {% include 'app/components_html/sliders/partners.html' %}
 
-  <!--  Media Sliders-->
-  <!-- {% include 'app/components_html/sliders/media.html' %} -->
+    <!-- Media Sliders -->
+    <!-- {% include 'app/components_html/sliders/media.html' %} -->
 
-  <!-- Info Most Popular -->
-  {% include 'app/components_html/info/most_popular.html' %}
+    <!-- Info Most Popular -->
+    {% include 'app/components_html/info/most_popular.html' %}
+  </main>
 
-
-</main>
-
-
-<script type="module" src="{% static 'app/js/index_control.js' %}"></script>
-
+  <script type="module" src="{% static 'app/js/index_control.js' %}"></script>
 {% endblock %}

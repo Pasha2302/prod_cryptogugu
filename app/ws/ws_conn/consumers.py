@@ -1,6 +1,10 @@
 import json
+
+from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
 from django.template.loader import render_to_string
+
+# daphne -b 0.0.0.0 -p 8005 src.asgi:application
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -43,4 +47,32 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     async def disconnect(self, close_code):
         print(f"\n\n[ChatConsumer] Клиент отключен: {close_code}\n\n")
+
+
+class CoinCheckConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        await self.accept()
+
+    async def disconnect(self, close_code):
+        pass
+
+    async def receive(self, text_data=None, bytes_data=None):
+        print(f"\n\n[DEBUG CoinCheckConsumer (61)] RAW text_data: {text_data}\n\n")
+        data = json.loads(text_data)
+        coin_name = data.get('post_title', '').strip()
+        from app.models_db.coin import Coin
+
+        # Асинхронная проверка в базе данных через sync_to_async
+        coin_exists = await sync_to_async(Coin.objects.filter(name__iexact=coin_name).exists)()
+        print(f"[DEBUG CoinCheckConsumer (67)] coin_exists: {coin_exists}")
+
+        # Рендеринг шаблона в отдельном синхронном потоке
+        html_data = render_to_string(
+            template_name='app/components_html/coins/add/coin_check.html',
+            context={'check_coin': coin_exists}
+        )
+
+        # Отправка данных обратно
+        await self.send(text_data=html_data)
+
 

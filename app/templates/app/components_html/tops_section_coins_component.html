@@ -1,138 +1,122 @@
 {% load static %}
 {% load custom_filters %}
-
+{% load site.coin_tags %}
 
 <section class="tops-section">
   <div class="tops-section__wrap container">
     <div class="tops-section__slider swiper">
-
-      <!--                TABLES                                -->
+      <!-- TABLES -->
       <div class="swiper-wrapper">
-
-        <!--///////////////////////////////////  Trending  /////////////////////////////////////////////////////////          -->
+        <!-- /////////////////////////////////// Trending ///////////////////////////////////////////////////////// -->
         <div class="tops-section__block swiper-slide">
-          <!--            HEADER                            -->
+          <!-- HEADER -->
           <div class="tops-section__block-top">
             <div class="label">Trending</div>
             <span class="">Price</span>
           </div>
 
-          <!--            COINS                              -->
+          <!-- COINS -->
           <div class="tops-section__block-list">
-
             {% for coin in coins_tops_section.trending %}
-            <a href="{% url 'coin' coin.chain coin.slug %}" class="tops-section__block-list-item">
-              <div class="left">
-                <img src="{% if coin.path_coin_img %}{{ coin.path_coin_img.url }}{% endif %}" alt="">
-                <div class="name">{{ coin.name }}</div>
-                <div class="chain">{{ coin.chain }}</div>
-              </div>
+              {% get_chain coin as object_chain %}
+              <a href="{% url 'coin' object_chain.slug coin.slug %}" class="tops-section__block-list-item">
+                <div class="left">
+                  <img src="{% if coin.path_coin_img %}{{ coin.path_coin_img.url }}{% endif %}" alt="" />
+                  <div class="name">{{ coin.name }}</div>
+                  <div class="chain">{{ coin.chain }}</div>
+                </div>
 
-              <div class="cost">
-                {% if coin.normalized_price %}
-                {% with coin.normalized_price|split:"|" as split_list %}
-
-                {% if split_list|length > 2 %}
-                ${{ split_list|get_index:0 }}(0<sub>{{ split_list|get_index:1 }}</sub>){{ split_list|get_index:2 }}
-
-                {% else %}
-                ${{ coin.normalized_price }}
-                {% endif %}
-
-                {% endwith %}
-
-                {% elif coin.normalized_price is None %}
-                <span class="none">—</span>
-
-                {% endif %}
-              </div>
-            </a>
-
+                <div class="cost">
+                  {% if coin.format_price %}
+                    {% with split_list=coin.format_price|split:'|' %}
+                      {% if split_list|length > 2 %}
+                        ${{ split_list|get_index:0 }}(0<sub>{{ split_list|get_index:1 }}</sub>){{ split_list|get_index:2 }}
+                      {% else %}
+                        ${{ coin.format_price }}
+                      {% endif %}
+                    {% endwith %}
+                  {% elif coin.format_price is None %}
+                    <span class="none">—</span>
+                  {% endif %}
+                </div>
+              </a>
             {% endfor %}
-
           </div>
         </div>
 
-        <!--/////////////////////////////////   Most Viewed  ///////////////////////////////////////////////////////////          -->
+        <!-- ///////////////////////////////// Most Viewed /////////////////////////////////////////////////////////// -->
         <div class="tops-section__block swiper-slide">
-          <!--            HEADER                            -->
+          <!-- HEADER -->
           <div class="tops-section__block-top">
             <div class="label">Most Viewed</div>
             <span class="">Price</span>
           </div>
 
-          <!--            COINS                              -->
+          <!-- COINS -->
           <div class="tops-section__block-list">
             {% for coin in coins_tops_section.most_viewed %}
-            <a href="{% url 'coin' coin.chain coin.slug %}" class="tops-section__block-list-item">
-              <div class="left">
-                <img src="{% if coin.path_coin_img %}{{ coin.path_coin_img.url }}{% endif %}" alt="">
-                <div class="name">{{ coin.name }}</div>
-                <div class="chain">{{ coin.chain }}</div>
-              </div>
+              {% get_chain coin as object_chain %}
+              <a href="{% url 'coin' object_chain.slug coin.slug %}" class="tops-section__block-list-item">
+                <div class="left">
+                  <img src="{% if coin.path_coin_img %}{{ coin.path_coin_img.url }}{% endif %}" alt="" />
+                  <div class="name">{{ coin.name }}</div>
+                  <div class="chain">{{ coin.chain }}</div>
+                </div>
 
-              <div class="cost">
-                {% if coin.normalized_price %}
-                {% with coin.normalized_price|split:"|" as split_list %}
-
-                {% if split_list|length > 2 %}
-                  ${{ split_list|get_index:0 }}(0<sub>{{ split_list|get_index:1 }}</sub>){{ split_list|get_index:2 }}
-
-                {% else %}
-                  ${{ coin.normalized_price }}
-                {% endif %}
-
-                {% endwith %}
-
-                {% elif coin.normalized_price is None %}
-                  <span class="none">—</span>
-
-                {% endif %}
-              </div>
-            </a>
-
+                <div class="cost">
+                  {% if coin.format_price %}
+                    {% with split_list=coin.format_price|split:'|' %}
+                      {% if split_list|length > 2 %}
+                        ${{ split_list|get_index:0 }}(0<sub>{{ split_list|get_index:1 }}</sub>){{ split_list|get_index:2 }}
+                      {% else %}
+                        ${{ coin.format_price }}
+                      {% endif %}
+                    {% endwith %}
+                  {% elif coin.format_price is None %}
+                    <span class="none">—</span>
+                  {% endif %}
+                </div>
+              </a>
             {% endfor %}
-
           </div>
         </div>
 
-        <!--////////////////////////////////////////////////////////////////////////////////////////////          -->
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////// -->
         <div class="tops-section__block swiper-slide">
-          <!--             HEADER                            -->
+          <!-- HEADER -->
           <div class="tops-section__block-top">
             <div class="label">Top Gainers</div>
             <span class="">Price Change</span>
           </div>
 
-          <!--             COINS                              -->
+          <!-- COINS -->
           <div class="tops-section__block-list">
             {% for coin in coins_tops_section.top_gainers %}
-            <a href="{% url 'coin' coin.chain coin.slug %}" class="tops-section__block-list-item">
-              <div class="left">
-                <img src="{% if coin.path_coin_img %}{{ coin.path_coin_img.url }}{% endif %}" alt="">
-                <div class="name">{{ coin.name }}</div>
-                <div class="chain">{{ coin.chain }}</div>
-              </div>
+              {% get_chain coin as object_chain %}
+              <a href="{% url 'coin' object_chain.slug coin.slug %}" class="tops-section__block-list-item">
+                <div class="left">
+                  <img src="{% if coin.path_coin_img %}{{ coin.path_coin_img.url }}{% endif %}" alt="" />
+                  <div class="name">{{ coin.name }}</div>
+                  <div class="chain">{{ coin.chain }}</div>
+                </div>
 
-
-              <div class="cost {% if 'asc' in coin.price_change_percentage %} up {% else %} down {% endif %}">
-                <svg class="arrow">
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-up">
-                  </use>
-                </svg>
-                {% with coin.price_change_percentage|split:"," as split_price_change %}
-                  {{ split_price_change|get_index:1 }}
-                {% endwith %}
-              </div>
-            </a>
-
+                <div class="cost {% if 'asc' in coin.price_change_percentage %}
+                     up
+                  {% else %}
+                     down
+                  {% endif %}">
+                  <svg class="arrow">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-arrow-up"></use>
+                  </svg>
+                  {% with split_price_change=coin.price_change_percentage|split:',' %}
+                    {{ split_price_change|get_index:1 }}
+                  {% endwith %}
+                </div>
+              </a>
             {% endfor %}
-
           </div>
         </div>
-
       </div>
-
 
       <div class="tops-section__pagination"></div>
     </div>

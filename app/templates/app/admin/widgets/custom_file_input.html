@@ -1,0 +1,23 @@
+{% load admin_site.coin_page_filters %}
+
+
+<div>
+  {% if widget.is_initial %}
+  <p>
+    Current file:
+    <a href="{{ widget.value.url }}" target="_blank">
+        <img src="{{ widget.value.url }}" alt="Image" width="40" height="40">
+    </a>
+  </p>
+
+  {% endif %}
+
+  <input type="{{ widget.type }}"
+  name="{{ widget.name }}"
+  {% for attr_name, attr_value in widget.attrs.items %}
+    {% if attr_value %}
+        {{ attr_name }}="{{ attr_value }}"
+    {% endif %}
+  {% endfor %}>
+
+</div>

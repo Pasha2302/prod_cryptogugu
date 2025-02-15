@@ -6,7 +6,7 @@ from app.views.index_view import (
     IndexView, blog, get_user_id, get_header_search_component, get_table_promoted_coins_component, show_more, voting,
     airdrops, promote, careers, partners, contact, set_theme_site, clear_settings, reset_all_votes
 )
-from app.views.submit_token import add_coin, add_coin2, add_coin3
+from app.views.add_coin_view import add_coin
 
 urlpatterns = [
     # ----------------------------------- Path Index Page ---------------------------------------------------- #
@@ -28,7 +28,7 @@ urlpatterns = [
 
     # ----------------------------------- Path Coin Page ---------------------------------------------------- #
 
-    path('coin/<str:chain>/<slug:slug>/', coin_view.coin, name="coin"),
+    path('coin/<slug:chain_slug>/<slug:coin_slug>/', coin_view.coin, name="coin"),
 
     # ----------------------------------- Paths Blog Page --------------------------------------------------- #
 
@@ -48,6 +48,5 @@ urlpatterns = [
     # --------------------------------------- Add Coin Page ------------------------------------------------- #
 
     path("add-coin/", add_coin, name="add_coin"),
-    path("add-coin2/", add_coin2, name="add_coin2"),
-    path("add-coin3/", add_coin3, name="add_coin3"),
+
 ]

@@ -7,7 +7,7 @@ from django.utils.html import conditional_escape
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from app.models import UserSettings
+from app.models_db.settings import UserSettings
 
 register = template.Library()
 
@@ -22,7 +22,7 @@ def get_current_theme(user_id):
 # <is_safe=True> Возвращаемые строки HTML (и другие спец символы) не экранируются. (HTML рендериться как HTML).
 @register.filter(is_safe=True)
 # @register.filter()
-@stringfilter  # Преобразовать объект в его строковое значение перед передачей функцию
+@stringfilter  # Преобразовать объект в его строковое значение перед передачей в функцию
 def tag_filter_test(value: str, mark_safe_str: str = 'false'):
     mark_safe_bool = mark_safe_str.lower() in ['true', '1', 'yes']
     # print(f"\nInput Filter Data: {value}")
@@ -94,7 +94,7 @@ def current_time_in_timezone(timezone_str=None):
         except Exception as e:
             return f"Error: {str(e)}"
     else:
-        # Преобразуем текущее время в локальное время по умолчанию
+        # Преобразуем текущее время в локальное время по умолчанию.
         # Используем текущую временную зону Django
         # Убедитесь, что вы установили TIME_ZONE в settings.py
         tz = ZoneInfo("UTC")  # Замените "UTC" на вашу временную зону по умолчанию, если необходимо

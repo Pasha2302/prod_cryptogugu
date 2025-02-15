@@ -2,7 +2,8 @@
 from celery import shared_task
 
 from api_coins_data.manager import start_update_coins_data
-from app.models import Coin
+from app.models_db.coin import Coin
+
 import numpy as np
 from random import randint
 import time

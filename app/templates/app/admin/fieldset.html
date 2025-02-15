@@ -1,0 +1,55 @@
+{% load admin_site.coin_page_tags %}
+
+
+<fieldset class="module aligned {{ fieldset.classes }}">
+  {% if fieldset.name %}
+    <h2>{{ fieldset.name }}</h2>
+  {% endif %}
+
+  {% if fieldset.description %}
+    <div class="description">{{ fieldset.description|safe }}</div>
+  {% endif %}
+
+  {% for line in fieldset %}
+    <div class="{% generate_classes_form_row line %}">
+      {% if line.fields|length == 1 %}
+        {{ line.errors }}
+      {% else %}
+        <div class="flex-container form-multiline">
+      {% endif %}
+
+      {% for field in line %}
+        <div>
+          {% if not line.fields|length == 1 and not field.is_readonly %}
+            {{ field.errors }}
+          {% endif %}
+
+          <div class="{% generate_classes_flex_container line field %}">
+            {% if field.is_checkbox %}
+              {{ field.field }}{{ field.label_tag }}
+            {% else %}
+              {{ field.label_tag }}
+              {% if field.is_readonly %}
+                <div class="readonly">{{ field.contents }}</div>
+              {% else %}
+                {{ field.field }}
+              {% endif %}
+            {% endif %}
+          </div>
+
+          {% if field.field.help_text %}
+            <div class="help"
+                {% if field.field.id_for_label %} id="{{ field.field.id_for_label }}_helptext" {% endif %}>
+              <div>{{ field.field.help_text|safe }}</div>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      {% if not line.fields|length == 1 %}
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</fieldset>
+

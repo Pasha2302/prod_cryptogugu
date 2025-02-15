@@ -2,6 +2,7 @@ from django.conf import settings
 from django.utils import translation
 from django.shortcuts import redirect
 
+
 class DefaultLanguageMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response

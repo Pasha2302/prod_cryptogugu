@@ -3,15 +3,17 @@ import json
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.http import HttpRequest, JsonResponse, HttpResponse
-from django.utils.decorators import method_decorator
-from django.views import View
-from django.views.decorators.cache import cache_page
 
-from app.controllers_views.controllers_base import BaseContextManager
-from app.controllers_views.controllers_header_search import HeaderSearchManager
-from app.controllers_views.controllers_page_index import IndexContextManager, PromotedCoinsTableManager, VoteManager
-from app.controllers_views.controllers_settings_user import clear_data, save_user, SettingsManager
-from app.models import Coin
+from django.views import View
+
+# from django.utils.decorators import method_decorator
+# from django.views.decorators.cache import cache_page
+
+from app.controllers_views.base import BaseContextManager
+from app.controllers_views.header_search import HeaderSearchManager
+from app.controllers_views.page_index import IndexContextManager, PromotedCoinsContextManager, VoteManager
+from app.controllers_views.settings_user import clear_data, save_user, SettingsManager
+from app.models_db.coin import Coin
 
 
 class IndexView(View):
@@ -28,6 +30,10 @@ class IndexView(View):
     # @method_decorator(cache_page(60 * 60 * 12))  # Кэшировать GET-запросы на 12 часов
     def get(self, request: HttpRequest):
         context = IndexContextManager(request).get_context() | BaseContextManager(request).get_context()
+
+        # print(f"\nDEBUG index_view.py (34): < IndexView.get()\n> context: {context} >")
+        # print(f"coins_object: {context['page_obj']}")
+
         response = render(request, 'app/index.html', context=context, status=200)
         # кэширован в промежуточных кэшах на 1 час, но после этого должен быть проверен на актуальность с сервером:
         # response['Cache-Control'] = 'public, max-age=6600'
@@ -63,7 +69,7 @@ def get_header_search_component(request: HttpRequest):
 
 def get_table_promoted_coins_component(request: HttpRequest):
     if request.method == 'POST':
-        context = PromotedCoinsTableManager(request).get_context()
+        context = PromotedCoinsContextManager(request).get_context()
         print(f"\n\n[Promoted Coins Component]\n{context=}")
         if context is None:
             return JsonResponse(data={'coins_html': ""}, status=200)

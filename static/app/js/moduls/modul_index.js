@@ -134,7 +134,7 @@ var loadCoins = (data) => {
     var urlParams = new URLSearchParams(window.location.search);  // Получаем текущий номер страницы из URL
     var currentPage = parseInt(urlParams.get('page')) || 1;
     data['currentPage'] = currentPage;
-    data['per_page'] = document.querySelector('.show-rows-filter__current span').textContent;
+    data['per_page'] = document.querySelector('.show-rows-filter__current span').textContent.trim();
 
     requestServer(
         "/",
@@ -349,7 +349,6 @@ var setEventTrendingCoinsFilterItem = () => {
 
             elmEvent.classList.toggle('active');
 
-
             filteredButtons.forEach((elm) => {
                 filter_item.push({ data_info: elm.dataset.info, active: elm.classList.contains('active') })
             })
@@ -406,6 +405,8 @@ var setEventTrendingCoinsFilterTableHead = () => {
         });
     });
 }
+
+// ==============================================================================================================================
 
 
 var setEventPromotedCoinsFilterTableHead = () => {

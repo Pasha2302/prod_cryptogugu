@@ -1,0 +1,39 @@
+{% extends 'admin/change_form.html' %}
+{% load static %}
+
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'app/css/admin/coin_change_form.css' %}" />
+{% endblock %}
+
+
+{% block field_sets %}
+  {% for fieldset in adminform %}
+    {% include 'app/admin/fieldset.html' %}
+  {% endfor %}
+
+  <script>
+    try {
+      var $ = django.jQuery
+    
+      // Проверяем, что переменные определены
+      if (typeof $ === 'undefined') {
+        throw new Error('django.jQuery не доступен.')
+      }
+    
+      if (!csrf_token) {
+        throw new Error('CSRF токен недоступен.')
+      }
+      // Здесь можно разместить ваш код (например, AJAX запросы)
+    } catch (error) {
+      // Обработка ошибок
+      console.error('Произошла ошибка:', error.message)
+    
+      // Выводим подробности ошибки на русском
+      console.error('\nОшибка в строке: ', error.stack)
+    }
+  </script>
+
+  <script src="{% static 'app/js/admin_js/coin_change_form/show_hide_inline_blocks.js' %}"></script>
+{% endblock %}
