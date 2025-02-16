@@ -2,18 +2,19 @@ import asyncio
 import os
 
 import aiohttp
-# import django
+import django
 from asgiref.sync import sync_to_async
 
 from .Tools import toolbox
 from .module_aiorequest import RequestAiohttp
-from app.models import Coin, BaseCoin
 from django.db.models.query import QuerySet
 
 # Установка переменной окружения для настроек Django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'src.settings')
 # Инициализация Django
-# django.setup()
+django.setup()
+
+from app.models_db.coin import Coin, BaseCoin
 
 headers = {'accept': 'application/json, text/plain, */*', }
 
@@ -45,7 +46,7 @@ class DexscreenerAPIManager:
             self.__session = session
 
             if base_coins is None:
-                list_requests_coroutine = self.__get_list_requests(self.__coins_data, limit)
+                list_requests_coroutine = await self.__get_list_requests(self.__coins_data, limit)
                 print(f'\n\nВсего монет по API Dexscreener: {len(list_requests_coroutine)}')
                 for cor in list_requests_coroutine:
                     result = await cor['request']
@@ -63,13 +64,16 @@ class DexscreenerAPIManager:
                         base_coins_obj.market_cap = data_api['fdv']
                         await sync_to_async(base_coins_obj.save)()
 
-    def __get_list_requests(self, coins, limit):
+    async def __get_list_requests(self, coins, limit):
         list_requests = []
+
         for coin in coins:
+            obj_contract_address = await sync_to_async(coin.get_contract_address_basic)()
+            obj_chain = await sync_to_async(coin.get_chain_from_basic_contract)()
             input_coin = {
                 'coin_id': coin.id, 'name': coin.name, 'symbol': coin.symbol,
-                'contract_address': coin.contract_address, 'chain': self.__rename_chain(coin.chain),
-                # 'name': coin['name'], 'symbol': coin['symbol'], 'contract_address': coin['contract_address'],
+                'contract_address': obj_contract_address.contract_address,
+                'chain': self.__rename_chain(obj_chain.name),
             }
             list_requests.append(
                 {'request': self.__request(input_coin), 'input_coin': input_coin}
@@ -141,11 +145,13 @@ class DexscreenerAPIManager:
     @staticmethod
     def __rename_chain(chain_coin):
         chain: str = chain_coin
-        if chain.lower() == 'eth':
+        if chain == 'Binance Smart Chain':
+            chain = 'bsc'
+        if chain == 'Ethereum':
             chain = 'ethereum'
-        elif chain.lower() == 'sol':
+        elif chain == 'sol':
             chain = 'solana'
-        elif chain.lower() == 'matic':
+        elif chain == 'matic':
             chain = 'polygon'
         return chain
 
@@ -295,4 +301,3 @@ if __name__ == '__main__':
     pass
     # Coin.objects.all().delete()
     # Coin.objects.update(volume_btc=0)
-    # start_update_coins_data()

@@ -123,6 +123,16 @@ def blog(request: HttpRequest):
     return render(request=request, template_name='app/blog.html', context=base_context, status=200)
 
 
+def terms_and_conditions(request: HttpRequest):
+    base_context = BaseContextManager(request).get_context()
+    return render(request=request, template_name='app/terms_and_conditions.html', context=base_context, status=200)
+
+
+def privacy_policy(request: HttpRequest):
+    base_context = BaseContextManager(request).get_context()
+    return render(request=request, template_name='app/privacy_policy.html', context=base_context, status=200)
+
+
 # =====================================================================================================================
 
 

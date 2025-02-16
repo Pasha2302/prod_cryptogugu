@@ -1,6 +1,6 @@
 import json
-from django.db.models import QuerySet
-from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+
+from django.db.models import Q
 from django.http import HttpRequest
 
 from app.models_db.airdrops import Airdrops
@@ -17,22 +17,16 @@ class HeaderSearchManager:
         if self.__customer_data.get('query'):
             query = self.__customer_data['query']
 
-            # Search in Coin model
-            coin_search_vector = SearchVector('name', 'symbol', 'contract_address')
-            coin_search_query = SearchQuery(query)
-            coin_results = Coin.objects.annotate(
-                search=coin_search_vector,
-                rank=SearchRank(coin_search_vector, coin_search_query)
-            ).filter(search=coin_search_query).order_by('-rank')
+            # Поиск в модели Coin
+            coin_results = Coin.objects.filter(
+                Q(name__icontains=query) | Q(symbol__icontains=query) |
+                Q(contract_address__contract_address__icontains=query)
+            ).distinct()
 
-            # Search in Airdrops model
+            # Поиск в модели Airdrops
             airdrop_results = Airdrops.objects.filter(name__icontains=query)
 
-            print("Coin Results:", coin_results)
-            print("Airdrop Results:", airdrop_results)
-
             return coin_results, airdrop_results
-
         else:
             return [], []
 
@@ -43,9 +37,11 @@ class HeaderSearchManager:
             {
                 'name': coin.name,
                 'symbol': coin.symbol,
-                'contract_address': coin.contract_address,
-                'chain': coin.chain,
-                'img_path': f'{coin.path_coin_img.url}'
+                'contract_address': coin.get_contract_address_basic().contract_address
+                if coin.get_contract_address_basic() else None,
+                'chain': coin.get_chain_from_basic_contract().name
+                if coin.get_chain_from_basic_contract() else None,
+                'img_path': f'{coin.path_coin_img.url}' if coin.path_coin_img else None
             } for coin in coin_results
         ]
 
@@ -55,7 +51,7 @@ class HeaderSearchManager:
                 'status': airdrop.status,
                 'end_date': airdrop.end_date,
                 'reward': airdrop.reward,
-                'img_path': f'{airdrop.path_airdrop_img.url}'
+                'img_path': f'{airdrop.path_airdrop_img.url}' if airdrop.path_airdrop_img else None
             } for airdrop in airdrop_results
         ]
 

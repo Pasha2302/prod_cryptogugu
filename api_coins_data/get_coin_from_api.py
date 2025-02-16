@@ -1,6 +1,7 @@
 import os
 import asyncio
 import aiohttp
+
 from .Tools import toolbox
 from .module_aiorequest import RequestAiohttp
 import django
@@ -10,7 +11,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'src.settings')
 # Инициализация Django
 django.setup()
 
-from app.models import Coin
+from app.models_db.coin import Coin
 from django.db.models.query import QuerySet
 
 headers = {
@@ -84,6 +85,8 @@ class SearchCoinAPI:
         chain: str = chain_coin
         if chain.lower() == 'eth':
             chain = 'ethereum'
+        if chain.lower() == 'Binance Smart Chain':
+            chain = 'bsc'
         if chain.lower() == 'sol':
             chain = 'solana'
         if chain.lower() == 'matic':

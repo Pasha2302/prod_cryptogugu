@@ -51,10 +51,10 @@ class BaseContextManager:
                 {'name': _('Our Partners'), 'url': 'partners'},
                 {'name': _('Contact us'), 'url': 'contact'},
 
-                {'name': _('Games'), 'url': '#'},
-                {'name': _('Free Signals'), 'url': '#'},
-                {'name': _('About Us'), 'url': '#'},
-                {'name': _('Blog'), 'url': 'blog'},
+                # {'name': _('Games'), 'url': '#'},
+                # {'name': _('Free Signals'), 'url': '#'},
+                # {'name': _('About Us'), 'url': '#'},
+                # {'name': _('Blog'), 'url': 'blog'},
 
             ],
 

@@ -54,11 +54,12 @@ class SettingsManager:
                 {'data_info': 'today_hot', 'active': self.user_settings_obj.today_hot, 'title': 'Today`s Hot'},
                 {'data_info': 'all_time_best', 'active': self.user_settings_obj.all_time_best, 'title': 'All Time Best'},
 
-                {'data_info': 'gem_pad', 'active': self.user_settings_obj.gem_pad, 'title': 'GemPad'},
+                # {'data_info': 'gem_pad', 'active': self.user_settings_obj.gem_pad, 'title': 'GemPad'},
                 {'data_info': 'new', 'active': self.user_settings_obj.new, 'title': 'New'},
                 {'data_info': 'presale', 'active': self.user_settings_obj.presale, 'title': 'Presale'},
-                {'data_info': 'doxxed', 'active': self.user_settings_obj.doxxed, 'title': 'Doxxed'},
                 {'data_info': 'audited', 'active': self.user_settings_obj.audited, 'title': 'Audited'},
+                {'data_info': 'doxxed', 'active': self.user_settings_obj.doxxed, 'title': 'Doxxed'},
+
             ],
 
             'item_sub': [

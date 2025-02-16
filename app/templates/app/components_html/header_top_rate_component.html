@@ -3,10 +3,12 @@
 
 <ul class="header-top__rate">
   {% for base_coin in top_rate_items.base_coins_list %}
-    <li class="header-top__rate-item">
-      <span class="header-top__rate-label">{{ base_coin.symbol }}:</span>
-      <span class="header-top__rate-value">${{ base_coin.normalized_price }}</span>
-    </li>
+    {% if base_coin.format_price %}
+      <li class="header-top__rate-item">
+        <span class="header-top__rate-label">{{ base_coin.symbol }}:</span>
+        <span class="header-top__rate-value">${{ base_coin.format_price }}</span>
+      </li>
+    {% endif %}
   {% endfor %}
 
   <li class="header-top__rate-item">

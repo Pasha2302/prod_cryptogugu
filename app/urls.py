@@ -4,7 +4,8 @@ from app.views import coin_view
 from app.views.email_subscribe import subscribe
 from app.views.index_view import (
     IndexView, blog, get_user_id, get_header_search_component, get_table_promoted_coins_component, show_more, voting,
-    airdrops, promote, careers, partners, contact, set_theme_site, clear_settings, reset_all_votes
+    airdrops, promote, careers, partners, contact, set_theme_site, clear_settings, reset_all_votes,
+    terms_and_conditions, privacy_policy
 )
 from app.views.add_coin_view import add_coin
 
@@ -25,6 +26,9 @@ urlpatterns = [
     path("careers/", careers, name="careers"),
     path("partners/", partners, name="partners"),
     path("contact-us/", contact, name="contact"),
+
+    path("terms-and-conditions/", terms_and_conditions, name="terms_and_conditions"),
+    path("privacy-policy/", privacy_policy, name="privacy_policy"),
 
     # ----------------------------------- Path Coin Page ---------------------------------------------------- #
 

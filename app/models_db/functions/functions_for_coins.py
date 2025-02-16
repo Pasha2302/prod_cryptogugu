@@ -14,19 +14,22 @@ def format_decimal_number(number: Decimal) -> str:
 
     if '.' in number_str:
         integer_part, fractional_part = number_str.split('.')
-        if not fractional_part or int(fractional_part) == 0:
-            return integer_part or "0"
+        try:
+            # Проверяем, является ли дробная часть целой (без экспоненты)
+            fractional_decimal = Decimal("0." + fractional_part)  # Работает с дробной частью корректно
+            if fractional_decimal == 0:
+                return integer_part or "0"
 
-        # print(f"{integer_part=} // {fractional_part=}")
+            first_non_zero_idx = len(fractional_part) - len(fractional_part.lstrip('0'))
+            zero_count = first_non_zero_idx
 
-        first_non_zero_idx = len(fractional_part) - len(fractional_part.lstrip('0'))
-        zero_count = first_non_zero_idx
-
-        if zero_count > 3:
-            significant_part = fractional_part[first_non_zero_idx: first_non_zero_idx + 2]
-            return f"{integer_part}.|{zero_count}|{significant_part}"
-        else:
-            return str(round(float(number_str), 2))
+            if zero_count > 3:
+                significant_part = fractional_part[first_non_zero_idx: first_non_zero_idx + 2]
+                return f"{integer_part}.|{zero_count}|{significant_part}"
+            else:
+                return str(round(float(number_str), 2))
+        except (InvalidOperation, ValueError):
+            return number_str  # Если ошибка в обработке, возвращаем исходное число
     else:
         return number_str
 
@@ -34,9 +37,10 @@ def format_decimal_number(number: Decimal) -> str:
 def normalized_price_coin(coin):
     """Возвращает нормализованную цену."""
     if coin.price is not None:
-        # print(coin.price)
-        # print(coin.price.normalize())
-        coin.format_price = format_decimal_number(coin.price.normalize())
+        coin_price = Decimal(coin.price)
+        # print(coin_price)
+        # print(coin_price.normalize())
+        coin.format_price = format_decimal_number(coin_price.normalize())
     else:
         coin.format_price = None
 

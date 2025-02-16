@@ -24,6 +24,7 @@ class PromotedCoinsAdmin(admin.ModelAdmin):
     list_display = ('coin', 'start_date', 'end_date')
     list_filter = ('start_date', 'end_date')
     search_fields = ('coin__name', 'coin__symbol')
+    autocomplete_fields = ('coin',)
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)

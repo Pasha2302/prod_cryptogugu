@@ -54,58 +54,6 @@ class AbstractCoin(models.Model):
     def __str__(self):
         return self.name
 
-
-class ContractAddress(models.Model):
-    coin = models.ForeignKey(
-        'Coin',
-        on_delete=models.SET_NULL,
-        related_name="contract_address",
-        null=True,
-    )
-    chain = models.ForeignKey(
-        'Chain',
-        on_delete=models.SET_NULL,
-        related_name="contract_address",
-        null=True,
-    )
-    contract_address = models.CharField(max_length=52, blank=True, null=True)
-    basic = models.BooleanField(default=False)
-
-    class Meta:
-        ordering = ["id"]
-
-    def __str__(self):
-        _str = 'Contract Address [Not Assigned]'
-        if self.coin and self.chain:
-            _str = f"Contract Address [{self.coin.name}] [{self.chain.name}]"
-        return _str
-
-
-class Chain(models.Model):
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, blank=True)
-    name = models.CharField(max_length=50)
-    symbol = models.CharField(max_length=50, blank=True, null=True)
-    path_chain_img = models.ImageField(upload_to='chain_images/', max_length=255, blank=True, null=True)
-
-    class Meta:
-        ordering = ["id"]
-
-    def save(self, *args, **kwargs):
-        save_slug(self, super(), additionally=None, *args, **kwargs)
-
-    def __str__(self):
-        return self.name
-
-
-class Label(models.Model):
-    name = models.CharField(max_length=50)
-
-    class Meta:
-        ordering = ["id"]
-
-    def __str__(self):
-        return self.name
-
 # ================================================== Info =========================================================== #
 
 
@@ -166,6 +114,60 @@ class CoinSocials(models.Model):
     instagram = models.URLField(blank=True, null=True)
 
 
+# =================================================================================================================== #
+
+
+class ContractAddress(models.Model):
+    coin = models.ForeignKey(
+        'Coin',
+        on_delete=models.SET_NULL,
+        related_name="contract_address",
+        null=True,
+    )
+    chain = models.ForeignKey(
+        'Chain',
+        on_delete=models.SET_NULL,
+        related_name="contract_address",
+        null=True,
+    )
+    contract_address = models.CharField(max_length=52, blank=True, null=True)
+    basic = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["id"]
+
+    def __str__(self):
+        _str = 'Contract Address [Not Assigned]'
+        if self.coin and self.chain:
+            _str = f"Contract Address [{self.coin.name}] [{self.chain.name}]"
+        return _str
+
+
+class Chain(models.Model):
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, blank=True)
+    name = models.CharField(max_length=50)
+    symbol = models.CharField(max_length=50, blank=True, null=True)
+    path_chain_img = models.ImageField(upload_to='chain_images/', max_length=255, blank=True, null=True)
+
+    class Meta:
+        ordering = ["id"]
+
+    def save(self, *args, **kwargs):
+        save_slug(self, super(), additionally=None, *args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
+class Label(models.Model):
+    name = models.CharField(max_length=50)
+
+    class Meta:
+        ordering = ["id"]
+
+    def __str__(self):
+        return self.name
+
 # ================================================== Coin =========================================================== #
 
 
@@ -221,12 +223,12 @@ class BaseCoin(AbstractCoin):
     Модель для хранения базовой информации о монетах.
     """
     contract_address = models.CharField(max_length=52, blank=True, null=True)
-    pair_url = models.URLField(max_length=200, blank=True, null=True)
+    pair_url = models.URLField(max_length=500, blank=True, null=True)
     path_coin_img = models.ImageField(upload_to='base_coin_images/', max_length=255, blank=True, null=True)
 
-    name_chain = models.CharField(max_length=50, default='')
-    symbol_chain = models.CharField(max_length=50, default='')
-    path_chain_img = models.ImageField(upload_to='chain_images/', max_length=255, default='')
+    name_chain = models.CharField(max_length=50, default='', blank=True, )
+    symbol_chain = models.CharField(max_length=50, default='', blank=True, )
+    path_chain_img = models.ImageField(upload_to='chain_images/', max_length=255, blank=True, null=True)
 
     objects = models.Manager()
 
