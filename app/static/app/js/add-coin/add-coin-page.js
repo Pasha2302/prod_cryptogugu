@@ -16,8 +16,8 @@ var j2 = setInterval(function () {
             $('body').on('click', '.js-next-step', function (e) {
                 e.preventDefault();
                 var step = $(this).closest('.form-step');
-                // if (valide(step)) {
-                if (step.find('.error').length == 0) {
+
+                if ( valide(step) && step.find('.error').length == 0) {
                     step.fadeOut();
                     step.next().fadeIn(function () {
                         $('body,html').animate({
@@ -87,8 +87,7 @@ var j2 = setInterval(function () {
             $('body').on('submit', '.js-form', function (e) {
                 e.preventDefault();
                 var form = $(this);
-                // if (valide(form)) {
-                if (form.find('.error').length == 0) {
+                if ( valide(form) && form.find('.error').length == 0) {
                     var btn = $(form).find('[type="submit"]');
 
                     btn.prop('disabled', 1);
@@ -162,3 +161,113 @@ function isValidHttpUrl(string) {
     return url.protocol === "http:" || url.protocol === "https:"
 }
 
+
+function valide($this) {
+    var valide = !0;
+    var d, d2;
+    
+    $this.find(".error, .valide").removeClass("error").removeClass("valide");
+    $this.find("input:visible, select:visible, textarea:visible").each(function () {
+        if ($(this).hasClass("ignore") || $(this).attr('type') == 'hidden') { } else if ($(this).hasClass("simplecheck")) {
+            if (!$(this).val().length) {
+                valide = !1;
+                $(this).addClass("error")
+            } else {
+                $(this).addClass("valide")
+            }
+        } else if ($(this).hasClass("datecheck")) {
+            d = Date.parse($(this).val());
+            d2 = Date.parse('2015-01-10');
+            if ($('[name="meta[tba]"]').prop('checked') || ($(this).val().length && d > d2)) {
+                $(this).addClass("valide")
+            } else {
+                valide = !1;
+                $(this).addClass("error")
+            }
+        } else if ($(this).hasClass("datecheck2")) {
+            d = Date.parse($(this).val());
+            d2 = Date.parse('2015-01-10');
+            if (!$(this).val().length || d > d2) {
+                $(this).addClass("valide")
+            } else {
+                valide = !1;
+                $(this).addClass("error")
+            }
+        } else if ($(this).hasClass("percentcheck")) {
+            if ((parseInt($(this).val()) >= 0 && parseInt($(this).val()) <= 100) || !$(this).val().length) {
+                $(this).addClass("valide")
+            } else {
+                valide = !1;
+                $(this).addClass("error")
+            }
+        } else if ($(this).hasClass("urlcheck2")) {
+            if (isValidHttpUrl($(this).val()) || !$(this).val().length) {
+                $(this).addClass("valide")
+            } else {
+                valide = !1;
+                $(this).addClass("error")
+            }
+        } else if ($(this).hasClass("urlcheck3")) {
+            if (isValidHttpUrl($(this).val()) && $(this).val().length) {
+                $(this).addClass("valide")
+            } else {
+                valide = !1;
+                $(this).addClass("error")
+            }
+        } else if ($(this).hasClass("urlcheck")) {
+            if ($this.find('[type="file"]').length) {
+                if (isValidHttpUrl($(this).val()) || $this.find('[type="file"]').val().length) {
+                    $(this).addClass("valide")
+                } else {
+                    valide = !1;
+                    $(this).addClass("error")
+                }
+            } else {
+                if (!isValidHttpUrl($(this).val())) {
+                    valide = !1;
+                    $(this).addClass("error")
+                } else {
+                    $(this).addClass("valide")
+                }
+            }
+        } else if ($(this).attr("name") == "email") {
+            if (!emailRegex.test($(this).val())) {
+                valide = !1;
+                $(this).addClass("error")
+            } else {
+                $(this).addClass("valide")
+            }
+        } else if ($(this).attr("name") == "telephone") {
+            if ($(this).val().replaceAll('_', '').length != 17) {
+                valide = !1;
+                $(this).addClass("error")
+            } else {
+                $(this).addClass("valide")
+            }
+        } else if ($(this).attr("type") == "file") {
+            if ($this.find('.urlcheck').length) {
+                if (isValidHttpUrl($this.find('.urlcheck').val()) || $(this).val().length) {
+                    $(this).addClass("valide")
+                } else {
+                    valide = !1;
+                    $(this).addClass("error")
+                }
+            } else {
+                if (!$(this).val().length) {
+                    valide = !1;
+                    $(this).addClass("error")
+                } else {
+                    $(this).addClass("valide")
+                }
+            }
+        } else {
+            if (!$(this).val().length) {
+                valide = !1;
+                $(this).addClass("error")
+            } else {
+                $(this).addClass("valide")
+            }
+        }
+    });
+    return valide
+}
