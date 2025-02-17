@@ -53,6 +53,18 @@ class CoinCreator:
         except Exception as e:
             print(f"[DEBUG add_coin.py (54)]: {e}")
 
+    @staticmethod
+    def normalize_field_value(value: str) -> str | None:
+        """
+        Нормализует значение из формы.
+        Если значение ложно (например, пустая строка), возвращает None.
+        Если значение истинно, возвращает само значение.
+
+        :param value: строковое значение из формы
+        :return: значение либо None
+        """
+        return value if bool(value.strip()) else None
+
     def clean_data(self):
         """Обрабатывает и преобразует данные перед сохранением."""
         meta = {k: v for k, v in self.data.items() if k.startswith("meta[")}
@@ -71,16 +83,16 @@ class CoinCreator:
         self.cleaned_data['doxxed'] = meta.get('meta[doxxed]')
 
         # Данные для модели TaxInfo:
-        self.cleaned_data['sell_tax'] = meta.get('meta[sell_tax]')
-        self.cleaned_data['buy_tax'] = meta.get('meta[buy_tax]')
-        self.cleaned_data['slippage'] = meta.get('meta[slippage]')
+        self.cleaned_data['sell_tax'] = self.normalize_field_value(meta.get('meta[sell_tax]'))
+        self.cleaned_data['buy_tax'] = self.normalize_field_value(meta.get('meta[buy_tax]'))
+        self.cleaned_data['slippage'] = self.normalize_field_value(meta.get('meta[slippage]'))
 
         # Данные для модели PresaleInfo:
         self.cleaned_data['presale'] = meta.get('meta[presale]')
         self.cleaned_data['softcap'] = meta.get('meta[softcap]')
         self.cleaned_data['presale_link'] = meta.get('meta[presale_link]')
         self.cleaned_data['hardcap'] = meta.get('meta[hardcap]')
-        self.cleaned_data['presale_date'] = meta.get('meta[presale_date]')
+        self.cleaned_data['presale_date'] = self.normalize_field_value(meta.get('meta[presale_date]'))
         self.cleaned_data['whitelist'] = meta.get('meta[whitelist]')
 
         # Данные для модели CoinDescription:
