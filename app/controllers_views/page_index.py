@@ -255,7 +255,7 @@ class IndexContextManager:
         return page_number
 
     def __get_prev_page(self):
-        return self.base_url + f"/?page={self.__page_number - 1}" if self.__page_number > 2 else self.base_url
+        return self.base_url + f"/?page={self.__page_number - 1}" if self.__page_number >= 2 else None
 
     def __get_page_obj(self):
         return self.__paginator.get_page(self.__page_number)

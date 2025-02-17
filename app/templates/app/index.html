@@ -6,8 +6,8 @@
 {% block link %}
   <link rel="stylesheet" href="{% static 'app/css/my_style.css' %}" />
 
-  <link rel="next" href="{{ nex_page }}" />
-  <link rel="prev" href="{{ prev_page }}" />
+  {% if paginator.num_pages > 1 %}<link rel="next" href="{{ nex_page }}" />{% endif %}
+  {% if prev_page %}<link rel="prev" href="{{ prev_page }}" /> {% endif %}
   <link rel="canonical" href="{{ current_uri }}" />
 {% endblock %}
 
@@ -123,7 +123,8 @@
         <div class="coin-table__nav">
           <div class="coin-table__nav-top">
             <div class="coin-table__nav-info">
-              Showing {{ page_start_index|add:1 }} - {{ page_end_index }} out {{ paginator.count }}
+              <p>Showing {{ page_start_index|add:1 }} - {{ page_end_index }} out {{ paginator.count }}</p>
+              <p>Total pages: {{ paginator.num_pages }}</p>
             </div>
 
             <button class="coin-table__nav-more">Show More</button>
