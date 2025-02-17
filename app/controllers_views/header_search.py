@@ -36,10 +36,11 @@ class HeaderSearchManager:
         coins = [
             {
                 'name': coin.name,
+                'slug': coin.slug,
                 'symbol': coin.symbol,
                 'contract_address': coin.get_contract_address_basic().contract_address
                 if coin.get_contract_address_basic() else None,
-                'chain': coin.get_chain_from_basic_contract().name
+                'chain': coin.get_chain_from_basic_contract()
                 if coin.get_chain_from_basic_contract() else None,
                 'img_path': f'{coin.path_coin_img.url}' if coin.path_coin_img else None
             } for coin in coin_results

@@ -5,10 +5,10 @@
     <div class="header__search-list-label">Coins</div>
 
     {% for coin in coins %}
-      <a href="#" class="header__search-list-item js-coins" style="{% if forloop.counter > 5 %}display: none;{% endif %}">
+      <a href="{% url 'coin' coin.chain.slug coin.slug %}" class="header__search-list-item js-coins" style="{% if forloop.counter > 5 %}display: none;{% endif %}">
         <img src="{{ coin.img_path }}" alt="">
         <span class="name">{{ coin.name }}</span>
-        <span class="chain">{{ coin.symbol }}</span>
+        <span class="chain">{{ coin.chain.symbol }}</span>
       </a>
     {% endfor %}
     <a href="#" class="header__search-list-all js-coins">View All Coins ({{ count_coins }})</a>
