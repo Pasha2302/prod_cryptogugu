@@ -20,8 +20,9 @@ def save_user(user=None):
 
 
 class SettingsManager:
-    def __init__(self, request: HttpRequest):
+    def __init__(self, request: HttpRequest, slug_cain: str = None):
         self.user_id_str = request.COOKIES.get('userId')
+        self.slug_cain = slug_cain
         self.user_settings_obj = None
         self.customer_data = dict()
         self.status_votes = dict()
@@ -32,8 +33,14 @@ class SettingsManager:
         else:
             self.user_settings_obj = UserSettings.objects.get_or_create_default_settings(user_id=None)
 
-        if request.method == 'POST':
-            self.customer_data = json.loads(request.body).get('data')
+        if request.method == 'POST' or slug_cain:
+            if request.body:
+                self.customer_data = json.loads(request.body).get('data')
+            if self.slug_cain:
+                self.customer_data['filter_item'] = [
+                    {'data_info': 'item_sub_symbol', 'active': self.slug_cain}
+                ]
+                self.customer_data['per_page'] = 10
 
             if self.customer_data.get('vole_coin_id'):
                 self.status_votes = self.__save_vote_coin_id()

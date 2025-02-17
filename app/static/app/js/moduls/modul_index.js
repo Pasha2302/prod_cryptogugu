@@ -443,7 +443,7 @@ var setEventPromotedCoinsFilterTableHead = () => {
 
 function getDataPromotedCoinsTable(info = 'votes,ASC') {
     requestServer(
-        "table-promoted-coins-component/",
+        "/table-promoted-coins-component/",
         "POST",
         { data_info: 'head_filter', active: info }
     ).then((data) => {

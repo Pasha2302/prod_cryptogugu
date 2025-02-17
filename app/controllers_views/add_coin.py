@@ -47,11 +47,28 @@ class CoinCreator:
             print(f"[DEBUG add_coin.py (47)]: {e}")
 
     @staticmethod
-    def create_data_socials(**data_from_the_form):
+    def create_data_socials(coin, **kwargs):
+        """
+        Создает записи в CoinSocials для монеты, основываясь на переданных данных.
+        :param coin: Экземпляр монеты Coin, к которому привязаны соцсети.
+        :param kwargs: Словарь данных соцсетей из cleaned_data, например, kwargs['tiktok'].
+        """
+        socials = []
         try:
-            CoinSocials.objects.create(**data_from_the_form).save()
+            for key, value in kwargs.items():
+                if value:
+                    socials.append(CoinSocials(
+                        coin=coin,
+                        name=key,  # Название соцсети (например, tiktok)
+                        link=value,  # Ссылка (например, https://tiktok.com/example)
+                        is_active=True  # Флаг активности по умолчанию
+                    ))
+
+            # Сохраняем записи пачкой
+            CoinSocials.objects.bulk_create(socials)
+
         except Exception as e:
-            print(f"[DEBUG add_coin.py (54)]: {e}")
+            print(f"[DEBUG add_coin.py (70)]: {e}")
 
     @staticmethod
     def normalize_field_value(value: str) -> str | None:

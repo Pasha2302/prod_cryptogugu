@@ -152,8 +152,8 @@ class FilterCoin:
 
 
 class IndexContextManager:
-    def __init__(self, request: HttpRequest):
-        self.settings = SettingsManager(request)
+    def __init__(self, request: HttpRequest, slug_chain: str = None):
+        self.settings = SettingsManager(request, slug_chain)
         self.customer_data = self.settings.customer_data
 
         self.current_uri = request.build_absolute_uri()

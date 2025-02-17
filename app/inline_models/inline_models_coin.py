@@ -40,8 +40,6 @@ class CoinDescriptionInline(admin.StackedInline):
     min_num = 1
 
 
-class CoinSocialsInline(admin.StackedInline):
+class CoinSocialsInline(admin.TabularInline):
     model = CoinSocials
-    extra = 0
-    min_num = 1
-
+    extra = 1

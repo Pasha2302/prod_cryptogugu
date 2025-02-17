@@ -18,10 +18,8 @@ from app.models_db.coin import Coin
 
 class IndexView(View):
     def post(self, request: HttpRequest):
-        print("\nLog >> def set_options_trending_coins(request: HttpRequest):")
-
         context = IndexContextManager(request).get_context()
-        print("[method = 'POST'] Current URL: ", context['current_uri'])
+
         html_data = render_to_string('app/components_html/coins_trending_component.html', context)
         pagination_html = render_to_string('app/components_html/pagination_component.html', context)
         data = {'html': html_data, 'pagination': pagination_html}
@@ -30,9 +28,7 @@ class IndexView(View):
     # @method_decorator(cache_page(60 * 60 * 12))  # Кэшировать GET-запросы на 12 часов
     def get(self, request: HttpRequest):
         context = IndexContextManager(request).get_context() | BaseContextManager(request).get_context()
-
         # print(f"\nDEBUG index_view.py (34): < IndexView.get()\n> context: {context} >")
-        print(f"\npaginator: {context['paginator']}")
 
         response = render(request, 'app/index.html', context=context, status=200)
         # кэширован в промежуточных кэшах на 1 час, но после этого должен быть проверен на актуальность с сервером:

@@ -7,5 +7,10 @@ from app.controllers_views.page_coin import CoinPageContextManager
 
 def coin(request: HttpRequest, chain_slug, coin_slug):
     context = CoinPageContextManager(request=request, chain_slug=chain_slug, coin_slug=coin_slug).get_context()
-    return render(request, template_name='app/token-card.html', context=context, status=200)
+    return render(
+        request,
+        template_name='app/components_html/coins/page/token-card.html',
+        context=context,
+        status=200
+    )
 

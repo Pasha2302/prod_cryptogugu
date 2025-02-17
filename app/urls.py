@@ -1,6 +1,7 @@
 from django.urls import path
 
 from app.views import coin_view
+from app.views.chain_view import ChainView
 from app.views.email_subscribe import subscribe
 from app.views.index_view import (
     IndexView, blog, get_user_id, get_header_search_component, get_table_promoted_coins_component, show_more, voting,
@@ -33,6 +34,8 @@ urlpatterns = [
     # ----------------------------------- Path Coin Page ---------------------------------------------------- #
 
     path('coin/<slug:chain_slug>/<slug:coin_slug>/', coin_view.coin, name="coin"),
+
+    path('coin/<slug:chain_slug>/', ChainView.as_view(), name="chain_coin"),
 
     # ----------------------------------- Paths Blog Page --------------------------------------------------- #
 

@@ -1,0 +1,311 @@
+{% extends 'app/base.html' %}
+{% load custom_filters %}
+{% load site.coin_tags %}
+
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+  <title>
+    {% block title %}
+      {% if page_title %}
+        {{ page_title }}
+      {% else %}
+        Coin Page
+      {% endif %}
+    {% endblock %}
+  </title>
+
+  <main class="main">
+
+    <section class="breadcrumbs">
+      <div class="breadcrumbs__wrap container fullcontainer">
+        <a href="/" class="breadcrumbs__item">Home</a>
+        <a href="{% url 'chain_coin' obj_basic_chain.slug %}"
+           class="breadcrumbs__item">{{ obj_basic_chain.slug }}
+        </a>
+        <a href="#" class="breadcrumbs__item">{{ obj_coin.slug }}</a>
+      </div>
+    </section>
+
+    <section class="token-card">
+
+      <div class="token-card__wrap container">
+
+        <div class="token-card__content">
+          <div class="token-card__top">
+            <div class="token-card__top-image">
+              <img src="{% if obj_coin.path_coin_img %}{{ obj_coin.path_coin_img.url }}{% endif %}"
+                   alt="{{ obj_coin.name.lower }}"
+                   data-ll-status="loaded"
+                   class="entered lazyloaded" />
+            </div>
+            <div class="token-card__top-right">
+              <div class="token-card__top-name">
+                <h1 class="name">{{ obj_coin.name }}</h1>
+                <span class="refer">{{ obj_coin.symbol }}</span>
+              </div>
+
+              <div class="token-card__top-info"></div>
+            </div>
+          </div>
+
+          <!--          Соц-Сети: -->
+          <div class="token-card__links">
+            <div class="token-card__links-socials">
+            {% for social in obj_socials %}
+              <a href="{{ social.link }}"
+                 target="_blank"
+                 rel="nofollow noopener"
+                 class="token-card__links-item"
+                 data-wpel-link="external">
+                <svg class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-{{ social.name }}"></use>
+                </svg>{{ social.name }}
+              </a>
+            {% endfor %}
+            </div>
+          </div>
+
+          <!--          Информация о launch_date, contracts_addresses и chain: -->
+          <div class="token-card__info-list">
+            <div class="token-card__info-list-item">
+              <div class="label">Launch Date:</div>
+              <div class="right">
+                <div class="value">{{ obj_coin.launch_date|date:"d/m/Y" }}</div>
+              </div>
+            </div>
+
+            <!--            contracts_addresses и chain-->
+            {% for contract_address in contracts_addresses %}
+            <div class="token-card__info-list-item token-card__info-list-item_link">
+              <div class="label">{{ contract_address.chain.name }}:</div>
+              <div class="right">
+                <div class="value">{{ contract_address.contract_address }}</div>
+                <button class="token-card__info-list-button js-copy" data-copy="{{ contract_address.contract_address }}">
+                  <svg class="icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-copy"></use>
+                  </svg> <span>Copy Address</span>
+                </button>
+
+                <button onclick="window.open('https://bscscan.com/token/{{ contract_address.contract_address }}')"
+                        class="token-card__info-list-button">
+                  <svg class="icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-explorers"></use>
+                  </svg> <span>Explorers</span>
+                </button>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+
+          <div class="token-card__info-grid">
+            <div class="token-card__info-grid-item">
+              <span class="label">Price</span>
+              {% if obj_coin.format_price %}
+                {% with split_list=obj_coin.format_price|split:'|' %}
+                  {% if split_list|length > 2 %}
+                    <span class="value">
+                      ${{ split_list|get_index:0 }}(0<sub>{{ split_list|get_index:1 }}</sub>){{ split_list|get_index:2 }}
+                  {% else %}
+                    ${{ obj_coin.format_price }}
+                  </span>
+                  {% endif %}
+                {% endwith %}
+              {% elif obj_coin.format_price is None %}
+                <span class="none">—</span>
+              {% endif %}
+            </div>
+
+            <div class="token-card__info-grid-item">
+              <span class="label">Market Cap</span>
+              {% if obj_coin.market_cap %} <span class="value">${{ obj_coin.market_cap }}</span>
+              {% else %} <span class="none">—</span>
+              {% endif %}
+            </div>
+
+            <div class="token-card__info-grid-item">
+              <span class="label">Volume</span>
+              {% if obj_coin.volume_usd %} <span class="value">${{ obj_coin.volume_usd }}</span>
+              {% else %} <span class="none">—</span>
+              {% endif %}
+            </div>
+
+            <div class="token-card__info-grid-item">
+              <span class="label">Liquidity</span>
+              {% if obj_coin.liquidity_usd %} <span class="value">${{ obj_coin.liquidity_usd }}</span>
+              {% else %} <span class="none">—</span>
+              {% endif %}
+            </div>
+          </div>
+
+<!--          <div class="token-card__chart">-->
+<!--            <style>-->
+<!--              #dexscreener-embed {-->
+<!--                position: relative;-->
+<!--                width: 100%;-->
+<!--                padding-bottom: 125%;-->
+<!--              }-->
+<!--              -->
+<!--              @media (min-width: 1400px) {-->
+<!--                #dexscreener-embed {-->
+<!--                  padding-bottom: 65%;-->
+<!--                }-->
+<!--              }-->
+<!--              -->
+<!--              #dexscreener-embed iframe {-->
+<!--                position: absolute;-->
+<!--                width: 100%;-->
+<!--                height: 100%;-->
+<!--                top: 0;-->
+<!--                left: 0;-->
+<!--                border: 0;-->
+<!--              }-->
+<!--            </style>-->
+<!--            <div id="dexscreener-embed">-->
+<!--              <iframe loading="lazy" src="https://dexscreener.com/bsc/12313123131231232123123123?embed=1&amp;theme=dark&amp;trades=0"-->
+<!--                      data-rocket-lazyload="fitvidscompatible"-->
+<!--                      data-lazy-src="https://dexscreener.com/bsc/12313123131231232123123123?embed=1&amp;theme=dark&amp;trades=0"-->
+<!--                      data-ll-status="loaded"-->
+<!--                      class="entered lazyloaded"></iframe>-->
+<!--              <noscript>-->
+<!--                <iframe src="https://dexscreener.com/bsc/12313123131231232123123123?embed=1&theme=dark&trades=0"></iframe>-->
+<!--              </noscript>-->
+<!--            </div>-->
+<!--            <button class="token-card__chart-button">Hide</button>-->
+<!--          </div>-->
+
+          <div class="token-card__text" style="max-height: 400px">
+            <h2 class="token-card__text-title">About {{ obj_coin.name }} token</h2>
+            <p>{{ obj_coin.description.desc_0 }}</p>
+            <p>{{ obj_coin.description.desc_1 }}</p>
+            <p>{{ obj_coin.description.desc_2 }}</p>
+            <p>{{ obj_coin.description.desc_3 }}</p>
+            <p>{{ obj_coin.description.desc_4 }}</p>
+            <p>{{ obj_coin.description.desc_5 }}</p>
+            <button class="read-more">Read More</button>
+          </div>
+
+          <!--          More Coins-->
+          <div class="token-card__more">
+            <span class="h2">More Coins</span>
+            <div class="token-card__more-list">
+              {% for coin_more in more_coins %}
+              <div class="token-card__more-item">
+                <a href="{% url 'coin' obj_basic_chain.slug coin_more.slug %}"
+                   class="token-card__more-item-top"
+                   data-wpel-link="internal">
+                  <img src="{% if coin_more.path_coin_img %}{{ coin_more.path_coin_img.url }}{% endif %}"
+                       alt="{{ coin_more.name }}"
+                       data-lazy-src="https://cryptogugu.com/wp-content/uploads/2025/01/33788-80x80.png" />
+                  <span class="name">{{ coin_more.name }}</span>
+                </a>
+
+                <div class="tags">
+                  <div class="tag green">{{ obj_basic_chain.symbol }}</div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="token-card__sidebar">
+          <div class="token-card__sidebar-item token-card__sidebar-item_rank">
+            <div class="title">Coin rank</div>
+            <div class="row-list row-list_big">
+              <div class="row-list__item">
+                <span class="label">Global rank:</span>
+                <span class="value">#{{ obj_coin.get_global_rank }}</span>
+              </div>
+              <div class="row-list__item">
+                <span class="label">Daily rank:</span>
+                <span class="value">#{{ obj_coin.get_daily_rank }}</span>
+              </div>
+            </div>
+
+            <div class="token-card__sidebar-item_rank__info">
+              <div class="item">
+                <div class="num js-all_vote-{{ obj_coin.id }}">{{ obj_coin.votes }}</div>
+                <p>All Votes</p>
+              </div>
+              <div class="hr"></div>
+              <div class="item">
+                <div class="num js-daily_vote-{{ obj_coin.id }}">{{ obj_coin.votes24h }}</div>
+                <p>Votes Today</p>
+              </div>
+            </div>
+
+            <button class="vote js-vote" data-id="{{ obj_coin.id }}">Vote</button>
+            <div class="token-card__sidebar-item__bottom-info">You can vote once every 24 hours</div>
+          </div>
+
+          <div class="token-card__sidebar-item token-card__sidebar-item_safety">
+            <div class="title">Safety</div>
+            <div class="row-list">
+              <div class="row-list__item">
+                <span class="label">Audit:</span>
+                <span class="value"><span class="none">—</span></span>
+              </div>
+            </div>
+            <div class="token-card__sidebar-item_safety__banner error">
+              <div class="text">
+                <div class="info">Scan error</div>
+                <p>Powered By HONEYPOT.is</p>
+              </div>
+              <img src="https://cryptogugu.com/wp-content/themes/bst-master/img/honeypotis.png" alt="" data-lazy-src="https://cryptogugu.com/wp-content/themes/bst-master/img/honeypotis.png" data-ll-status="loaded" class="entered lazyloaded" /><noscript>
+                <img src="https://cryptogugu.com/wp-content/themes/bst-master/img/honeypotis.png" alt="" />
+              </noscript>
+            </div>
+            <div class="token-card__sidebar-item_safety__banner error">
+              <div class="text">
+                <div class="info">Scan error</div>
+                <p>Powered By GoPlus</p>
+              </div>
+              <img src="https://cryptogugu.com/wp-content/themes/bst-master/img/goplus.png" alt="" data-lazy-src="https://cryptogugu.com/wp-content/themes/bst-master/img/goplus.png" data-ll-status="loaded" class="entered lazyloaded" /><noscript>
+                <img src="https://cryptogugu.com/wp-content/themes/bst-master/img/goplus.png" alt="" />
+              </noscript>
+            </div>
+          </div>
+
+          <div class="token-card__sidebar-item token-card__sidebar-item_charts">
+            <div class="title">Charts</div>
+            <div class="charts-list">
+              <a target="_blank" rel="nofollow noopener" href="https://www.dextools.io/app/bsc/pair-explorer/12313123131231232123123123" class="charts-list__item" data-wpel-link="external">
+                <img src="https://cryptogugu.com/wp-content/uploads/2024/03/dextools.webp" alt="" data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/03/dextools.webp" data-ll-status="loaded" class="entered lazyloaded" /><noscript>
+                  <img src="https://cryptogugu.com/wp-content/uploads/2024/03/dextools.webp" alt="" />
+                </noscript>DexTools
+              </a>
+              <a target="_blank" rel="nofollow noopener" href="https://dexscreener.com/bsc/12313123131231232123123123" class="charts-list__item" data-wpel-link="external">
+                <img src="https://cryptogugu.com/wp-content/uploads/2024/06/dexscreener.png" alt="" data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/06/dexscreener.png" data-ll-status="loaded" class="entered lazyloaded" /><noscript>
+                  <img src="https://cryptogugu.com/wp-content/uploads/2024/06/dexscreener.png" alt="" />
+                </noscript>DEX Screener
+              </a>
+            </div>
+          </div>
+          <div class="token-card__sidebar-item token-card__sidebar-item_markets">
+            <div class="title">Markets</div>
+            <div class="charts-list">
+              <a target="_blank" rel="nofollow noopener" href="https://pancakeswap.finance/swap?outputCurrency=12313123131231232123123123" class="charts-list__item" data-wpel-link="external">
+                <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/07/Pancakeswap-logo.png" /><noscript>
+                  <img src="https://cryptogugu.com/wp-content/uploads/2024/07/Pancakeswap-logo.png" alt="" />
+                </noscript>PancakeSwap
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Coins Tables Promoted -->
+      {% include 'app/components_html/coins/tables/promoted_head.html' %}
+    </section>
+
+  </main>
+
+
+<script type="module" src="{% static 'app/js/page_coin_control.js' %}"></script>
+
+{% endblock %}
+

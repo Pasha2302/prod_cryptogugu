@@ -103,20 +103,12 @@ class CoinDescription(models.Model):
 
 
 class CoinSocials(models.Model):
-    coin = models.OneToOneField('Coin', on_delete=models.CASCADE, related_name="socials")
+    coin = models.ForeignKey('Coin', on_delete=models.CASCADE, related_name="socials")
 
-    telegram = models.URLField(blank=True, null=True)
-    reddit = models.URLField(blank=True, null=True)
-    twitter = models.URLField(blank=True, null=True)
-    gecko = models.URLField(blank=True, null=True)
-    discord = models.URLField(blank=True, null=True)
-    market = models.URLField(blank=True, null=True)
-    website = models.URLField(blank=True, null=True)
-    github = models.URLField(blank=True, null=True)
-    youtube = models.URLField(blank=True, null=True)
-    tiktok = models.URLField(blank=True, null=True)
-    medium = models.URLField(blank=True, null=True)
-    instagram = models.URLField(blank=True, null=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
+    link = models.URLField(blank=True, null=True)
+    icon = models.ImageField(upload_to='social_icons/', max_length=255, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
 
 
 # =================================================================================================================== #
@@ -221,6 +213,13 @@ class Coin(AbstractCoin):
         basic_contract = self.get_contract_address_basic()
         return basic_contract.chain if basic_contract else None
 
+    def get_global_rank(self):
+        # Рейтинг по количеству голосов "votes" за все время
+        return Coin.objects.filter(votes__gt=self.votes).count() + 1
+
+    def get_daily_rank(self):
+        # Рейтинг по количеству голосов "votes24h" за 24 часа
+        return Coin.objects.filter(votes24h__gt=self.votes24h).count() + 1
 
 # ------------------------------------------------------------------------------------------------------------- #
 
