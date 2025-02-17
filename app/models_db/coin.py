@@ -5,13 +5,18 @@ from app.models_db.functions.functions_for_coins import normalized_price_coin, g
 from app.models_db.secondary import save_slug
 
 
-class PromotedCoins(models.Model):
+class PromotedCoin(models.Model):
     """
     Модель для хранения информации о продвигаемых монетах.
     """
     coin = models.OneToOneField("Coin", on_delete=models.CASCADE, related_name='promoted')
     start_date = models.DateTimeField(default=timezone.now)
     end_date = models.DateTimeField()
+
+    class Meta:
+        ordering = ["id"]
+        verbose_name = "Promoted Coin"
+        verbose_name_plural = "Promoted Coin"
 
     def __str__(self):
         return f"Promoted: {self.coin.name} from {self.start_date} to {self.end_date}"
@@ -135,6 +140,8 @@ class ContractAddress(models.Model):
 
     class Meta:
         ordering = ["id"]
+        verbose_name = "Contract Address"
+        verbose_name_plural = "Contract Addresses"
 
     def __str__(self):
         _str = 'Contract Address [Not Assigned]'

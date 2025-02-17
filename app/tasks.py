@@ -1,4 +1,5 @@
 # app/celery_tasks.py
+from datetime import datetime
 from celery import shared_task
 
 from api_coins_data.manager import start_update_coins_data
@@ -60,5 +61,22 @@ def auto_voting():
 
 @shared_task
 def start_update_coins():
-    start_update_coins_data()
+    try:
+        start_time = datetime.now()  # Точка старта выполнения
+        result = start_update_coins_data()  # Ваш процесс
+        end_time = datetime.now()  # Завершение выполнения
+        return {
+            "status": "success",
+            "details": result,
+            "start_time": start_time.strftime('%Y-%m-%d %H:%M:%S'),
+            "end_time": end_time.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "error": str(e),
+            "timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+
 

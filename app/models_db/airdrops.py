@@ -14,6 +14,11 @@ class Airdrops(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Date Added")
     objects = models.Manager()
 
+    class Meta:
+        ordering = ["id"]
+        verbose_name = "Airdrops"
+        verbose_name_plural = "Airdrops"
+
     def __str__(self):
         return self.name
 

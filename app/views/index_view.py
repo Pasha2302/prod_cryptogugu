@@ -32,7 +32,7 @@ class IndexView(View):
         context = IndexContextManager(request).get_context() | BaseContextManager(request).get_context()
 
         # print(f"\nDEBUG index_view.py (34): < IndexView.get()\n> context: {context} >")
-        # print(f"coins_object: {context['page_obj']}")
+        print(f"\npaginator: {context['paginator']}")
 
         response = render(request, 'app/index.html', context=context, status=200)
         # кэширован в промежуточных кэшах на 1 час, но после этого должен быть проверен на актуальность с сервером:

@@ -178,6 +178,8 @@ class IndexContextManager:
         self.prev_page = self.__get_prev_page()
 
         self.__page_obj = self.__get_page_obj()
+        self.__page_start_index = self.get_page_star_index()
+        self.__page_end_index = self.get_page_end_index()
 
         self.top_banners, self.bottom_banners = self.get_reclam_banners()
         self.__context = {
@@ -187,10 +189,12 @@ class IndexContextManager:
 
             'select_number_lines': [10, 20, 50, 100, ],
 
-            'rows_number': self.__per_page,
+            'rows_number': self.__per_page,   # __per_page -> Кол-во монет в таблице на странице.
             'page_obj': self.__page_obj,
             'paginator': self.__paginator,
-            'page_start_index': (self.__page_obj.number - 1) * self.__page_obj.paginator.per_page,
+
+            'page_start_index': self.__page_start_index,
+            'page_end_index': self.__page_end_index,
 
             'page_number': self.__page_number,
             'pagination': self.__calculate_pagination(),
@@ -203,6 +207,12 @@ class IndexContextManager:
             'filter_item': self.settings.get_filter_item(),
             'coins_tops_section': self.__filter_coin_obj.get_coins_tops_section()
         }
+
+    def get_page_star_index(self):
+        return (self.__page_obj.number - 1) * self.__page_obj.paginator.per_page
+
+    def get_page_end_index(self):
+        return self.__page_start_index + len(self.__page_obj.object_list)
 
     @staticmethod
     def extract_number(banner):

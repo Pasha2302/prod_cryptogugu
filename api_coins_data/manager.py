@@ -296,6 +296,8 @@ def start_update_coins_data():
         modula_api.save_data_coins_to_db()
         modula_api.save_data_coins_to_json()
 
+    return "Done"
+
 
 if __name__ == '__main__':
     pass

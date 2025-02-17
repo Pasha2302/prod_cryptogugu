@@ -10,7 +10,6 @@
 
     <td>
       <div class="coin-table__name">
-        <span class="coin-table__num">{{ forloop.counter0|add:page_start_index|add:1 }}</span>
         {% get_chain data_coin as object_chain %}
         <a href="{% url 'coin' object_chain.slug data_coin.slug %}" class="coin-table__name-left">
           <img src="{% if data_coin.path_coin_img %}{{ data_coin.path_coin_img.url }}{% endif %}" alt="" />

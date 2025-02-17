@@ -3,11 +3,11 @@ from django.contrib import admin
 from app.admin_forms.promoted_coins_form import PromotedCoinsForm
 from app.models_db.airdrops import Airdrops
 from app.models_db.banners import ReclamBannerPopUp, BannerImagePopUp, ReclamBanner
-from app.models_db.coin import PromotedCoins, Coin, ContractAddress, Chain, BaseCoin, Label
+from app.models_db.coin import PromotedCoin, ContractAddress, Chain, BaseCoin, Label
 from app.models_db.settings import SiteSettings
 
 
-@admin.register(PromotedCoins)
+@admin.register(PromotedCoin)
 class PromotedCoinsAdmin(admin.ModelAdmin):
     """
     Атрибуты:
