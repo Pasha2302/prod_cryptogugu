@@ -340,7 +340,35 @@
         </div>
 
 
-
+          <div class="token-card__sidebar-item token-card__sidebar-item_tax">
+            <div class="title">Tax information</div>
+            <div class="row-list">
+              <div class="row-list__item">
+                <span class="label">Sell tax:</span>
+                {% if obj_coin.tax_info.sell_tax %}
+                  <span class="value">{{ obj_coin.tax_info.sell_tax }}%</span>
+                {% else %}
+                 <span class="none">—</span>
+                {% endif %}
+              </div>
+              <div class="row-list__item">
+                <span class="label">Buy tax:</span>
+                {% if obj_coin.tax_info.buy_tax %}
+                  <span class="value">{{ obj_coin.tax_info.buy_tax }}%</span>
+                {% else %}
+                 <span class="none">—</span>
+                {% endif %}
+              </div>
+              <div class="row-list__item">
+                <span class="label">Recommended slippage:</span>
+                {% if obj_coin.tax_info.slippage %}
+                  <span class="value">{{ obj_coin.tax_info.slippage }}%</span>
+                {% else %}
+                 <span class="none">—</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
 
           <!--          Item Charts:        -->
           <div class="token-card__sidebar-item token-card__sidebar-item_charts">
