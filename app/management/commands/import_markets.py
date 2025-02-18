@@ -26,7 +26,7 @@ class Command(BaseCommand):
         # Импортируем данные из файла
         for chain_market_data in data:
             # Получаем Chain
-            chain, created = Chain.objects.get(name=chain_market_data["chain"])
+            chain = Chain.objects.get(name=chain_market_data["chain"])
 
             # Создаём ChainMarket
             chain_market = ChainMarket.objects.create(chain=chain)
