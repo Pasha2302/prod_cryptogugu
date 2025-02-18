@@ -164,12 +164,12 @@
               }
             </style>
             <div id="dexscreener-embed">
-              <iframe loading="lazy" src="https://dexscreener.com/bsc/{{ base_address }}?embed=1&amp;theme=dark&amp;trades=0"
+              <iframe loading="lazy" src="https://dexscreener.com/bsc/{{ base_address.contract_address }}?embed=1&amp;theme=dark&amp;trades=0"
 
                       data-ll-status="loaded"
                       class="entered lazyloaded"></iframe>
               <noscript>
-                <iframe src="https://dexscreener.com/bsc/{{ base_address }}?embed=1&theme=dark&trades=0"></iframe>
+                <iframe src="https://dexscreener.com/bsc/{{ base_address.contract_address }}?embed=1&theme=dark&trades=0"></iframe>
               </noscript>
             </div>
             <button class="token-card__chart-button">Hide</button>
