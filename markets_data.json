@@ -1,0 +1,75 @@
+[
+    {
+        "chain": "Solana",
+        "markets": [
+            {
+                "name_market": "Orca",
+                "url_template": "https://www.orca.so/?tokenOut={contract_address}",
+                "image": "market_images/Pancakeswap-logo.png",
+                "description": ""
+            },
+            {
+                "name_market": "Raydium",
+                "url_template": "https://raydium.io/swap/?outputMint={contract_address}&inputMint=sol",
+                "image": "market_images/Pancakeswap-logo_oCc6wQo.png",
+                "description": ""
+            },
+            {
+                "name_market": "Jup",
+                "url_template": "https://jup.ag/swap/SOL-{contract_address}",
+                "image": "market_images/Pancakeswap-logo_iXAtbqU.png",
+                "description": ""
+            }
+        ]
+    },
+    {
+        "chain": "Ethereum",
+        "markets": [
+            {
+                "name_market": "Uniswap",
+                "url_template": "https://app.uniswap.org/swap?outputCurrency={contract_address}&chain=ethereum",
+                "image": null,
+                "description": ""
+            }
+        ]
+    },
+    {
+        "chain": "Base",
+        "markets": [
+            {
+                "name_market": "Uniswap",
+                "url_template": "https://app.uniswap.org/swap?outputCurrency={contract_address}&chain=ethereum",
+                "image": null,
+                "description": ""
+            }
+        ]
+    },
+    {
+        "chain": "Binance Smart Chain",
+        "markets": [
+            {
+                "name_market": "PancakeSwap",
+                "url_template": "https://pancakeswap.finance/?outputCurrency={contract_address}",
+                "image": null,
+                "description": ""
+            }
+        ]
+    },
+    {
+        "chain": "TON",
+        "markets": [
+            {
+                "name_market": "Dedust",
+                "url_template": "https://dedust.io/swap/TON/{contract_address}",
+                "image": null,
+                "description": ""
+            },
+            {
+                "name_market": "Ston",
+                "url_template": "https://app.ston.fi/swap?chartVisible=false&chartInterval=1w&ft=TON&tt={contract_address}",
+                "image": null,
+                "description": ""
+            }
+        ]
+    }
+]
