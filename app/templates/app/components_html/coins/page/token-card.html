@@ -340,6 +340,7 @@
         </div>
 
 
+          <!--          Tax Info:              -->
           <div class="token-card__sidebar-item token-card__sidebar-item_tax">
             <div class="title">Tax information</div>
             <div class="row-list">
@@ -370,22 +371,32 @@
             </div>
           </div>
 
+
           <!--          Item Charts:        -->
           <div class="token-card__sidebar-item token-card__sidebar-item_charts">
             <div class="title">Charts</div>
             <div class="charts-list">
-              <a target="_blank" rel="nofollow noopener" href="https://www.dextools.io/app/bsc/pair-explorer/12313123131231232123123123" class="charts-list__item" data-wpel-link="external">
-                <img src="https://cryptogugu.com/wp-content/uploads/2024/03/dextools.webp" alt="" data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/03/dextools.webp" data-ll-status="loaded" class="entered lazyloaded" /><noscript>
-                  <img src="https://cryptogugu.com/wp-content/uploads/2024/03/dextools.webp" alt="" />
-                </noscript>DexTools
+              <a target="_blank" rel="nofollow noopener"
+                 href="https://www.dextools.io/app/{{obj_basic_chain.symbol}}/pair-explorer/{{ base_address.contract_address }}"
+                 class="charts-list__item"
+                 data-wpel-link="external">
+                <img src="https://cryptogugu.com/wp-content/uploads/2024/03/dextools.webp"
+                     alt="" data-ll-status="loaded" />
+                DexTools
               </a>
-              <a target="_blank" rel="nofollow noopener" href="https://dexscreener.com/bsc/12313123131231232123123123" class="charts-list__item" data-wpel-link="external">
-                <img src="https://cryptogugu.com/wp-content/uploads/2024/06/dexscreener.png" alt="" data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/06/dexscreener.png" data-ll-status="loaded" class="entered lazyloaded" /><noscript>
-                  <img src="https://cryptogugu.com/wp-content/uploads/2024/06/dexscreener.png" alt="" />
-                </noscript>DEX Screener
+              <a target="_blank" rel="nofollow noopener"
+                 href="https://dexscreener.com/{{obj_basic_chain.symbol}}/{{ base_address.contract_address }}"
+                 class="charts-list__item"
+                 data-wpel-link="external">
+                <img src="https://cryptogugu.com/wp-content/uploads/2024/06/dexscreener.png"
+                     alt="" data-ll-status="loaded" />
+                DEX Screener
               </a>
             </div>
           </div>
+
+
+          <!--          Markets:      -->
           <div class="token-card__sidebar-item token-card__sidebar-item_markets">
             <div class="title">Markets</div>
             <div class="charts-list">

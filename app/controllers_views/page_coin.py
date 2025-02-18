@@ -51,7 +51,7 @@ class CoinPageContextManager:
         context['obj_coin'] = coin
         context['obj_basic_chain'] = coin.get_chain_from_basic_contract()
         context['contracts_addresses'] = contracts_addresses
-        context['base_address'] = base_address or ''
+        context['base_address'] = base_address or {}
         context['obj_socials'] = coin.socials.all()
 
         context['more_coins'] = Coin.objects.filter(contract_address__chain__slug=self.chain_slug)
