@@ -146,7 +146,7 @@ class Chain(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, blank=True)
     name = models.CharField(max_length=50)
     symbol = models.CharField(max_length=50, blank=True, null=True)
-    path_chain_img = models.ImageField(upload_to='chain_images/', max_length=255, blank=True, null=True)
+    path_chain_img = models.FileField(upload_to='chain_images/', max_length=255, blank=True, null=True)
 
     class Meta:
         ordering = ["id"]
