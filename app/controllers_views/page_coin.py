@@ -4,7 +4,7 @@ from django.db import transaction
 from django.db.models import F
 
 from app.controllers_views.base import BaseContextManager
-from app.models_db.coin import Coin
+from app.models_db.coin import Coin, Market
 
 
 class CoinPageContextManager:
@@ -48,8 +48,25 @@ class CoinPageContextManager:
         else:
             descriptions = []
 
+        # Базовый чейн монеты
+        basic_chain = coin.get_chain_from_basic_contract()
+
+        # Получение всех маркетов для базового чейна
+        if basic_chain and base_address:
+            markets = Market.objects.filter(market__chain=basic_chain)
+            market_links = [
+                {
+                    "market_name": market.name_market,
+                    "url": market.build_url(base_address.contract_address),
+                    "image": market.image.url if market.image else None
+                }
+                for market in markets
+            ]
+        else:
+            market_links = []
+
         context['obj_coin'] = coin
-        context['obj_basic_chain'] = coin.get_chain_from_basic_contract()
+        context['obj_basic_chain'] = basic_chain
         context['contracts_addresses'] = contracts_addresses
         context['base_address'] = base_address or {}
         context['obj_socials'] = coin.socials.all()
@@ -57,6 +74,11 @@ class CoinPageContextManager:
         context['more_coins'] = Coin.objects.filter(contract_address__chain__slug=self.chain_slug)
         context['descriptions'] = descriptions  # Добавляем в контекст непустые описания
 
-        # print(f"\n\nMore coins: {context['more_coins']}")
+        # Добавляем список маркетов в контекст
+        context['markets'] = market_links
+
         return context
+
+
+
 

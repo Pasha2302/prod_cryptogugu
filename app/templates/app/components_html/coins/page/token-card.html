@@ -396,19 +396,24 @@
           </div>
 
 
-          <!--          Markets:      -->
+          <!--          Markets:   (Test1)   -->
           <div class="token-card__sidebar-item token-card__sidebar-item_markets">
             <div class="title">Markets</div>
             <div class="charts-list">
-              <a target="_blank" rel="nofollow noopener"
-                 href="https://pancakeswap.finance/swap?outputCurrency={{ base_address.contract_address }}"
-                 class="charts-list__item"
-                 data-wpel-link="external">
-                <img src="https://cryptogugu.com/wp-content/uploads/2024/07/Pancakeswap-logo.png" alt="" />
-                PancakeSwap
-              </a>
+              {% for market in markets %}
+                <a target="_blank" rel="nofollow noopener"
+                   href="{{ market.url }}"
+                   class="charts-list__item"
+                   data-wpel-link="external">
+                  {% if market.image %}
+                    <img src="{{ market.image }}" alt="{{ market.market_name }}" />
+                  {% endif %}
+                  <span>{{ market.market_name }}</span>
+                </a>
+              {% endfor %}
             </div>
           </div>
+
         </div>
 
       </div>

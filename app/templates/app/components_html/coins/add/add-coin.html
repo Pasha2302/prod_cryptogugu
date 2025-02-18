@@ -157,35 +157,11 @@
                       <label for="">Chain<span>*</span></label>
                       <select name="meta[contract_addresses_chain][0]" data-gtm-form-interact-field-id="1">
                         <option value="">Choose chain</option>
-                        <option value="87">algorand</option>
-                        <option value="97">Aptos</option>
-                        <option value="75">Arbitrum</option>
-                        <option value="88">Avalanche</option>
-                        <option value="70">Base</option>
-                        <option value="53">Binance Smart Chain</option>
-                        <option value="90">Blast</option>
-                        <option value="65">Cardano</option>
-                        <option value="93">CORE</option>
-                        <option value="79">Cronos</option>
-                        <option value="94">Dogechain</option>
-                        <option value="95">Dragonfly-Chain</option>
-                        <option value="54">Ethereum</option>
-                        <option value="76">EthereumFair</option>
-                        <option value="82">Fantom</option>
-                        <option value="80">Harmony</option>
-                        <option value="85">ICP</option>
-                        <option value="84">Kaspa</option>
-                        <option value="81">Kronobit</option>
-                        <option value="86">Lunarium</option>
-                        <option value="89">Mantle</option>
-                        <option value="68">Polygon</option>
-                        <option value="77">PulseChain</option>
-                        <option value="83">Shibarium</option>
-                        <option value="55">Solana</option>
-                        <option value="96">SUI</option>
-                        <option value="69">TON</option>
-                        <option value="74">Tron</option>
+                          {% for cain in cains %}
+                            <option value="{{cain.id}}">{{cain.name}}</option>
+                          {% endfor %}
                       </select>
+
                     </div>
                     <div class="add-coin__field">
                       <label for="">Address<span>*</span></label>

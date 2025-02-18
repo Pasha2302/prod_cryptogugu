@@ -177,6 +177,54 @@ class Label(models.Model):
     def __str__(self):
         return self.name
 
+
+# =================================================================================================================== №
+
+class Market(models.Model):
+    market = models.ForeignKey(
+        'ChainMarket',
+        on_delete=models.CASCADE,
+        related_name="market",
+        help_text="Маркет, к которому относится этот адрес"
+    )
+    name_market = models.CharField(max_length=50, null=True, blank=True, )
+    url_template = models.URLField(
+        help_text="URL маркета с шаблоном для замены {contract_address}"
+    )
+    image = models.FileField(upload_to='market_images/', max_length=255, blank=True, null=True)
+    description = models.TextField(blank=True, null=True, help_text="Краткое описание маркета")
+
+    class Meta:
+        ordering = ["id"]
+        verbose_name = "Market"
+        verbose_name_plural = "Markets"
+
+    def __str__(self):
+        return f"{self.name_market}"
+
+    def build_url(self, contract_address):
+        """
+        Формирует финальный URL для конкретного адреса.
+        """
+        return self.url_template.format(contract_address=contract_address)
+
+
+class ChainMarket(models.Model):
+    chain = models.ForeignKey(
+        'Chain',
+        on_delete=models.CASCADE,
+        related_name="markets",
+        help_text="Чейн, к которому относится этот маркет"
+    )
+
+    class Meta:
+        ordering = ["id"]
+        verbose_name = "Chain Market"
+        verbose_name_plural = "Chain Markets"
+
+    def __str__(self):
+        return f"{self.chain.name} Markets"
+
 # ================================================== Coin =========================================================== #
 
 

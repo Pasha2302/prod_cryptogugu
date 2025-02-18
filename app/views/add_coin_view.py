@@ -4,6 +4,7 @@ from django.shortcuts import render
 
 from app.controllers_views.base import BaseContextManager
 from app.controllers_views.add_coin import CoinCreator
+from app.models_db.coin import Chain
 
 
 def add_coin(request: HttpRequest):
@@ -20,6 +21,7 @@ def add_coin(request: HttpRequest):
 
     else:
         base_context = BaseContextManager(request).get_context()
+        base_context['cains'] = Chain.objects.all()
         return render(
             request=request,
             template_name='app/components_html/coins/add/add-coin.html',

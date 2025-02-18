@@ -4,7 +4,21 @@ from django.utils.html import mark_safe
 from app.admin_forms.coin_form import CoinAdminForm
 from app.inline_models.inline_models_coin import ContractAddressInline, AuditInfoInline, TaxInfoInline, \
     PresaleInfoInline, CoinDescriptionInline, CoinSocialsInline
-from app.models_db.coin import Coin
+from app.inline_models.inline_models_market import MarketInline
+from app.models_db.coin import Coin, Market, ChainMarket
+
+
+# @admin.register(Market)
+# class MarketAdmin(admin.ModelAdmin):
+#     pass
+
+
+@admin.register(ChainMarket)
+class ChainMarketAdmin(admin.ModelAdmin):
+    list_display = list_display_links = ('id', 'chain')
+    autocomplete_fields = ('chain', )
+
+    inlines = (MarketInline, )
 
 
 @admin.register(Coin)

@@ -165,7 +165,7 @@ class CoinCreator:
 
     @staticmethod
     def __get_chain(chain_id):
-        """Получаем или создаем Chain по ID."""
+        """Получаем Chain по ID."""
         if not chain_id:
             return None
         chain = Chain.objects.get(id=int(chain_id))
