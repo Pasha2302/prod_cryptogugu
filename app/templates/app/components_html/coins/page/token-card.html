@@ -164,27 +164,30 @@
               }
             </style>
             <div id="dexscreener-embed">
-              <iframe loading="lazy" src="https://dexscreener.com/bsc/{{ base_address.contract_address }}?embed=1&amp;theme=dark&amp;trades=0"
+              <iframe loading="lazy" src="https://dexscreener.com/{{ obj_basic_chain.symbol }}/{{ base_address.contract_address }}?embed=1&amp;theme=dark&amp;trades=0"
 
                       data-ll-status="loaded"
                       class="entered lazyloaded"></iframe>
               <noscript>
-                <iframe src="https://dexscreener.com/bsc/{{ base_address.contract_address }}?embed=1&theme=dark&trades=0"></iframe>
+                <iframe src="https://dexscreener.com/{{ obj_basic_chain.symbol }}/{{ base_address.contract_address }}?embed=1&theme=dark&trades=0"></iframe>
               </noscript>
             </div>
             <button class="token-card__chart-button">Hide</button>
           </div>
 
-          <div class="token-card__text" style="max-height: 400px">
-            <h2 class="token-card__text-title">About {{ obj_coin.name }} token</h2>
-            <p>{{ obj_coin.description.desc_0 }}</p>
-            <p>{{ obj_coin.description.desc_1 }}</p>
-            <p>{{ obj_coin.description.desc_2 }}</p>
-            <p>{{ obj_coin.description.desc_3 }}</p>
-            <p>{{ obj_coin.description.desc_4 }}</p>
-            <p>{{ obj_coin.description.desc_5 }}</p>
-            <button class="read-more">Read More</button>
-          </div>
+          {% if descriptions %}
+            <div class="token-card__text {% if descriptions|length <= 1 %}open{% endif %}" style="max-height: 400px">
+              <h2 class="token-card__text-title">About {{ obj_coin.name }} token</h2>
+              {% for desc in descriptions %}
+                <p>{{ desc }}</p>
+              {% endfor %}
+
+              {% if descriptions|length > 1 %}
+                <button class="read-more">Read More</button>
+              {% endif %}
+            </div>
+          {% endif %}
+
 
           <!--          More Coins-->
           <div class="token-card__more">
@@ -286,10 +289,15 @@
           <div class="token-card__sidebar-item token-card__sidebar-item_markets">
             <div class="title">Markets</div>
             <div class="charts-list">
-              <a target="_blank" rel="nofollow noopener" href="https://pancakeswap.finance/swap?outputCurrency=12313123131231232123123123" class="charts-list__item" data-wpel-link="external">
-                <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="" data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/07/Pancakeswap-logo.png" /><noscript>
-                  <img src="https://cryptogugu.com/wp-content/uploads/2024/07/Pancakeswap-logo.png" alt="" />
-                </noscript>PancakeSwap
+              <a target="_blank" rel="nofollow noopener"
+                 href="https://pancakeswap.finance/swap?outputCurrency=0x514441aDfA7EC1b057bCFB8Ff70Ecd6ac9704071"
+                 class="charts-list__item"
+                 data-wpel-link="external">
+                <img src="https://cryptogugu.com/wp-content/uploads/2024/07/Pancakeswap-logo.png"
+                     alt=""
+                     data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/07/Pancakeswap-logo.png"
+                     data-ll-status="loaded" class="entered lazyloaded">
+                PancakeSwap
               </a>
             </div>
           </div>
