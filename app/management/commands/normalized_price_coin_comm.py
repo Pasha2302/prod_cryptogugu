@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 
 from app.models_db.coin import Coin
-from app.models_db.functions_for_coins import normalized_price_coin
+from app.models_db.functions.functions_for_coins import normalized_price_coin
 
 
 class Command(BaseCommand):

@@ -141,6 +141,16 @@ class ContractAddress(models.Model):
             _str = f"Contract Address [{self.coin.name}] [{self.chain.name}]"
         return _str
 
+    def save(self, *args, **kwargs):
+        # Если первая запись, устанавливаем basic=True
+        if self.coin and not ContractAddress.objects.filter(coin=self.coin).exists():
+            self.basic = True
+        elif self.basic:
+            # Если вручную установлено basic=True, сбрасываем у других
+            ContractAddress.objects.filter(coin=self.coin, basic=True).update(basic=False)
+
+        super().save(*args, **kwargs)  # Сохраняем объект
+
 
 class Chain(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, blank=True)
