@@ -243,12 +243,21 @@
             <div class="token-card__sidebar-item__bottom-info">You can vote once every 24 hours</div>
           </div>
 
+          <!--          Item Safety:     -->
           <div class="token-card__sidebar-item token-card__sidebar-item_safety">
             <div class="title">Safety</div>
             <div class="row-list">
               <div class="row-list__item">
                 <span class="label">Audit:</span>
-                <span class="value"><span class="none">—</span></span>
+                {% if obj_coin.audit_info and obj_coin.audit_info.audit_company %}
+                  <span class="value">{{ obj_coin.audit_info.audit_company }}
+                    <a href="{{obj_coin.audit_info.audit_link}}" target="_blank">
+                      <img src="{% static 'app/img/certic.png' %}" alt="">
+                    </a>
+                  </span>
+                {% else %}
+                  <span class="none">—</span>
+                {% endif %}
               </div>
             </div>
             <div class="token-card__sidebar-item_safety__banner error">
@@ -271,6 +280,69 @@
             </div>
           </div>
 
+
+          <!--          Presale Info:        -->
+          <div class="token-card__sidebar-item token-card__sidebar-item_presale">
+            <div class="title">Presale Information</div>
+            <div class="row-list">
+
+              <!-- Launchpad (Presale active or not) ??? -->
+              <div class="row-list__item">
+                <span class="label">Launchpad:</span>
+                {% if obj_coin.presale_info.presale %}
+                    <span class="value">Yes</span>
+                {% else %}
+                    <span class="value">No</span>
+                {% endif %}
+              </div>
+
+              <!-- Whitelist -->
+              <div class="row-list__item">
+                  <span class="label">Whitelist:</span>
+                  {% if obj_coin.presale_info.whitelist %}
+                      <span class="value">Yes</span>
+                  {% else %}
+                      <span class="value">No</span>
+                  {% endif %}
+              </div>
+
+              <!-- Presale Date -->
+              {% if obj_coin.presale_info.presale_date %}
+              <div class="row-list__item">
+                  <span class="label">Presale Date:</span>
+                  <span class="value">{{ obj_coin.presale_info.presale_date|date:"d/m/Y" }}</span>
+              </div>
+              {% endif %}
+
+              <!-- Softcap -->
+              {% if obj_coin.presale_info.softcap %}
+              <div class="row-list__item">
+                  <span class="label">Softcap:</span>
+                  <span class="value">{{ obj_coin.presale_info.softcap }}</span>
+              </div>
+              {% endif %}
+
+              <!-- Hardcap -->
+              {% if obj_coin.presale_info.hardcap %}
+              <div class="row-list__item">
+                  <span class="label">Hardcap:</span>
+                  <span class="value">{{ obj_coin.presale_info.hardcap }}</span>
+              </div>
+              {% endif %}
+            </div>
+
+            <!-- Presale Link -->
+            {% if obj_coin.presale_info.presale_link %}
+            <a href="{{ obj_coin.presale_info.presale_link }}" class="token-card__sidebar-item_presale__visit" target="_blank">
+                <img src="{% static 'app/img/rocket.png' %}" alt="Rocket">Visit Presale Page
+            </a>
+            {% endif %}
+        </div>
+
+
+
+
+          <!--          Item Charts:        -->
           <div class="token-card__sidebar-item token-card__sidebar-item_charts">
             <div class="title">Charts</div>
             <div class="charts-list">
@@ -302,6 +374,7 @@
             </div>
           </div>
         </div>
+
       </div>
 
 
