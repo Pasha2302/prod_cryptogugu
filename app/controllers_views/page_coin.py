@@ -35,10 +35,13 @@ class CoinPageContextManager:
     def get_context(self):
         context: dict = BaseContextManager(self.request).get_context()
         coin = self.get_coin_and_add_views()
+        contracts_addresses = coin.get_all_contract_addresses()
+        base_address = contracts_addresses.filter(basic=True).first()
 
         context['obj_coin'] = coin
         context['obj_basic_chain'] = coin.get_chain_from_basic_contract()
-        context['contracts_addresses'] = coin.get_all_contract_addresses()
+        context['contracts_addresses'] = contracts_addresses
+        context['base_address'] = base_address or ''
         context['obj_socials'] = coin.socials.all()
 
         context['more_coins'] = Coin.objects.filter(contract_address__chain__slug=self.chain_slug)

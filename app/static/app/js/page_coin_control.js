@@ -47,6 +47,19 @@ function showMoreAbout() {
 }
 
 
+$('body').on('click', '.token-card__chart-button', function() {
+    if ($(this).hasClass('used')) {
+        $(this).html('Hide');
+        $('#dexscreener-embed').slideDown();
+        $(this).removeClass('used')
+    } else {
+        $(this).html('Show');
+        $('#dexscreener-embed').slideUp();
+        $(this).addClass('used')
+    }
+});
+
+
 window.addEventListener('load', () => {
     console.log("\nPage Coin Control.")
     getDataPromotedCoinsTable();

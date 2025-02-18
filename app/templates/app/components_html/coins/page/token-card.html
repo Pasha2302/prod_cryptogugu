@@ -140,41 +140,40 @@
             </div>
           </div>
 
-<!--          <div class="token-card__chart">-->
-<!--            <style>-->
-<!--              #dexscreener-embed {-->
-<!--                position: relative;-->
-<!--                width: 100%;-->
-<!--                padding-bottom: 125%;-->
-<!--              }-->
-<!--              -->
-<!--              @media (min-width: 1400px) {-->
-<!--                #dexscreener-embed {-->
-<!--                  padding-bottom: 65%;-->
-<!--                }-->
-<!--              }-->
-<!--              -->
-<!--              #dexscreener-embed iframe {-->
-<!--                position: absolute;-->
-<!--                width: 100%;-->
-<!--                height: 100%;-->
-<!--                top: 0;-->
-<!--                left: 0;-->
-<!--                border: 0;-->
-<!--              }-->
-<!--            </style>-->
-<!--            <div id="dexscreener-embed">-->
-<!--              <iframe loading="lazy" src="https://dexscreener.com/bsc/12313123131231232123123123?embed=1&amp;theme=dark&amp;trades=0"-->
-<!--                      data-rocket-lazyload="fitvidscompatible"-->
-<!--                      data-lazy-src="https://dexscreener.com/bsc/12313123131231232123123123?embed=1&amp;theme=dark&amp;trades=0"-->
-<!--                      data-ll-status="loaded"-->
-<!--                      class="entered lazyloaded"></iframe>-->
-<!--              <noscript>-->
-<!--                <iframe src="https://dexscreener.com/bsc/12313123131231232123123123?embed=1&theme=dark&trades=0"></iframe>-->
-<!--              </noscript>-->
-<!--            </div>-->
-<!--            <button class="token-card__chart-button">Hide</button>-->
-<!--          </div>-->
+          <div class="token-card__chart">
+            <style>
+              #dexscreener-embed {
+                position: relative;
+                width: 100%;
+                padding-bottom: 125%;
+              }
+
+              @media (min-width: 1400px) {
+                #dexscreener-embed {
+                  padding-bottom: 65%;
+                }
+              }
+
+              #dexscreener-embed iframe {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                border: 0;
+              }
+            </style>
+            <div id="dexscreener-embed">
+              <iframe loading="lazy" src="https://dexscreener.com/bsc/{{ base_address }}?embed=1&amp;theme=dark&amp;trades=0"
+
+                      data-ll-status="loaded"
+                      class="entered lazyloaded"></iframe>
+              <noscript>
+                <iframe src="https://dexscreener.com/bsc/{{ base_address }}?embed=1&theme=dark&trades=0"></iframe>
+              </noscript>
+            </div>
+            <button class="token-card__chart-button">Hide</button>
+          </div>
 
           <div class="token-card__text" style="max-height: 400px">
             <h2 class="token-card__text-title">About {{ obj_coin.name }} token</h2>
