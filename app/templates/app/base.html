@@ -566,12 +566,16 @@
 
     <div class="header-middle">
       <div class="header-middle__wrap container">
-        <a href="{% url 'index' %}" class="header__logo">
+        <a href="/" class="header__logo" data-wpel-link="internal">
+          <img src="https://cryptogugu.com/wp-content/uploads/2024/06/4.svg"
+               alt="logo" class="l entered lazyloaded"
+               data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/06/4.svg"
+               data-ll-status="loaded">
           <img src="https://cryptogugu.com/wp-content/uploads/2024/06/1-5.svg"
                alt="logo" class="d entered lazyloaded"
                data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/06/1-5.svg"
                data-ll-status="loaded">
-        </a>
+          </a>
 
         <div class="header-middle__list">
           {% for item in menu_items %}
@@ -893,46 +897,24 @@
 
 
         <div class="footer__top-info">
-          <a href="https://cryptogugu.com/" class="footer__logo" data-wpel-link="internal">
-            <img
-              src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E"
-              alt="logo" class="l"
-              data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/05/CryptoGuGu-Logo-White-1.svg"><noscript><img
-                src="https://cryptogugu.com/wp-content/uploads/2024/05/CryptoGuGu-Logo-White-1.svg" alt="logo"
-                class="l"></noscript>
-            <img src="https://cryptogugu.com/wp-content/uploads/2024/06/1-5.svg"
-                 alt="logo" class="d entered lazyloaded"
-                 data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/06/1-5.svg"
-                 data-ll-status="loaded">
-
-            <noscript><img src="https://cryptogugu.com/wp-content/uploads/2024/06/5.svg"
-                alt="logo" class="d">
-            </noscript>
+          <a href="/" class="footer__logo" data-wpel-link="internal">
+            <img src="https://cryptogugu.com/wp-content/uploads/2024/05/CryptoGuGu-Logo-White-1.svg" alt="logo" class="l entered lazyloaded exited" data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/05/CryptoGuGu-Logo-White-1.svg" data-ll-status="entered"><noscript><img src="https://cryptogugu.com/wp-content/uploads/2024/05/CryptoGuGu-Logo-White-1.svg" alt="logo" class="l"></noscript>
+            <img src="https://cryptogugu.com/wp-content/uploads/2024/06/5.svg" alt="logo" class="d entered lazyloaded" data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/06/5.svg" data-ll-status="loaded"><noscript><img src="https://cryptogugu.com/wp-content/uploads/2024/06/5.svg" alt="logo" class="d"></noscript>
           </a>
 
           <div class="footer__top-info-text">© 2024 CryptoGuGu. All rights reserved</div>
 
           <div class="footer__social">
             <a target="_blank" rel="nofollow noopener" href="https://t.me/CryptoGuGu_Support" data-wpel-link="external">
-              <svg class="icon">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-telegram"></use>
-              </svg> </a>
+              <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-telegram"></use></svg>              </a>
             <a target="_blank" rel="nofollow noopener" href="https://x.com/CryptoGuGuX" data-wpel-link="external">
-              <svg class="icon">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-twitter"></use>
-              </svg> </a>
+              <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-twitter"></use></svg>              </a>
             <a target="_blank" rel="nofollow noopener" href="#">
-              <svg class="icon">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youtube"></use>
-              </svg> </a>
+              <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youtube"></use></svg>              </a>
             <a target="_blank" rel="nofollow noopener" href="#">
-              <svg class="icon">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tiktok"></use>
-              </svg> </a>
+              <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tiktok"></use></svg>              </a>
             <a target="_blank" rel="nofollow noopener" href="https://linktr.ee/CryptoGuGu" data-wpel-link="external">
-              <svg class="icon">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-linktree"></use>
-              </svg> </a>
+              <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-linktree"></use></svg>              </a>
           </div>
 
           <div class="footer__support">
@@ -941,8 +923,7 @@
             </svg>
             <div class="text">
               <div class="label">You need help?</div>
-              <a target="_blank" rel="nofollow noopener" href="https://t.me/CryptoGuGu_Support"
-                data-wpel-link="external">Get in touch with us</a>
+              <a target="_blank" rel="nofollow noopener" href="https://t.me/CryptoGuGu_Support" data-wpel-link="external">Get in touch with us</a>
             </div>
           </div>
 
@@ -956,8 +937,9 @@
               </svg>
             </button>
 
-          </div>
         </div>
+      </div>
+
       </div>
     </div>
   </footer>
