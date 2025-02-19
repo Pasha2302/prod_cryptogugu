@@ -60,9 +60,17 @@ function updateFieldDates() {
 
 
 // Выполняем скрипт после загрузки страницы
-document.addEventListener('DOMContentLoaded', function () {
+// document.addEventListener('DOMContentLoaded', function () {
+//     console.log("[Info] Custom script loaded: base.js");
+
+//     updateFieldDates(); // Обновляем формат времени в полях
+// });
+
+
+// Выполняем скрипт после полной загрузки всех ресурсов страницы
+window.onload = function () {
     console.log("[Info] Custom script loaded: base.js");
 
     updateFieldDates(); // Обновляем формат времени в полях
-});
+};
 
