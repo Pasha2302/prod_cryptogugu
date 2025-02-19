@@ -1,10 +1,14 @@
 from django.contrib import admin
 
+from app.admin_forms.chain_form import ChainAdminForm
+from app.admin_forms.coin_form import BaseCoinAdminForm
 from app.admin_forms.promoted_coins_form import PromotedCoinsForm
 from app.models_db.airdrops import Airdrops
 from app.models_db.banners import ReclamBannerPopUp, BannerImagePopUp, ReclamBanner
 from app.models_db.coin import PromotedCoin, ContractAddress, Chain, BaseCoin, Label
 from app.models_db.settings import SiteSettings
+
+from django.utils.timezone import localtime
 
 
 @admin.register(PromotedCoin)
@@ -29,6 +33,20 @@ class PromotedCoinsAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         return qs.select_related('coin')
+
+    # def formatted_start_date(self, obj):
+    #     """Форматирует дату начала в 24-часовом формате UTC."""
+    #     return localtime(obj.start_date).strftime('%Y-%m-%d %H:%M:%S')  # Формат UTC
+    #
+    # formatted_start_date.admin_order_field = 'start_date'  # Позволяет сортировать по оригинальному полю
+    # formatted_start_date.short_description = 'Start Date (UTC)'  # Название колонки в интерфейсе
+    #
+    # def formatted_end_date(self, obj):
+    #     """Форматирует дату окончания в 24-часовом формате UTC."""
+    #     return localtime(obj.end_date).strftime('%Y-%m-%d %H:%M:%S')  # Формат UTC
+    #
+    # formatted_end_date.admin_order_field = 'end_date'
+    # formatted_end_date.short_description = 'End Date (UTC)'
 
 
 # ================================================================================================================== #
@@ -68,13 +86,14 @@ class BannerAdmin(admin.ModelAdmin):
 # ================================================================================================================== #
 
 
-@admin.register(ContractAddress)
-class ContractAddressAdmin(admin.ModelAdmin):
-    pass
+# @admin.register(ContractAddress)
+# class ContractAddressAdmin(admin.ModelAdmin):
+#     pass
 
 
 @admin.register(Chain)
 class ChainAdmin(admin.ModelAdmin):
+    form = ChainAdminForm
     readonly_fields = ('slug', )
     search_fields = ('name', )
 
@@ -86,7 +105,7 @@ class AirdropsAdmin(admin.ModelAdmin):
 
 @admin.register(BaseCoin)
 class BaseCoinAdmin(admin.ModelAdmin):
-    pass
+    form = BaseCoinAdminForm
 
 
 @admin.register(Label)

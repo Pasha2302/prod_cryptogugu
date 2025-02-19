@@ -277,23 +277,24 @@ var setEventSearchHeader = () => {
 var setEventVotes = () => {
     $('body').on('click', 'button.js-vote', function () {
         var vole_coin_id = $(this).attr('data-id');
+        // console.log('\nEvent Votes coin_id:', vole_coin_id);
         // grecaptcha.reset();
         // $('.banner-block.recapcha').addClass('open')
 
-        requestServer("voting/", "POST", { vole_coin_id })
+        requestServer("/voting/", "POST", { vole_coin_id })
             .then((data) => {
                 // console.log('\nEvent Votes:', data);
                 this.classList.add('voted');
 
-                if (data.hasOwnProperty('status')) {
+                if (data.status) {
                     var bannerBlock = document.querySelector('.banner-block.js-votes-banner');
                     bannerBlock.classList.add('open');
                     bannerBlock.querySelector('.banner-block__title').innerText = data.status;
                 }
-                else if (data.hasOwnProperty('vote')) {
-                    document.querySelector(`span.js-all_vote-${vole_coin_id}`).innerText = data.vote;
-                    var elmDailyVotes = document.querySelector(`span.js-daily_vote-${vole_coin_id}`);
-                    elmDailyVotes.childNodes[2].nodeValue = data.daily_vote;
+                else if (data.vote) {
+                    document.querySelectorAll(`.js-all_vote-${vole_coin_id}`).forEach(elm => elm.innerText = data.vote);
+                    // var elmDailyVotes = document.querySelector(`span.js-daily_vote-${vole_coin_id}`);
+                    // elmDailyVotes.innerText = data.daily_vote;
                 };
 
             });

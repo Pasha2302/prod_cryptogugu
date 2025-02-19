@@ -1,0 +1,49 @@
+h3 {
+    display: none !important;
+}
+
+.module {
+    border: none;
+    margin-bottom: 0px;
+    background: var(--body-bg);
+}
+
+.inline-form-wrapper {
+    display: none;
+}
+
+.js-inline-admin-formset {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Отступы между блоками */
+}
+
+.js-inline-admin-formset .inline-related:not(.empty-form) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.js-inline-admin-formset .inline-related .field-box {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 calc(33.333% - 20px);
+    /* 3 колонки */
+    min-width: 200px;
+}
+
+.js-inline-admin-formset .inline-related textarea.vLargeTextField {
+    width: 610px;
+    min-height: 70px;
+    height: 70px;
+    resize: vertical;
+}
+
+/* Принудительное скрытие пустой формы */
+.js-inline-admin-formset .inline-related.empty-form {
+    display: none !important;
+}

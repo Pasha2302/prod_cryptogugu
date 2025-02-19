@@ -117,7 +117,7 @@ class CoinSocials(models.Model):
 class ContractAddress(models.Model):
     coin = models.ForeignKey(
         'Coin',
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name="contract_address",
         null=True,
     )

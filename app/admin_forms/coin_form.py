@@ -3,18 +3,8 @@ from django import forms
 # from django.contrib.admin.widgets import AdminFileWidget
 from django.utils.html import mark_safe
 
-from app.models_db.coin import Coin
-
-from django.forms.widgets import ClearableFileInput
-
-
-class NoClearableFileInput(ClearableFileInput):
-    clear_checkbox_label = None  # Убирает текст для чекбокса (на всякий случай)
-    initial_text = "Текущий файл"  # (не обязательно: кастомизируем текст для существующего файла)
-    template_name = "app/admin/widgets/custom_file_input.html"  # Если нужно кастомизировать HTML виджета
-
-    def __init__(self, attrs=None):
-        super().__init__(attrs)
+from app.admin_forms.widgets_all import NoClearableFileInput
+from app.models_db.coin import Coin, BaseCoin
 
 
 class CoinAdminForm(forms.ModelForm):
@@ -44,4 +34,20 @@ class CoinAdminForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+
+
+class BaseCoinAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = BaseCoin
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Пример назначения кастомного виджета для поля, если это необходимо
+        if 'path_coin_img' in self.fields:
+            self.fields['path_coin_img'].widget = NoClearableFileInput()
+
+        if 'path_chain_img' in self.fields:
+            self.fields['path_chain_img'].widget = NoClearableFileInput()
 

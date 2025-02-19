@@ -125,6 +125,7 @@
             <div class="coin-table__nav-info">
               <p>Showing {{ page_start_index|add:1 }} - {{ page_end_index }} out {{ paginator.count }}</p>
               <p>Total pages: {{ paginator.num_pages }}</p>
+              <p>Page Number: {{ page_number }}</p>
             </div>
 
             <button class="coin-table__nav-more">Show More</button>
@@ -170,8 +171,10 @@
     <!-- Media Sliders -->
     <!-- {% include 'app/components_html/sliders/media.html' %} -->
 
-    <!-- Info Most Popular -->
-    {% include 'app/components_html/info/most_popular.html' %}
+    {% if page_number <= 1 %}
+      <!-- Info Most Popular -->
+      {% include 'app/components_html/info/most_popular.html' %}
+    {% endif %}
   </main>
 
   <script type="module" src="{% static 'app/js/index_control.js' %}"></script>
