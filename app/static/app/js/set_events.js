@@ -66,6 +66,29 @@ var setSearchInput = (dropdownManager) => {
     dropdownManager.closeOnClickOutside(".header__search", "open");
 };
 
+// ===================================================================================================================
+document.addEventListener('click', (e) => {
+    const withinBoundaries = e.composedPath().includes(document.querySelector('.header__search'));
+    try {
+        !withinBoundaries ? document.querySelector('.header__search').classList.remove('open') : !1
+    } catch (error) {}
+});
+
+document.addEventListener( 'click', (e) => {
+    const withinBoundaries = e.composedPath().includes(document.querySelector('.header__search'));
+
+    try {
+      ! withinBoundaries ? document.querySelector('.header__search').classList.remove('active') : false;
+    } catch (error) {
+
+    }
+  });
+
+document.querySelector('.header__search').addEventListener('click', () => {
+    document.querySelector('.header__search').classList.add('active')
+});
+// ===================================================================================================================
+
 
 var setCoinTableScroll = () => {
     document.querySelectorAll(".coin-table").forEach((item) => {
