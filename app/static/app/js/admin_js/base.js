@@ -1,23 +1,48 @@
-// Функция для преобразования строки в объект Date (с учётом вашего формата)
+// Функция для преобразования строки в объект Date (с учётом формата AM/PM)
 function parseDate(dateStr) {
-    // Убираем точки (например, "Feb." -> "Feb")
-    const cleanedDateStr = dateStr.replace(/\./g, '');
+    if (!dateStr) return null;
 
-    // Преобразуем строку в объект даты, добавляя явный парсер
+    // Убираем точки из сокращений, таких как "Feb." -> "Feb", "a.m." -> "AM", "p.m." -> "PM"
+    let cleanedDateStr = dateStr
+        .replace(/\./g, '') // Убираем точки
+        .replace('a.m.', 'AM') // Приводим AM/PM к валидным значениям
+        .replace('p.m.', 'PM');
+
+    console.log("Cleaned Date String: ", cleanedDateStr); // Для отладки
+
+    // Явный разбор формата "Feb 26, 2025, 6 AM"
+    const match = cleanedDateStr.match(/([a-zA-Z]+) (\d+), (\d+), (\d+):?(\d+)? (AM|PM)/);
+    if (match) {
+        const [_, month, day, year, hourRaw, minuteRaw = '0', period] = match;
+
+        // Преобразуем AM/PM время в 24-часовой формат
+        let hour = parseInt(hourRaw, 10);
+        if (period === 'PM' && hour !== 12) hour += 12;
+        if (period === 'AM' && hour === 12) hour = 0;
+
+        const minute = parseInt(minuteRaw, 10);
+
+        // Используем формат Date для представления результата
+        return new Date(`${month} ${day}, ${year} ${hour}:${minute}`);
+    }
+
+    // Если это уже ISO или другой формат, который понимает JavaScript
     const dateObj = new Date(Date.parse(cleanedDateStr));
-
-    return dateObj;
+    return isNaN(dateObj) ? null : dateObj;
 }
 
-// Форматирование даты в строку в формате "YYYY-MM-DD HH:mm:ss"
+// Форматирование даты в строку формата "YYYY-MM-DD HH:mm:ss"
 function formatDate(dateStr) {
     if (!dateStr) return ""; // Если строки нет, возвращаем пустую строку
 
     const dateObj = parseDate(dateStr); // Парсим строку даты
-    console.log("Data Object: ", dateObj); // Добавляем отладочный вывод
+    console.log("Data Object: ", dateObj); // Выводим объект для отладки
 
-    // Проверяем, корректно ли создана дата
-    if (isNaN(dateObj)) return dateStr; // Если объект даты некорректный, возвращаем оригинальный текст
+    // Проверяем, создался ли корректный объект даты
+    if (!dateObj) {
+        console.warn("Failed to parse date: ", dateStr);
+        return dateStr; // Если дата некорректна, возвращаем оригинальный текст
+    }
 
     // Форматируем дату вручную
     const yyyy = dateObj.getFullYear();
@@ -40,6 +65,7 @@ function getFieldsDate() {
 
         ...document.querySelectorAll('#result_list .field-start_date'),
         ...document.querySelectorAll('#result_list .field-end_date'),
+        ...document.querySelectorAll('#result_list .field-uploaded_at'),
     ]
 
 }
@@ -59,18 +85,9 @@ function updateFieldDates() {
 }
 
 
-// Выполняем скрипт после загрузки страницы
-// document.addEventListener('DOMContentLoaded', function () {
-//     console.log("[Info] Custom script loaded: base.js");
-
-//     updateFieldDates(); // Обновляем формат времени в полях
-// });
-
-
 // Выполняем скрипт после полной загрузки всех ресурсов страницы
 window.onload = function () {
     console.log("[Info] Custom script loaded: base.js");
 
     updateFieldDates(); // Обновляем формат времени в полях
 };
-
