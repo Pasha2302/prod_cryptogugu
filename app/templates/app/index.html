@@ -20,7 +20,9 @@
 
   <main class="main">
     <!-- Reclams Banners -->
-    {% include 'app/components_html/banners/reclams.html' %}
+    {% if top_banners or bottom_banners %}
+      {% include 'app/components_html/banners/reclams.html' %}
+    {% endif %}
 
     <!-- Coins Tops Section Component (3 Tables) -->
     {% include 'app/components_html/tops_section_coins_component.html' %}
@@ -95,11 +97,11 @@
               </svg>
 
               <div class="trending-coins__filter-sublist">
-                {% for item_sub in filter_item.item_sub %}
+                {% for chain in filter_item.item_sub %}
                   <button
-                      class="trending-coins__filter-sublist-item {% if item_sub.active %}active{% endif %}"
-                      data-info="{{ item_sub.slug }}">
-                    {{ item_sub.title }}
+                      class="trending-coins__filter-sublist-item {% if chain.active %}active{% endif %}"
+                      data-info="{{ chain.slug }}">
+                    {{ chain.title }}
                     <svg class="icon">
                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check"></use>
                     </svg>

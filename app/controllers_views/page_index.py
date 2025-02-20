@@ -232,6 +232,7 @@ class IndexContextManager:
         bottom_banners = ReclamBanner.objects.filter(
             position__startswith='banner_', is_active=True, start_time__lte=now, end_time__gte=now
         )
+        print("\nbottom banners: ".capitalize(), bottom_banners)
         if bottom_banners:
             bottom_banners = sorted(bottom_banners, key=self.extract_number)
 

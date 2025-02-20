@@ -88,26 +88,20 @@ var requestServer = (_url, _method, query_data = null) => {
         requestOptions.body = JSON.stringify(dataToSave);
     }
 
-    return new Promise((resolve, reject) => {
-        fetch(_url, requestOptions)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                // console.log("\ncontent-type", response.headers.get("content-type"));
-                return response.json();
-            })
-            .then((data) => {
-                resolve(data);
-            })
-            .catch((error) => {
-                console.error(
-                    "!!! There was a problem saving/retrieving the data:",
-                    error
-                );
-                reject(error);
-            });
-    });
+    return fetch(_url, requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            // console.log("\ncontent-type", response.headers.get("content-type"));
+            return response.json();
+        })
+        .catch((error) => {
+            console.error(
+                "!!! There was a problem saving/retrieving the data:",
+                error
+            );
+        });
 };
 
 
@@ -136,13 +130,7 @@ var loadCoins = (data) => {
     data['currentPage'] = currentPage;
     data['per_page'] = document.querySelector('.show-rows-filter__current span').textContent.trim();
 
-    requestServer(
-        "/",
-        "POST",
-        data
-    ).then((data) => {
-        // var targetBlock = document.querySelector('.trending-coins');
-        // console.log('\n[setShowRowsNumber] data ', data)
+    requestServer("/", "POST", data).then((data) => {
         var targetBlock = document.querySelector('.trending-coins .coin-table tbody');
         var targetBlockPagination = document.querySelector('.coin-table__nav-pagination');
         targetBlock.innerHTML = data.html;
@@ -255,6 +243,7 @@ var setEventResetFilters = () => {
     var sublist = document.querySelector('.trending-coins__filter-item-sub');
     var buttonChain = sublist.querySelector('.trending-coins__filter-item.trending-coins__filter-item_sub');
     var subItemsButton = sublist.querySelectorAll('button.trending-coins__filter-sublist-item');
+
     var buttonsHead = document.querySelectorAll(".coin-table thead button");
 
     resetFiltersButton.addEventListener('click', (_event) => {
@@ -459,6 +448,20 @@ function getDataPromotedCoinsTable(info = 'votes,ASC') {
 }
 
 
+// ====================================================================================================================== //
+
+function getPageCoinsChain() {
+    const buttons = document.querySelectorAll(".trending-coins__filter-sublist-item");
+       buttons.forEach(button => {
+           button.addEventListener("click", function () {
+               const chainSlug = this.getAttribute("data-info"); // Получаем slug из data-info
+               const url = `/coin/${chainSlug}/`; // Формируем URL
+               window.location.href = url; // Обычный переход на новую страницу
+           });
+       });
+}
+
+
 export {
     setOpenAndCloseFilters,
     setEventTrendingCoins,
@@ -477,5 +480,6 @@ export {
 
 
     requestServer,
+    getPageCoinsChain,
 
 };

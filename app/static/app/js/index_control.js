@@ -15,6 +15,8 @@ import {
   setEventTrendingCoinsFilterTableHead,
   getDataPromotedCoinsTable,
 
+  getPageCoinsChain,
+
 } from "./moduls/modul_index.js";
 import getDropdownManager from "./moduls/dropdown.js";
 
@@ -55,10 +57,12 @@ window.addEventListener('load', () => {
   );
 
   setEventTrendingCoinsFilterItem();
-  setEventTrendingCoinsFilterItemSublist();
+  // setEventTrendingCoinsFilterItemSublist();
   setEventResetFilters();
 
   setEventTrendingCoinsFilterTableHead();
   getDataPromotedCoinsTable();
+
+  getPageCoinsChain();
 
 });

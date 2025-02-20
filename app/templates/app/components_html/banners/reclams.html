@@ -6,9 +6,9 @@
         {% if top_banners %}
         <div class="reclams-banner__top">
             {% for banner in top_banners %}
-            <a href="{{ banner.link }}" class="reclams-banner__item" id="top-{{ banner.position }}" target="_blank">
-                <img src="{{ banner.image.url }}" alt="">
-            </a>
+                <a href="{{ banner.link }}" class="reclams-banner__item" id="top-{{ banner.position }}" target="_blank">
+                    <img src="{{ banner.image.url }}" alt="">
+                </a>
             {% endfor %}
         </div>
         {% endif %}
@@ -17,9 +17,9 @@
         <div class="reclams-banner__slider swiper">
             <div class="swiper-wrapper">
                 {% for banner in bottom_banners %}
-                <a href="{{ banner.link }}" class="swiper-slide" id="bottom-{{ banner.position }}" target="_blank">
-                    <img src="{{ banner.image.url }}" alt="">
-                </a>
+                    <a href="{{ banner.link }}" class="swiper-slide" id="bottom-{{ banner.position }}" target="_blank">
+                        <img src="{{ banner.image.url }}" alt="">
+                    </a>
                 {% endfor %}
             </div>
         </div>
