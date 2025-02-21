@@ -70,39 +70,39 @@ var getCookie = (name) => {
 };
 
 
-// var requestServer = (_url, _method, query_data = null) => {
-//     // Получаем CSRF-токен
-//     // var csrftoken = getCookie("csrftoken");
+var requestServer = (_url, _method, query_data = null) => {
+    // Получаем CSRF-токен
+    // var csrftoken = getCookie("csrftoken");
 
-//     var requestOptions = {
-//         method: _method,
-//         headers: {
-//             "Content-Type": "application/json",
-//             // "X-CSRFToken": csrftoken,
-//             "X-CSRFToken": csrf_token,
-//         },
-//     };
+    var requestOptions = {
+        method: _method,
+        headers: {
+            "Content-Type": "application/json",
+            // "X-CSRFToken": csrftoken,
+            "X-CSRFToken": csrf_token,
+        },
+    };
 
-//     if (_method === "POST" || _method === "PUT") {
-//         var dataToSave = { data: query_data };
-//         requestOptions.body = JSON.stringify(dataToSave);
-//     }
+    if (_method === "POST" || _method === "PUT") {
+        var dataToSave = { data: query_data };
+        requestOptions.body = JSON.stringify(dataToSave);
+    }
 
-//     return fetch(_url, requestOptions)
-//         .then((response) => {
-//             if (!response.ok) {
-//                 throw new Error("Network response was not ok");
-//             }
-//             // console.log("\ncontent-type", response.headers.get("content-type"));
-//             return response.json();
-//         })
-//         .catch((error) => {
-//             console.error(
-//                 "!!! There was a problem saving/retrieving the data:",
-//                 error
-//             );
-//         });
-// };
+    return fetch(_url, requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            // console.log("\ncontent-type", response.headers.get("content-type"));
+            return response.json();
+        })
+        .catch((error) => {
+            console.error(
+                "!!! There was a problem saving/retrieving the data:",
+                error
+            );
+        });
+};
 
 
 var setOpenAndCloseFilters = () => {
