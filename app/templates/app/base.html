@@ -1459,34 +1459,50 @@
     };
 
     function verifyCaptcha(token) {
-      console.log("\nVerify Captcha token: ", token);
-      // Найти блок recapcha и получить id монеты
-      var recapchaBlock = document.querySelector('.banner-block.recapcha');
-      var vole_coin_id = recapchaBlock.getAttribute('data-id');
+        console.log('Token received from reCAPTCHA:', token);
 
-      // Отправить запрос на сервер с токеном капчи
-      requestServer("/voting/", "POST", { vole_coin_id, token })
-          .then((data) => {
-              // После успешного ответа закрыть блок капчи и изменить текст кнопки
-              recapchaBlock.classList.remove('open'); // Скрыть капчу
+        const recapchaBlock = document.querySelector('.banner-block.recapcha');
+        const vole_coin_id = recapchaBlock.getAttribute('data-id');
 
-              if (data.vote) {
-                  document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).innerText = "Voted";
-                  document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).classList.add('voted');
+        // Проверка: если id не найден
+        if (!vole_coin_id) {
+            console.error('Ошибка: data-id отсутствует в .banner-block.recapcha');
+            grecaptcha.reset(); // Сбрасываем капчу
+            return;
+        }
 
-                  document.querySelectorAll(`.js-all_vote-${vole_coin_id}`).forEach(elm => elm.innerText = data.vote);
+        // Отправить запрос на сервер
+        requestServer("/voting/", "POST", { vole_coin_id, token })
+            .then((data) => {
+                // Скрыть капчу
+                recapchaBlock.classList.remove('open');
 
-              } else if (data.status) {
-                  var bannerBlock = document.querySelector('.banner-block.js-votes-banner');
-                  bannerBlock.classList.add('open');
-                  bannerBlock.querySelector('.banner-block__title').innerText = data.status;
-              };
+                if (data.vote) {
+                    console.log('Голос записан.');
 
-          })
-          .catch((err) => {
-              console.error("Ошибка выполнения запроса:", err);
-          });
+                    // Обновить интерфейс
+                    document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).innerText = "Voted";
+                    document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).classList.add('voted');
+
+                    document.querySelectorAll(`.js-all_vote-${vole_coin_id}`).forEach(elm => elm.innerText = data.vote);
+                } else if (data.status) {
+                    const bannerBlock = document.querySelector('.banner-block.js-votes-banner');
+                    bannerBlock.classList.add('open');
+                    bannerBlock.querySelector('.banner-block__title').innerText = data.status;
+                }
+
+                // Сбрасываем ReCAPTCHA для возможности прохождения повторно
+                grecaptcha.reset();
+
+            })
+            .catch((err) => {
+                console.error('Ошибка выполнения запроса:', err);
+
+                // Сбрасываем капчу даже в случае ошибки для возможности повторного ввода
+                grecaptcha.reset();
+            });
     }
+
   </script>
 
   <script>
