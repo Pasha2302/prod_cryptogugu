@@ -13,7 +13,7 @@ var setThemeEvent = () => {
         theme.setAttribute("data-theme", name);
         localStorage.setItem("theme_site", name);
         requestServer("set-theme-site/", "POST", { 'theme_site': name }
-        ).then((data) => console.log('\nEvent Set Theme:', data) );
+        ).then((data) => console.log('\nEvent Set Theme:', data));
     };
 
     var toggleTheme = () => {
@@ -67,26 +67,31 @@ var setSearchInput = (dropdownManager) => {
 };
 
 // ===================================================================================================================
-document.addEventListener('click', (e) => {
-    const withinBoundaries = e.composedPath().includes(document.querySelector('.header__search'));
-    try {
-        !withinBoundaries ? document.querySelector('.header__search').classList.remove('open') : !1
-    } catch (error) {}
-});
 
-document.addEventListener( 'click', (e) => {
-    const withinBoundaries = e.composedPath().includes(document.querySelector('.header__search'));
 
-    try {
-      ! withinBoundaries ? document.querySelector('.header__search').classList.remove('active') : false;
-    } catch (error) {
+function setEventHeaderSearchMobile() {
+    document.addEventListener('click', (e) => {
+        const withinBoundaries = e.composedPath().includes(document.querySelector('.header__search'));
+        try {
+            !withinBoundaries ? document.querySelector('.header__search').classList.remove('open') : !1
+        } catch (error) { }
+    });
 
-    }
-  });
+    document.addEventListener('click', (e) => {
+        const withinBoundaries = e.composedPath().includes(document.querySelector('.header__search'));
 
-document.querySelector('.header__search').addEventListener('click', () => {
-    document.querySelector('.header__search').classList.add('active')
-});
+        try {
+            !withinBoundaries ? document.querySelector('.header__search').classList.remove('active') : false;
+        } catch (error) {
+
+        }
+    });
+
+    document.querySelector('.header__search').addEventListener('click', () => {
+        document.querySelector('.header__search').classList.add('active')
+    });
+}
+
 // ===================================================================================================================
 
 
@@ -296,38 +301,69 @@ var setEventSearchHeader = () => {
     }, 1000));
 };
 
+// ================================================================================================================================================
+
 
 var setEventVotes = () => {
     $('body').on('click', 'button.js-vote', function () {
         var vole_coin_id = $(this).attr('data-id');
-        // console.log('\nEvent Votes coin_id:', vole_coin_id);
-        // grecaptcha.reset();
-        // $('.banner-block.recapcha').addClass('open')
 
-        requestServer("/voting/", "POST", { vole_coin_id })
-            .then((data) => {
-                // console.log('\nEvent Votes:', data);
-                this.classList.add('voted');
-
-                if (data.status) {
-                    var bannerBlock = document.querySelector('.banner-block.js-votes-banner');
-                    bannerBlock.classList.add('open');
-                    bannerBlock.querySelector('.banner-block__title').innerText = data.status;
-                }
-                else if (data.vote) {
-                    document.querySelectorAll(`.js-all_vote-${vole_coin_id}`).forEach(elm => elm.innerText = data.vote);
-                    // var elmDailyVotes = document.querySelector(`span.js-daily_vote-${vole_coin_id}`);
-                    // elmDailyVotes.innerText = data.daily_vote;
-                };
-
-            });
-
+        // Показываем блок с капчей
+        $('.banner-block.recapcha').addClass('open').attr('data-id', vole_coin_id);
     });
 }
 
+function verifyCaptcha(token) {
+    // Найти блок recapcha и получить id монеты
+    var recapchaBlock = document.querySelector('.banner-block.recapcha');
+    var vole_coin_id = recapchaBlock.getAttribute('data-id');
+
+    // Отправить запрос на сервер с токеном капчи
+    requestServer("/voting/", "POST", { vole_coin_id, token })
+        .then((data) => {
+            // После успешного ответа закрыть блок капчи и изменить текст кнопки
+            recapchaBlock.classList.remove('open'); // Скрыть капчу
+            document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).innerText = "Voted";
+            document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).classList.add('voted');
+        })
+        .catch((err) => {
+            console.error("Ошибка выполнения запроса:", err);
+        });
+}
+
+
+
+// var setEventVotes = () => {
+//     $('body').on('click', 'button.js-vote', function () {
+//         var vole_coin_id = $(this).attr('data-id');
+//         // console.log('\nEvent Votes coin_id:', vole_coin_id);
+//         // grecaptcha.reset();
+//         $('.banner-block.recapcha').addClass('open')
+
+//         requestServer("/voting/", "POST", { vole_coin_id })
+//             .then((data) => {
+//                 // console.log('\nEvent Votes:', data);
+//                 this.classList.add('voted');
+
+//                 if (data.status) {
+//                     var bannerBlock = document.querySelector('.banner-block.js-votes-banner');
+//                     bannerBlock.classList.add('open');
+//                     bannerBlock.querySelector('.banner-block__title').innerText = data.status;
+//                 }
+//                 else if (data.vote) {
+//                     document.querySelectorAll(`.js-all_vote-${vole_coin_id}`).forEach(elm => elm.innerText = data.vote);
+//                     // var elmDailyVotes = document.querySelector(`span.js-daily_vote-${vole_coin_id}`);
+//                     // elmDailyVotes.innerText = data.daily_vote;
+//                 };
+
+//             });
+
+//     });
+// }
+
 
 window.addEventListener("load", () => {
-// window.addEventListener("DOMContentLoaded", () => {
+    // window.addEventListener("DOMContentLoaded", () => {
     var dropdownManager = getDropdownManager();
     getUserId();
 
@@ -340,6 +376,8 @@ window.addEventListener("load", () => {
 
     setEventSearchHeader();
     setEventVotes();
+
+    setEventHeaderSearchMobile();
 
 });
 

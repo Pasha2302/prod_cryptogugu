@@ -431,27 +431,26 @@ var setEventPromotedCoinsFilterTableHead = () => {
 
 
 function getDataPromotedCoinsTable(info = 'votes,ASC') {
-    requestServer(
-        "/table-promoted-coins-component/",
-        "POST",
-        { data_info: 'head_filter', active: info }
-    ).then((data) => {
-        // console.log('\nShow More Button Data:', data);
-        var targetBlock = document.querySelector('div.coin-table.js-promoted-coins');
-        var coins_html = data.coins_html;
-
-        document.querySelector('section.promoted-coins').style.display = coins_html ? 'block' : 'none';
-
-        targetBlock.innerHTML = data.coins_html;
-        setEventPromotedCoinsFilterTableHead();
-    });
+    var targetBlock = document.querySelector('div.coin-table.js-promoted-coins');
+    if (targetBlock) {
+        requestServer(
+            "/table-promoted-coins-component/",
+            "POST",
+            { data_info: 'head_filter', active: info }
+        ).then((data) => {
+            // console.log('\nShow More Button Data:', data);
+                var coins_html = data.coins_html;
+                targetBlock.innerHTML = coins_html;
+                setEventPromotedCoinsFilterTableHead();
+        });
+    }
 }
 
 
 // ====================================================================================================================== //
 
 function getPageCoinsChain() {
-    const buttons = document.querySelectorAll(".trending-coins__filter-sublist-item");
+    const buttons = document.querySelectorAll(".trending-coins__filter-item-sub .trending-coins__filter-sublist-item");
        buttons.forEach(button => {
            button.addEventListener("click", function () {
                const chainSlug = this.getAttribute("data-info"); // Получаем slug из data-info

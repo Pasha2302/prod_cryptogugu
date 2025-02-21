@@ -29,6 +29,15 @@
       }
       )(window, document, 'script', 'dataLayer', 'GTM-TLMPBN7R');
   </script>
+
+  <script type="text/javascript"
+          async="" charset="utf-8"
+          src="https://www.gstatic.com/recaptcha/releases/rW64dpMGAGrjU7JJQr9xxPl8/recaptcha__ru.js"
+          crossorigin="anonymous"
+          integrity="sha384-nSzFuczTJ6aZiN6dXwamAbqjieBj1oBe07d33QGdY4KS0pBfhszuEHfPuQWlpzNu">
+
+  </script>
+
   <!-- End Google Tag Manager -->
   <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
   <style>
@@ -1379,20 +1388,28 @@
     </div>
   </div>
 
-  <!--  <div class="banner-block recapcha ">-->
-  <!--    <div class="banner-block__overlay"></div>-->
-  <!--    <div class="banner-block__item">-->
-  <!--      <div class="banner-block__top">-->
-  <!--        <div class="banner-block__title">Prove you are human</div>-->
-  <!--        <button class="banner-block__item-close"><span><svg class="icon">-->
-  <!--              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>-->
-  <!--            </svg></span></button>-->
-  <!--      </div>-->
+    <div class="banner-block recapcha ">
+      <div class="banner-block__overlay"></div>
+      <div class="banner-block__item">
+        <div class="banner-block__top">
+          <div class="banner-block__title">Prove you are human</div>
+          <button class="banner-block__item-close">
+            <span><svg class="icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+              </svg>
+            </span>
+          </button>
+        </div>
 
-  <!--      <script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
-  <!--      <div class="g-recaptcha" data-sitekey="6Lc49dUpAAAAAF-QengKmZF0uOjaorkT2zWawBEz"></div>-->
-  <!--    </div>-->
-  <!--  </div>-->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <div
+            class="g-recaptcha"
+            data-sitekey="6Lc49dUpAAAAAF-QengKmZF0uOjaorkT2zWawBEz"
+            data-callback="verifyCaptcha">
+
+        </div>
+      </div>
+    </div>
 
 
   <script src="{% static 'app/js/jq/jquery-3.7.1.min.js' %}"></script>
