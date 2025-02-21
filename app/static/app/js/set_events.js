@@ -313,26 +313,35 @@ var setEventVotes = () => {
     });
 }
 
-function verifyCaptcha(token) {
-    console.log("\nVerify Captcha token: ", token);
-    // Найти блок recapcha и получить id монеты
-    var recapchaBlock = document.querySelector('.banner-block.recapcha');
-    var vole_coin_id = recapchaBlock.getAttribute('data-id');
+// function verifyCaptcha(token) {
+//     console.log("\nVerify Captcha token: ", token);
+//     // Найти блок recapcha и получить id монеты
+//     var recapchaBlock = document.querySelector('.banner-block.recapcha');
+//     var vole_coin_id = recapchaBlock.getAttribute('data-id');
 
-    // Отправить запрос на сервер с токеном капчи
-    requestServer("/voting/", "POST", { vole_coin_id, token })
-        .then((data) => {
-            // После успешного ответа закрыть блок капчи и изменить текст кнопки
-            recapchaBlock.classList.remove('open'); // Скрыть капчу
-            document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).innerText = "Voted";
-            document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).classList.add('voted');
+//     // Отправить запрос на сервер с токеном капчи
+//     requestServer("/voting/", "POST", { vole_coin_id, token })
+//         .then((data) => {
+//             // После успешного ответа закрыть блок капчи и изменить текст кнопки
+//             recapchaBlock.classList.remove('open'); // Скрыть капчу
 
-            document.querySelectorAll(`.js-all_vote-${vole_coin_id}`).forEach(elm => elm.innerText = data.vote);
-        })
-        .catch((err) => {
-            console.error("Ошибка выполнения запроса:", err);
-        });
-}
+//             if (data.vote) {
+//                 document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).innerText = "Voted";
+//                 document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).classList.add('voted');
+
+//                 document.querySelectorAll(`.js-all_vote-${vole_coin_id}`).forEach(elm => elm.innerText = data.vote);
+
+//             } else if (data.status) {
+//                 var bannerBlock = document.querySelector('.banner-block.js-votes-banner');
+//                 bannerBlock.classList.add('open');
+//                 bannerBlock.querySelector('.banner-block__title').innerText = data.status;
+//             };
+
+//         })
+//         .catch((err) => {
+//             console.error("Ошибка выполнения запроса:", err);
+//         });
+// }
 
 
 
