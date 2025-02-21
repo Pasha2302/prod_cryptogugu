@@ -3,8 +3,12 @@
 
 <section class="most-popular">
   <div class="most-popular__wrap container">
-    <img decoding="async" src="https://cryptogugu.com/wp-content/uploads/2024/03/Vector-Image.png" alt="" data-lazy-src="https://cryptogugu.com/wp-content/uploads/2024/03/Vector-Image.png" data-ll-status="loaded" class="entered lazyloaded" /><noscript>
-      <img decoding="async" src="https://cryptogugu.com/wp-content/uploads/2024/03/Vector-Image.png" alt="" />
+    <img decoding="async" src="{% static 'app/img/Vector-Image.png' %}" alt=""
+         data-lazy-src="{% static 'app/img/Vector-Image.png' %}"
+         data-ll-status="loaded"
+         class="entered lazyloaded" />
+    <noscript>
+      <img decoding="async" src="{% static 'app/img/Vector-Image.png' %}" alt="" />
     </noscript>
     <div class="most-popular__text">
       <h1 class="wp-block-heading has-text-align-center has-x-large-font-size">CryptoGuGu – Leading new cryptocurrency listing and ranking website</h1>

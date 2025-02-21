@@ -4,6 +4,15 @@
     color: var(--yellow);
 }
 
+@media (max-width: 767px) {
+    .trending-coins__filter-item-reset {
+        -webkit-box-ordinal-group: 15;
+        -ms-flex-order: 15;
+        order: 15;
+        /* Разместить её после всех элементов */
+    }
+}
+
 
 /* .banner-image {
     width: 100%;     
