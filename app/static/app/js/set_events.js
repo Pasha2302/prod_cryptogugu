@@ -314,6 +314,7 @@ var setEventVotes = () => {
 }
 
 function verifyCaptcha(token) {
+    console.log("\nVerify Captcha token: ", token);
     // Найти блок recapcha и получить id монеты
     var recapchaBlock = document.querySelector('.banner-block.recapcha');
     var vole_coin_id = recapchaBlock.getAttribute('data-id');
@@ -325,6 +326,8 @@ function verifyCaptcha(token) {
             recapchaBlock.classList.remove('open'); // Скрыть капчу
             document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).innerText = "Voted";
             document.querySelector(`button.js-vote[data-id="${vole_coin_id}"]`).classList.add('voted');
+
+            document.querySelectorAll(`.js-all_vote-${vole_coin_id}`).forEach(elm => elm.innerText = data.vote);
         })
         .catch((err) => {
             console.error("Ошибка выполнения запроса:", err);
