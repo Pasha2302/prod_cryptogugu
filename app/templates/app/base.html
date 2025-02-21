@@ -1411,7 +1411,53 @@
       </div>
     </div>
 
+  <script src="{% static 'app/js/jq/jquery-3.7.1.min.js' %}"></script>
+  <script src="https://unpkg.com/htmx.org@2.0.4"
+    integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous">
+    </script>
+
+  <script src="https://unpkg.com/htmx-ext-ws@2.0.1/ws.js"></script>
+  <script>var csrf_token = "{{ csrf_token }}";</script>
+
+  <script src="{% static 'app/js/swiper.min.js' %}"></script>
+  <script src="{% static 'app/js/script.js' %}"></script>
+  <script type="module" src="{% static 'app/js/set_events.js' %}"></script>
+
   <script>
+    var requestServer = (_url, _method, query_data = null) => {
+      // Получаем CSRF-токен
+      // var csrftoken = getCookie("csrftoken");
+
+      var requestOptions = {
+          method: _method,
+          headers: {
+              "Content-Type": "application/json",
+              // "X-CSRFToken": csrftoken,
+              "X-CSRFToken": csrf_token,
+          },
+      };
+
+      if (_method === "POST" || _method === "PUT") {
+          var dataToSave = { data: query_data };
+          requestOptions.body = JSON.stringify(dataToSave);
+      }
+
+      return fetch(_url, requestOptions)
+          .then((response) => {
+              if (!response.ok) {
+                  throw new Error("Network response was not ok");
+              }
+              // console.log("\ncontent-type", response.headers.get("content-type"));
+              return response.json();
+          })
+          .catch((error) => {
+              console.error(
+                  "!!! There was a problem saving/retrieving the data:",
+                  error
+              );
+          });
+    };
+
     function verifyCaptcha(token) {
       console.log("\nVerify Captcha token: ", token);
       // Найти блок recapcha и получить id монеты
@@ -1442,18 +1488,6 @@
           });
     }
   </script>
-
-  <script src="{% static 'app/js/jq/jquery-3.7.1.min.js' %}"></script>
-  <script src="https://unpkg.com/htmx.org@2.0.4"
-    integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous">
-    </script>
-
-  <script src="https://unpkg.com/htmx-ext-ws@2.0.1/ws.js"></script>
-  <script>var csrf_token = "{{ csrf_token }}";</script>
-
-  <script src="{% static 'app/js/swiper.min.js' %}"></script>
-  <script src="{% static 'app/js/script.js' %}"></script>
-  <script type="module" src="{% static 'app/js/set_events.js' %}"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
